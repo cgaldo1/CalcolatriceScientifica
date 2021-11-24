@@ -73,13 +73,13 @@ public class GestoreInput {
                 System.out.println(n2);
                 NumeroComplesso n= new NumeroComplesso(n1,n2);
                 System.out.println(n);
-                this.stack.inserimento(n);
+                this.stack.push(n);
             }
             if(count == 1){
                 double n3=Double.parseDouble(s[0].substring(0, s[0].length()-1));
                 NumeroComplesso nc= new NumeroComplesso(0,n3);
                 System.out.println(nc);
-                this.stack.inserimento(nc);
+                this.stack.push(nc);
             }
         }
         else{
@@ -99,7 +99,7 @@ public class GestoreInput {
                 else throw new Exception();
             }
             System.out.println(Double.parseDouble(a));
-            this.stack.inserimento(new NumeroComplesso(Double.parseDouble(a),0));
+            this.stack.push(new NumeroComplesso(Double.parseDouble(a),0));
         }
         return this.stack;
     }
