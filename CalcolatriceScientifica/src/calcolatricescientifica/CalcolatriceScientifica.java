@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import static jdk.nashorn.internal.objects.Global.Infinity;
 
 /**
  *
@@ -31,6 +32,12 @@ public class CalcolatriceScientifica extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        double inf = Double.POSITIVE_INFINITY;
+        
+        
+        
+        
+    
     }
     
 }
