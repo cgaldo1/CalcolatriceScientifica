@@ -6,12 +6,7 @@
 package calcolatricescientifica;
 
 /**
-    Complex implements a complex number and defines complex
-    arithmetic and mathematical functions
-    Last Updated February 27, 2001
-    Copyright 1997-2001
-    @version 1.0
-    @author Andrew G. Bennett
+    @author Francesco
 */
 public class NumeroComplesso extends Object {
 
