@@ -34,13 +34,6 @@ public class CalcolatriceScientifica extends Application {
     public static void main(String[] args) {
         launch(args);
         
-        StackNumeri stack=new StackNumeri();
-        GestoreInput g= new GestoreInput(stack);
-        try {
-            g.controlloSeNumero("10");
-        } catch (Exception ex) {
-            System.out.println("Errore");
-        }
     }
     
 }
