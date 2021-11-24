@@ -4,6 +4,8 @@
  */
 package calcolatricescientifica;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,6 +33,14 @@ public class CalcolatriceScientifica extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        
+        StackNumeri stack=new StackNumeri();
+        GestoreInput g= new GestoreInput(stack);
+        try {
+            g.controlloSeNumero("10");
+        } catch (Exception ex) {
+            System.out.println("Errore");
+        }
     }
     
 }
