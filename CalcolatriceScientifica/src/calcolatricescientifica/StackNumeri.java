@@ -60,7 +60,7 @@ public class StackNumeri {
         this.push(penultimoel);
     }
     
-    public void over() throws Exception{
+    public void over(){
         NumeroComplesso ultimoel = this.drop();
         NumeroComplesso penultimoel = this.top();
         this.push(ultimoel);
