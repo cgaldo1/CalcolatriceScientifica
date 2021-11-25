@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calcolatricescientifica.FXMLCalcolatriceController">
-    <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
-    </children>
+<AnchorPane id="AnchorPane" prefHeight="498.0" prefWidth="381.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="calcolatricescientifica.ControllerCalcolatrice">
+   <children>
+      <VBox layoutX="149.0" layoutY="127.0" prefHeight="498.0" prefWidth="381.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="362.0" spacing="30.0">
+               <children>
+                  <TextField fx:id="casellaDiTesto" prefHeight="26.0" prefWidth="226.0" />
+                  <Button mnemonicParsing="false" onAction="#esegui" prefHeight="26.0" prefWidth="90.0" text="Esegui" />
+               </children>
+            </HBox>
+            <ListView fx:id="stackCalcolatrice" prefHeight="383.0" prefWidth="362.0" />
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

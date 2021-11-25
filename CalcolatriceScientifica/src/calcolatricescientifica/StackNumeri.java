@@ -5,6 +5,8 @@
  */
 package calcolatricescientifica;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -67,4 +69,29 @@ public class StackNumeri {
         this.push(penultimoel);
     }
 
+    public NumeroComplesso penultimo() throws Exception{
+        this.swap();
+        NumeroComplesso penultimoel = this.top();
+        this.swap();
+        return penultimoel;
+    }
+            
+    public List<NumeroComplesso> convertiInLista(){
+        List<NumeroComplesso> lista = new ArrayList<>();
+        Stack<NumeroComplesso> stackTemporaneo = new Stack<>();
+        NumeroComplesso nc = null;
+        int lunghezzaStack = stack.size();
+        for(int i =0; i<lunghezzaStack; i++){
+            nc=stack.pop();
+            stackTemporaneo.push(nc);
+            lista.add(nc);
+        }
+        int lunghezzaStackTemp = stackTemporaneo.size();
+        for(int i=0; i<lunghezzaStackTemp; i++){
+            nc = stackTemporaneo.pop();
+            stack.push(nc);
+        }
+        return lista;
+    }
+    
 }

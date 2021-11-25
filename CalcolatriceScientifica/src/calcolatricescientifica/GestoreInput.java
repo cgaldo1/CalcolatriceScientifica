@@ -108,5 +108,54 @@ public class GestoreInput {
         return stack;
     }
     
+    public StackNumeri controllaSeOperazione(String input, StackNumeri stack) throws Exception {
+        NumeroComplesso nc = null;
+        switch(input){
+            case "+":
+                nc=stack.penultimo().somma(stack.top());
+                stack.push(nc);
+                break;
+            case "-":
+                nc=stack.penultimo().sottrazione(stack.top());
+                stack.push(nc);
+                break;
+            case "*":
+                nc=stack.penultimo().prodotto(stack.top());
+                stack.push(nc);
+                break;
+            case "/":
+                nc=stack.penultimo().rapporto(stack.top());
+                stack.push(nc);
+                break;
+            case "sqrt":
+                nc = stack.top().radice();
+                stack.push(nc);
+                break;
+            case "+-":
+                nc=stack.top().inversioneSegno();
+                stack.push(nc);
+                break;
+            case "clear":
+                stack.clear();
+                break;
+            case "drop":
+                stack.drop();
+                break;
+            case "dup":
+                stack.dup();
+                break;
+            case "swap":
+                stack.swap();
+                break;
+            case "over":
+                stack.over();
+                break;
+            default:
+                stack=null;
+                
+        }
+        return stack;
+    }
+    
     
 }
