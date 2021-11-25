@@ -34,7 +34,7 @@ public class NumeroComplesso extends Object {
         if (x != 0 || y != 0) {
             return Math.sqrt(x * x + y * y);
         } else {
-            return -1;
+            return 0;
         }
     }
 
@@ -148,4 +148,5 @@ public class NumeroComplesso extends Object {
         return x + " + i*" + y;
 
     }
+    
 }
