@@ -9,21 +9,19 @@ package calcolatricescientifica;
  * @author carmi
  */
 public class GestoreInput {
-    private StackNumeri stack;
 
-    public GestoreInput(StackNumeri stack) {
-        this.stack = stack;
+    public GestoreInput() {
     }
     
-    public StackNumeri controlloSeNumero(String input) throws InputNonNumeroException{
+    public StackNumeri controlloSeNumero(String input, StackNumeri stack){
         String inputFormattato= input.replaceAll("\\s+","");
-        boolean corretto=true;
+        boolean decimale=true;
         for(int i=0;i<inputFormattato.length();i++){
             char c=inputFormattato.charAt(i);
-            if((c < '0' || c > '9') && c !='j' && c!='+' && c!='-' && c!='.') throw new InputNonNumeroException("Input non valido");
-            if(corretto==false && c>='0' && c<='9')corretto = true;
-            if(corretto==false)throw new InputNonNumeroException("Input non valido");
-            if(c=='.')corretto=false;
+            if((c < '0' || c > '9') && c !='j' && c!='+' && c!='-' && c!='.') return null;
+            if(decimale==false && c>='0' && c<='9')decimale = true;
+            if(decimale==false)return null;
+            if(c=='.')decimale=false;
         }
         if(inputFormattato.contains("j")){
             String[] s= new String[2];
@@ -41,29 +39,29 @@ public class GestoreInput {
                 j++;
                 doppio=true;
             }
-            if(inputFormattato.charAt(inputFormattato.length()-1) != 'j') throw new InputNonNumeroException("Input non valido");
+            if(inputFormattato.charAt(inputFormattato.length()-1) != 'j') return null;
             for(;j<inputFormattato.length();j++){
                 char c=inputFormattato.charAt(j);
                 if((c>='0' && c<='9') || c=='.'){
                     doppio=false;
-                    if(count >=2) throw new InputNonNumeroException("Input non valido");
-                    if(c=='.' && s[count].contains(".")) throw new InputNonNumeroException("Input non valido");
+                    if(count >=2) return null;
+                    if(c=='.' && s[count].contains(".")) return null;
                     s[count]= s[count] + c;
                 }
                 if(c == '+'){
-                    if(doppio == true) throw new InputNonNumeroException("Input non valido");
-                    if(count >=2) throw new InputNonNumeroException("Input non valido");
+                    if(doppio == true) return null;
                     count++;
+                    if(count >=2) return null;
                 }
                 if(c== '-') {
-                    if(doppio == true) throw new InputNonNumeroException("Input non valido");
-                    if(count >=2) throw new InputNonNumeroException("Input non valido");
+                    if(doppio == true) return null;
                     count++;
+                    if(count >=2) return null;
                     s[count]= s[count] + c;
                 }
                 if(c== 'j'){
                     doppio = false;
-                    if(count >=2) throw new InputNonNumeroException("Input non valido");
+                    if(count >=2) return null;
                     s[count]= s[count] + c;
                     count++;
                 }
@@ -71,17 +69,18 @@ public class GestoreInput {
             if(count == 2){
                 double n1=Double.parseDouble(s[0]);
                 double n2;
-                if (s[1] != "j") n2=Double.parseDouble(s[1].substring(0, s[1].length()-1));
+                if (!"j".equals(s[1])) n2=Double.parseDouble(s[1].substring(0, s[1].length()-1));
                 else n2=1;
-                NumeroComplesso n= new NumeroComplesso(n1,n2);
-                this.stack.push(n);
+                NumeroComplesso nc= new NumeroComplesso(n1,n2);
+                stack.push(nc);
             }
             if(count == 1){
-                double n3;
-                if (s[0] != "j") n3=Double.parseDouble(s[0].substring(0, s[0].length()-1));
-                else n3=1;
+                double n3=0;
+                if (!"j".equals(s[0]) && !"-j".equals(s[0])) n3=Double.parseDouble(s[0].substring(0, s[0].length()-1));
+                else if("j".equals(s[0])) n3=1;
+                else if("-j".equals(s[0])) n3=-1;
                 NumeroComplesso nc= new NumeroComplesso(0,n3);
-                this.stack.push(nc);
+                stack.push(nc);
             }
         }
         else{
@@ -91,20 +90,22 @@ public class GestoreInput {
             if(d=='-'){
                 a=a+d;
                 k++;
+                if(inputFormattato.length()==1)return null;
             }
             if(d=='+'){
                 k++;
+                if(inputFormattato.length()==1)return null;
             }
             for(;k<inputFormattato.length();k++){
                 d=inputFormattato.charAt(k);
                 if((d>='0' && d<='9') || d=='.'){
                     a=a+d;
                 }
-                else throw new InputNonNumeroException("Input non valido");
+                else return null;
             }
-            this.stack.push(new NumeroComplesso(Double.parseDouble(a),0));
+            stack.push(new NumeroComplesso(Double.parseDouble(a),0));
         }
-        return this.stack;
+        return stack;
     }
     
     
