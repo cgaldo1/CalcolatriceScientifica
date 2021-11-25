@@ -133,19 +133,19 @@ public class NumeroComplesso extends Object {
       x+i*y, x-i*y, x, or i*y as appropriate.*/
     public String toString() {
         if (x != 0 && y > 0) {
-            return x + " + " + y + "i";
+            return x + " + " + y + "j";
         }
         if (x != 0 && y < 0) {
-            return x + " - " + (-y) + "i";
+            return x + " - " + (-y) + "j";
         }
         if (y == 0) {
             return String.valueOf(x);
         }
         if (x == 0) {
-            return y + "i";
+            return y + "j";
         }
         //shouldn't get here (unless Inf or NaN)
-        return x + " + i*" + y;
+        return x + " + j*" + y;
 
     }
     
