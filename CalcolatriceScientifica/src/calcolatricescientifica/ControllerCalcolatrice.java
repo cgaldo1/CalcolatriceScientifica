@@ -68,7 +68,7 @@ public class ControllerCalcolatrice implements Initializable {
             stack = nuovoStack;
             oStack.setAll(stack.convertiInLista());
         }
-        casellaDiTesto.clear();;
+        casellaDiTesto.clear();
     }
 
 }

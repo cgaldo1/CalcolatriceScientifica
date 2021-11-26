@@ -82,7 +82,7 @@ public class NumeroComplesso extends Object {
     public NumeroComplesso radice() {
         double r = Math.sqrt(this.modulo());
         double theta = this.argomento() / 2;
-        return new NumeroComplesso(r * Math.round((cos(theta)*100)/100), r * Math.round((sin(theta)*100)/100));
+        return new NumeroComplesso(r * Math.cos(theta), r * Math.sin(theta));
     }
 
     /*La funzione si occupa di calcolare il coseno iperbolico di un numero complesso.

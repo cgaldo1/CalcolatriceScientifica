@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
 package calcolatricescientifica;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -83,4 +85,292 @@ public class GestoreInputTest {
         assertEquals(null,risultato);
     }
     
+    @Test
+    public void testControllaSeOperazione(){
+        StackNumeri stack = new StackNumeri();
+        stack.push(new NumeroComplesso(3,5));
+        stack.push(new NumeroComplesso(1,1));
+        
+        GestoreInput istanza = new GestoreInput();
+        
+        StackNumeri risultato = null;
+        
+        //test somma
+        NumeroComplesso n = new NumeroComplesso(4,6);
+        try {
+            risultato = istanza.controllaSeOperazione("+",stack);
+        } catch (Exception ex) {
+            Logger.getLogger(GestoreInputTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        assertEquals(n.parteReale(), risultato.top().parteReale(),0.00001);
+        assertEquals(n.parteImmaginaria(), risultato.top().parteImmaginaria(),0.00001);
+        
+        boolean thrown=false;
+        try {
+            risultato = istanza.controllaSeOperazione("+",new StackNumeri());
+        } catch (Exception ex) {
+            thrown=true;
+        }
+        assertTrue(thrown);
+        
+        StackNumeri stackEccezione = new StackNumeri();
+        stackEccezione.push(new NumeroComplesso(2,2));
+        thrown=false;
+        try {
+            risultato = istanza.controllaSeOperazione("+",stackEccezione);
+        } catch (Exception ex) {
+            thrown=true;
+        }
+        assertTrue(thrown);
+        
+        //test differenza
+        n=new NumeroComplesso(-3,-5);
+        try {
+            risultato = istanza.controllaSeOperazione("-",stack);
+        } catch (Exception ex) {
+            Logger.getLogger(GestoreInputTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        assertEquals(n.parteReale(), risultato.top().parteReale(),0.00001);
+        assertEquals(n.parteImmaginaria(), risultato.top().parteImmaginaria(),0.00001);
+        
+        thrown=false;
+        try {
+            risultato = istanza.controllaSeOperazione("-",new StackNumeri());
+        } catch (Exception ex) {
+            thrown=true;
+        }
+        assertTrue(thrown);
+        
+        thrown=false;
+        try {
+            risultato = istanza.controllaSeOperazione("-",stackEccezione);
+        } catch (Exception ex) {
+            thrown=true;
+        }
+        assertTrue(thrown);
+        
+        //test prodotto
+        n=new NumeroComplesso(18,-38);
+        try {
+            risultato = istanza.controllaSeOperazione("*",stack);
+        } catch (Exception ex) {
+            Logger.getLogger(GestoreInputTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        assertEquals(n.parteReale(), risultato.top().parteReale(),0.00001);
+        assertEquals(n.parteImmaginaria(), risultato.top().parteImmaginaria(),0.00001);
+        
+        thrown=false;
+        try {
+            risultato = istanza.controllaSeOperazione("*",new StackNumeri());
+        } catch (Exception ex) {
+            thrown=true;
+        }
+        assertTrue(thrown);
+        
+        thrown=false;
+        try {
+            risultato = istanza.controllaSeOperazione("*",stackEccezione);
+        } catch (Exception ex) {
+            thrown=true;
+        }
+        assertTrue(thrown);
+        
+        //test rapporto
+        n=new NumeroComplesso(0.07692,-0.11538);
+        try {
+            risultato = istanza.controllaSeOperazione("/",stack);
+        } catch (Exception ex) {
+            Logger.getLogger(GestoreInputTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        assertEquals(n.parteReale(), risultato.top().parteReale(),0.00001);
+        assertEquals(n.parteImmaginaria(), risultato.top().parteImmaginaria(),0.00001);
+        
+        thrown=false;
+        try {
+            risultato = istanza.controllaSeOperazione("/",new StackNumeri());
+        } catch (Exception ex) {
+            thrown=true;
+        }
+        assertTrue(thrown);
+        
+        thrown=false;
+        try {
+            risultato = istanza.controllaSeOperazione("/",stackEccezione);
+        } catch (Exception ex) {
+            thrown=true;
+        }
+        assertTrue(thrown);
+        
+        //test radice
+        n = new NumeroComplesso(0.32832,-0.17571);
+        try {
+            risultato = istanza.controllaSeOperazione("sqrt",stack);
+        } catch (Exception ex) {
+            Logger.getLogger(GestoreInputTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        assertEquals(n.parteReale(), risultato.top().parteReale(),0.00001);
+        assertEquals(n.parteImmaginaria(), risultato.top().parteImmaginaria(),0.00001);
+        
+        thrown=false;
+        try {
+            risultato = istanza.controllaSeOperazione("sqrt",new StackNumeri());
+        } catch (Exception ex) {
+            thrown=true;
+        }
+        assertTrue(thrown);
+        
+        
+        //test inversione segno
+        n = new NumeroComplesso(-0.32832,0.17571);
+        try {
+            risultato = istanza.controllaSeOperazione("+-",stack);
+        } catch (Exception ex) {
+            Logger.getLogger(GestoreInputTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        assertEquals(n.parteReale(), risultato.top().parteReale(),0.00001);
+        assertEquals(n.parteImmaginaria(), risultato.top().parteImmaginaria(),0.00001);
+        
+        thrown=false;
+        try {
+            risultato = istanza.controllaSeOperazione("+-",new StackNumeri());
+        } catch (Exception ex) {
+            thrown=true;
+        }
+        assertTrue(thrown);
+        
+        //test drop
+        StackNumeri stackTest = new StackNumeri();
+        stackTest.push(new NumeroComplesso(3,5));
+        stackTest.push(new NumeroComplesso(1,1));
+        stackTest.push(new NumeroComplesso(4,6));
+        stackTest.push(new NumeroComplesso(-3,-5));
+        stackTest.push(new NumeroComplesso(18,-38));
+        stackTest.push(new NumeroComplesso(0.07692307692307691,-0.11538461538461536));
+        stackTest.push(new NumeroComplesso(0.3283276762469044,-0.17571563978944835));
+        try {
+            risultato = istanza.controllaSeOperazione("drop",stack);
+        } catch (Exception ex) {
+            Logger.getLogger(GestoreInputTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        assertEquals(stackTest.toString(), risultato.toString());
+        
+        thrown=false;
+        try {
+            risultato = istanza.controllaSeOperazione("drop",new StackNumeri());
+        } catch (Exception ex) {
+            thrown=true;
+        }
+        assertTrue(thrown);
+        
+        //test swap
+        stackTest = new StackNumeri();
+        stackTest.push(new NumeroComplesso(3,5));
+        stackTest.push(new NumeroComplesso(1,1));
+        stackTest.push(new NumeroComplesso(4,6));
+        stackTest.push(new NumeroComplesso(-3,-5));
+        stackTest.push(new NumeroComplesso(18,-38));
+        stackTest.push(new NumeroComplesso(0.3283276762469044,-0.17571563978944835));
+        stackTest.push(new NumeroComplesso(0.07692307692307691,-0.11538461538461536));
+        try {
+            risultato = istanza.controllaSeOperazione("swap",stack);
+        } catch (Exception ex) {
+            Logger.getLogger(GestoreInputTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        assertEquals(stackTest.toString(), risultato.toString());
+        
+        thrown=false;
+        try {
+            risultato = istanza.controllaSeOperazione("swap",new StackNumeri());
+        } catch (Exception ex) {
+            thrown=true;
+        }
+        assertTrue(thrown);
+        
+        thrown=false;
+        try {
+            risultato = istanza.controllaSeOperazione("swap",stackEccezione);
+        } catch (Exception ex) {
+            thrown=true;
+        }
+        assertTrue(thrown);
+        
+        //test dup
+        stackTest = new StackNumeri();
+        stackTest.push(new NumeroComplesso(3,5));
+        stackTest.push(new NumeroComplesso(1,1));
+        stackTest.push(new NumeroComplesso(4,6));
+        stackTest.push(new NumeroComplesso(-3,-5));
+        stackTest.push(new NumeroComplesso(18,-38));
+        stackTest.push(new NumeroComplesso(0.3283276762469044,-0.17571563978944835));
+        stackTest.push(new NumeroComplesso(0.07692307692307691,-0.11538461538461536));
+        stackTest.push(new NumeroComplesso(0.07692307692307691,-0.11538461538461536));
+        try {
+            risultato = istanza.controllaSeOperazione("dup",stack);
+        } catch (Exception ex) {
+            Logger.getLogger(GestoreInputTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        assertEquals(stackTest.toString(), risultato.toString());
+        
+        thrown=false;
+        try {
+            risultato = istanza.controllaSeOperazione("swap",new StackNumeri());
+        } catch (Exception ex) {
+            thrown=true;
+        }
+        assertTrue(thrown);
+        
+        //test over
+        stackTest = new StackNumeri();
+        stackTest.push(new NumeroComplesso(3,5));
+        stackTest.push(new NumeroComplesso(1,1));
+        stackTest.push(new NumeroComplesso(4,6));
+        stackTest.push(new NumeroComplesso(-3,-5));
+        stackTest.push(new NumeroComplesso(18,-38));
+        stackTest.push(new NumeroComplesso(0.3283276762469044,-0.17571563978944835));
+        stackTest.push(new NumeroComplesso(0.07692307692307691,-0.11538461538461536));
+        stackTest.push(new NumeroComplesso(0.07692307692307691,-0.11538461538461536));
+        stackTest.push(new NumeroComplesso(0.07692307692307691,-0.11538461538461536));
+        try {
+            risultato = istanza.controllaSeOperazione("over",stack);
+        } catch (Exception ex) {
+            Logger.getLogger(GestoreInputTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        assertEquals(stackTest.toString(), risultato.toString());
+        
+        thrown=false;
+        try {
+            risultato = istanza.controllaSeOperazione("over",new StackNumeri());
+        } catch (Exception ex) {
+            thrown=true;
+        }
+        assertTrue(thrown);
+        
+        thrown=false;
+        try {
+            risultato = istanza.controllaSeOperazione("over",stackEccezione);
+        } catch (Exception ex) {
+            thrown=true;
+        }
+        assertTrue(thrown);
+        
+        //test clear
+        stackTest = new StackNumeri();
+        try {
+            risultato = istanza.controllaSeOperazione("clear",stack);
+        } catch (Exception ex) {
+            Logger.getLogger(GestoreInputTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        assertEquals(stackTest.toString(), risultato.toString());
+        
+        //test input errato
+        StackNumeri stackInputErrato = new StackNumeri();
+        stackInputErrato.push(new NumeroComplesso(1,2));
+        try {
+            risultato = istanza.controllaSeOperazione("+a",stack);
+        } catch (Exception ex) {
+            Logger.getLogger(GestoreInputTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        assertEquals(null, risultato);
+        
+    }
 }

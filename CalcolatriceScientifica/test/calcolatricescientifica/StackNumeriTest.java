@@ -181,6 +181,15 @@ public class StackNumeriTest {
      */
     @Test
     public void testConvertiInLista() {
+        StackNumeri stack = new StackNumeri();
+        stack.push(new NumeroComplesso(2,4));
+        stack.push(new NumeroComplesso(1,3));
+        stack.push(new NumeroComplesso(5,6));
+        List<NumeroComplesso> lista = stack.convertiInLista();
+        for(int i=0; i<3; i++){
+            assertEquals(lista.get(i), stack.drop());
+        }
+        
     }
     
 }
