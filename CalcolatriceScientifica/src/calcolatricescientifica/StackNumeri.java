@@ -28,8 +28,8 @@ public class StackNumeri {
         return stack.peek();
     }
     
-    public void isEmpty(){
-        stack.isEmpty();
+    public boolean isEmpty(){
+        return stack.isEmpty();
     }
     
     public int lenght(){
@@ -62,7 +62,9 @@ public class StackNumeri {
         this.push(penultimoel);
     }
     
-    public void over(){
+    public void over() throws Exception{
+        this.isEmpty();
+        if(stack.size() < 2) throw new Exception();
         NumeroComplesso ultimoel = this.drop();
         NumeroComplesso penultimoel = this.top();
         this.push(ultimoel);
