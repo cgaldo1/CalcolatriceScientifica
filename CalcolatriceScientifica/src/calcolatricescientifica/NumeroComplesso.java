@@ -1,9 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package calcolatricescientifica;
+
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
 
 /**
  * @author Francesco
@@ -83,7 +82,7 @@ public class NumeroComplesso extends Object {
     public NumeroComplesso radice() {
         double r = Math.sqrt(this.modulo());
         double theta = this.argomento() / 2;
-        return new NumeroComplesso(r * Math.cos(theta), r * Math.sin(theta));
+        return new NumeroComplesso(r * Math.round((cos(theta)*100)/100), r * Math.round((sin(theta)*100)/100));
     }
 
     /*La funzione si occupa di calcolare il coseno iperbolico di un numero complesso.
@@ -130,20 +129,20 @@ public class NumeroComplesso extends Object {
 
     /*La funzione si occupa di fornire la rappresentazione di un numero complesso sottoforma di stringa. 
       La funzione ritorna la rappresentazione di un numero complesso nella maniera più appropriata tra le seguenti: 
-      x+i*y, x-i*y, x, or i*y as appropriate.*/
+      x+i*y, x-i*y */
     public String toString() {
-        if (x != 0 && y > 0) {
+        if (x != 0 && y > 0 || x == 0 && y > 0) {
             return x + " + " + y + "j";
         }
-        if (x != 0 && y < 0) {
+        if (x != 0 && y < 0 || x == 0 && y < 0) {
             return x + " - " + (-y) + "j";
         }
         if (y == 0) {
-            return String.valueOf(x);
+            return String.valueOf(x) + " " + "+" + y +"j";
         }
-        if (x == 0) {
-            return y + "j";
-        }
+        //if (x == 0) {
+        //    return y + "j";
+        //}
         //shouldn't get here (unless Inf or NaN)
         return x + " + j*" + y;
 

@@ -37,7 +37,9 @@ public class CalcolatriceScientifica extends Application {
         double inf = Double.POSITIVE_INFINITY;
         double negativeinf = Double.NEGATIVE_INFINITY;
         NumeroComplesso s = new NumeroComplesso(2,1);
-        System.out.println(s.radice());
+        NumeroComplesso s1 = new NumeroComplesso(0,0);
+        NumeroComplesso l = s.rapporto(s1);
+        System.out.println(l);
     }
     
 }

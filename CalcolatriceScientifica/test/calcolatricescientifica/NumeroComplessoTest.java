@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package calcolatricescientifica;
 
 import static java.lang.Double.NaN;
@@ -12,7 +8,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author picac
+ * @author Francesco
  */
 public class NumeroComplessoTest {
 
@@ -20,7 +16,7 @@ public class NumeroComplessoTest {
     }
 
     /**
-     * Test of parteReale method, of class NumeroComplesso.
+     * Test del metodo parteReale, della classe NumeroComplesso.
      */
     @Test
     public void testParteReale() {
@@ -51,7 +47,7 @@ public class NumeroComplessoTest {
     }
 
     /**
-     * Test of parteImmaginaria method, of class NumeroComplesso.
+     * Test del metodo parteImmaginaria, della classe NumeroComplesso.
      */
     @Test
     public void testParteImmaginaria() {
@@ -82,7 +78,7 @@ public class NumeroComplessoTest {
     }
 
     /**
-     * Test of modulo method, of class NumeroComplesso.
+     * Test del metodo modulo, della classe NumeroComplesso.
      */
     @Test
     public void testModulo() {
@@ -135,7 +131,7 @@ public class NumeroComplessoTest {
     }
 
     /**
-     * Test of somma method, of class NumeroComplesso.
+     * Test del metodo somma, della classe NumeroComplesso.
      */
     @Test
     public void testSomma() {
@@ -176,7 +172,7 @@ public class NumeroComplessoTest {
     }
 
     /**
-     * Test of sottrazione method, of class NumeroComplesso.
+     * Test del metodo sottrazione, della classe NumeroComplesso.
      */
     @Test
     public void testSottrazione() {
@@ -215,7 +211,7 @@ public class NumeroComplessoTest {
     }
 
     /**
-     * Test of prodotto method, of class NumeroComplesso.
+     * Test del metodo prodotto, della classe NumeroComplesso.
      */
     @Test
     public void testProdotto() {
@@ -259,7 +255,7 @@ public class NumeroComplessoTest {
     }
 
     /**
-     * Test of rapporto method, of class NumeroComplesso.
+     * Test del metodo rapporto, della classe NumeroComplesso.
      */
     @Test
     public void testRapporto() {
@@ -275,7 +271,8 @@ public class NumeroComplessoTest {
         NumeroComplesso n6 = new NumeroComplesso(3.0 / 2.0, 3.0 / 2.0);     //Rapporto con parte reale frazionaria e parte immaginaria frazionaria
         NumeroComplesso n7 = new NumeroComplesso(negativeinf, inf);         //Rapporto con parte reale infinita negativa e parte immaginaria infinita
         NumeroComplesso n8 = new NumeroComplesso(inf, negativeinf);         //Rapporto con parte reale infinita e parte immaginaria infinita negativa
-
+        NumeroComplesso n9 = new NumeroComplesso(0, 0);                     //Rapporto con parte reale nulla e parte immaginaria nulla
+        
         assertEquals(new NumeroComplesso(0.22972972972972974, -0.12162162162162163).parteReale(), n0.rapporto(n).parteReale(), 10e-1);
 
         assertEquals(new NumeroComplesso(0.22972972972972974, -0.12162162162162163).parteImmaginaria(), n0.rapporto(n).parteImmaginaria(), 10e-1);
@@ -303,74 +300,101 @@ public class NumeroComplessoTest {
         assertEquals(new NumeroComplesso(NaN, NaN).parteReale(), n0.rapporto(n8).parteReale(), 10e-1);
 
         assertEquals(new NumeroComplesso(NaN, NaN).parteImmaginaria(), n0.rapporto(n8).parteImmaginaria(), 10e-1);
+         
+        assertEquals(new NumeroComplesso(NaN, NaN).parteReale(), n0.rapporto(n9).parteReale(), 10e-1);
+
+        assertEquals(new NumeroComplesso(NaN, NaN).parteImmaginaria(), n0.rapporto(n9).parteImmaginaria(), 10e-1);
 
     }
 
     /**
-     * Test of esponenziale method, of class NumeroComplesso.
+     * Test del metodo esponenziale, della classe NumeroComplesso.
      */
     @Test
     public void testEsponenziale() {
     }
 
     /**
-     * Test of argomento method, of class NumeroComplesso.
+     * Test del metodo argomento, della classe NumeroComplesso.
      */
     @Test
     public void testArgomento() {
     }
 
     /**
-     * Test of logaritmo method, of class NumeroComplesso.
+     * Test del metodo logaritmo, della classe NumeroComplesso.
      */
     @Test
     public void testLogaritmo() {
     }
 
     /**
-     * Test of radice method, of class NumeroComplesso.
+     * Test del metodo radice, della classe NumeroComplesso.
      */
     @Test
     public void testRadice() {
+        double inf = Double.POSITIVE_INFINITY;
+        double negativeinf = Double.NEGATIVE_INFINITY;
+        NumeroComplesso n0 = new NumeroComplesso(-4,0);
+        NumeroComplesso n = new NumeroComplesso(0,0);
+        NumeroComplesso n1 = new NumeroComplesso(inf,0);
+        NumeroComplesso n2 = new NumeroComplesso(negativeinf,0);
+        NumeroComplesso n3 = new NumeroComplesso(3.0/2.0,3.0/2.0);
+        
+        assertTrue(new NumeroComplesso(0,2).parteReale() == n0.radice().parteReale() && new NumeroComplesso(0,2).parteImmaginaria() == n0.radice().parteImmaginaria());
+        
+        assertTrue(new NumeroComplesso(0,0).parteReale() == n.radice().parteReale() && new NumeroComplesso(0,0).parteImmaginaria() == n.radice().parteImmaginaria());
+        
+        assertEquals(new NumeroComplesso(inf, NaN).parteReale(), n1.radice().parteReale(), 10e-1);
+
+        assertEquals(new NumeroComplesso(inf, NaN).parteImmaginaria(), n1.radice().parteImmaginaria(), 10e-1);
+        
+        assertEquals(new NumeroComplesso(NaN, inf).parteReale(), n2.radice().parteReale(), 10e-1);
+
+        assertEquals(new NumeroComplesso(NaN, inf).parteImmaginaria(), n2.radice().parteImmaginaria(), 10e-1);
+               
+        assertEquals(new NumeroComplesso(1.4564753151219703, 0).parteReale(), n3.radice().parteReale(), 10e-1);
+
+        assertEquals(new NumeroComplesso(1.4564753151219703, 0).parteImmaginaria(), n3.radice().parteImmaginaria(), 10e-1);
     }
 
     /**
-     * Test of seno method, of class NumeroComplesso.
+     * Test del metodo seno, della classe NumeroComplesso.
      */
     @Test
     public void testSeno() {
     }
 
     /**
-     * Test of coseno method, of class NumeroComplesso.
+     * Test del metodo coseno, della classe NumeroComplesso.
      */
     @Test
     public void testCoseno() {
     }
 
     /**
-     * Test of senoIperbolico2 method, of class NumeroComplesso.
+     * Test del metodo senoIperbolico2, della classe NumeroComplesso.
      */
     @Test
     public void testSenoIperbolico2() {
     }
 
     /**
-     * Test of cosenoIperbolico2 method, of class NumeroComplesso.
+     * Test del metodo cosenoIperbolico2, della classe NumeroComplesso.
      */
     @Test
     public void testCosenoIperbolico2() {
     }
 
     /**
-     * Test of tan method, of class NumeroComplesso.
+     * Test del metodo tan, della classe NumeroComplesso.
      */
     @Test
     public void testTan() {
     }
 
     /**
-     * Test of inversioneSegno method, of class NumeroComplesso.
+     * Test del metodo inversioneSegno, della classe NumeroComplesso.
      */
     @Test
     public void testInversioneSegno() {
@@ -396,10 +420,21 @@ public class NumeroComplessoTest {
     }
 
     /**
-     * Test of toString method, of class NumeroComplesso.
+     * Test del metodo toString, della classe NumeroComplesso.
      */
     @Test
     public void testToString() {
+        double inf = Double.POSITIVE_INFINITY;
+        double negativeinf = Double.NEGATIVE_INFINITY;
+        NumeroComplesso n0 = new NumeroComplesso(1,2);
+        NumeroComplesso n = new NumeroComplesso(-1,2);
+        NumeroComplesso n1 = new NumeroComplesso(inf,2);
+        NumeroComplesso n2 = new NumeroComplesso(negativeinf,2);
+        
+        assertEquals("1.0 + 2.0j",n0.toString());
+        assertEquals("-1.0 + 2.0j",n.toString());
+        assertEquals("Infinity + 2.0j",n1.toString());
+        assertEquals("-Infinity + 2.0j",n2.toString());
     }
 
 }
