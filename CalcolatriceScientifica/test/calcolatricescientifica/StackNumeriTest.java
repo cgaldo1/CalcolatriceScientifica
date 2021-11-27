@@ -27,7 +27,7 @@ public class StackNumeriTest {
         StackNumeri s = new StackNumeri();
         NumeroComplesso n = new NumeroComplesso(-6, 34);
         s.push(n);
-        assertEquals(n.parteReale() + " + " + n.parteImmaginaria() + "j", s.top().toString());
+        assertEquals(n.toString(), s.top().toString());
     }
 
     /**
@@ -97,7 +97,6 @@ public class StackNumeriTest {
     @Test(expected=EmptyStackException.class)
     public void testDrop() {
         StackNumeri s = new StackNumeri();
-        s.drop();
         NumeroComplesso n = new NumeroComplesso(5,6);
         s.push(n);
         NumeroComplesso n2 = new NumeroComplesso(7,-2);
@@ -105,6 +104,9 @@ public class StackNumeriTest {
         
         assertEquals(n2,s.drop());
         assertEquals(n, s.top());
+        
+        StackNumeri s2 = new StackNumeri();
+        s2.drop();
     }
 
     /**
@@ -113,7 +115,6 @@ public class StackNumeriTest {
     @Test(expected=Exception.class)
     public void testDup() throws Exception {
         StackNumeri s = new StackNumeri();
-        s.dup();
         NumeroComplesso n = new NumeroComplesso(5,6);
         s.push(n);
         NumeroComplesso n2 = new NumeroComplesso(7,-2);
@@ -122,6 +123,9 @@ public class StackNumeriTest {
         s.dup();
         assertEquals(n2, s.top());
         assertEquals(n2, s.penultimo());
+        
+        StackNumeri s2 = new StackNumeri();
+        s2.dup();
     }
 
     /**
@@ -132,13 +136,15 @@ public class StackNumeriTest {
         StackNumeri s = new StackNumeri();
         NumeroComplesso n = new NumeroComplesso(5,6);
         s.push(n);
-        s.swap();
         NumeroComplesso n2 = new NumeroComplesso(7,-2);
         s.push(n2);
         
         s.swap();
         assertEquals(n, s.top());
         assertEquals(n2, s.penultimo());
+        
+        StackNumeri s2 = new StackNumeri();
+        s2.swap();
         
     }
 
@@ -150,7 +156,6 @@ public class StackNumeriTest {
         StackNumeri s = new StackNumeri();
         NumeroComplesso n = new NumeroComplesso(5,6);
         s.push(n);
-        s.over();
         NumeroComplesso n2 = new NumeroComplesso(7,-2);
         s.push(n2);
         
@@ -159,6 +164,9 @@ public class StackNumeriTest {
         assertEquals(n2, s.penultimo());
         s.drop();
         assertEquals(n, s.penultimo());
+        
+        StackNumeri s2 = new StackNumeri();
+        s2.over();
     }
 
     /**
@@ -169,11 +177,13 @@ public class StackNumeriTest {
         StackNumeri s = new StackNumeri();
         NumeroComplesso n = new NumeroComplesso(5,6);
         s.push(n);
-        s.penultimo();
         NumeroComplesso n2 = new NumeroComplesso(7,-2);
         s.push(n2);
         
         assertEquals(n, s.penultimo());
+        
+        StackNumeri s2 = new StackNumeri();
+        s2.penultimo();
     }
 
     /**

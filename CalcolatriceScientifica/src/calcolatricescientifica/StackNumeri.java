@@ -41,18 +41,22 @@ public class StackNumeri {
         return stack.toString();
     }
     
+    //Metodo che rimuove tutti gli elementi dallo stack
     public void clear(){
         stack.clear();
     }
     
+    //metodo che rimuove elemento in cima allo stack (il top)
     public NumeroComplesso drop(){
         return stack.pop();
     }
     
+    //metodo che duplica l'ultimo elemento dello stack
     public void dup(){
         this.push(this.top());
     }
     
+    //metodo che scambia gli ultimi due elementi dello stack
     public void swap() throws Exception{
         this.isEmpty();
         if(stack.size() < 2) throw new Exception();
@@ -62,6 +66,7 @@ public class StackNumeri {
         this.push(penultimoel);
     }
     
+    //metodo che inserisce in cima allo stack una copia del penultimo elemento 
     public void over() throws Exception{
         this.isEmpty();
         if(stack.size() < 2) throw new Exception();
