@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -32,6 +33,8 @@ public class ControllerCalcolatrice implements Initializable {
     private ObservableList<NumeroComplesso> oStack;
 
     private StackNumeri stack;
+    @FXML
+    private Button bottoneEsegui;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -55,6 +58,7 @@ public class ControllerCalcolatrice implements Initializable {
                 nuovoStack = gestore.controllaSeOperazione(input, stack);
                 if (nuovoStack == null) {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Input non valido");
+                    
                     alert.showAndWait();
                 } else {
                     stack = nuovoStack;
