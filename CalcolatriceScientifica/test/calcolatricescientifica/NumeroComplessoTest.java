@@ -341,7 +341,7 @@ public class NumeroComplessoTest {
         NumeroComplesso n2 = new NumeroComplesso(negativeinf,0);
         NumeroComplesso n3 = new NumeroComplesso(3.0/2.0,3.0/2.0);
         
-        assertTrue(new NumeroComplesso(0,2).parteReale() == n0.radice().parteReale() && new NumeroComplesso(0,2).parteImmaginaria() == n0.radice().parteImmaginaria());
+        assertTrue(new NumeroComplesso(1.2246467991473532E-16,2).parteReale() == n0.radice().parteReale() && new NumeroComplesso(1.2246467991473532E-16,2).parteImmaginaria() == n0.radice().parteImmaginaria());
         
         assertTrue(new NumeroComplesso(0,0).parteReale() == n.radice().parteReale() && new NumeroComplesso(0,0).parteImmaginaria() == n.radice().parteImmaginaria());
         
@@ -349,9 +349,9 @@ public class NumeroComplessoTest {
 
         assertEquals(new NumeroComplesso(inf, NaN).parteImmaginaria(), n1.radice().parteImmaginaria(), 10e-1);
         
-        assertEquals(new NumeroComplesso(NaN, inf).parteReale(), n2.radice().parteReale(), 10e-1);
+        assertEquals(new NumeroComplesso(inf, inf).parteReale(), n2.radice().parteReale(), 10e-1);
 
-        assertEquals(new NumeroComplesso(NaN, inf).parteImmaginaria(), n2.radice().parteImmaginaria(), 10e-1);
+        assertEquals(new NumeroComplesso(inf, inf).parteImmaginaria(), n2.radice().parteImmaginaria(), 10e-1);
                
         assertEquals(new NumeroComplesso(1.4564753151219703, 0).parteReale(), n3.radice().parteReale(), 10e-1);
 
