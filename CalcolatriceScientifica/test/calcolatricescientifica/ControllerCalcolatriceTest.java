@@ -39,17 +39,9 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(this.getClass().getResource("FXMLCalcolatrice.fxml"));
         mainNode = (AnchorPane) loader.load();
-        //mainNode = FXMLLoader.load(this.getClass().getResource(".../calcolatricescientifica/FXMLCalcolatrice.fxml"));
         stage.setScene(new Scene(mainNode));
         stage.show();
         stage.toFront();
-        /*
-      mainroot = (Pane) FXMLLoader.load(getClass().getClassLoader().getResource("ControllerCalcolatrice.fxml"));
-      mainstage = stage;
-      stage.setScene(new Scene(mainroot));
-      stage.show();
-      stage.toFront();
-         */
     }
 
     @Test

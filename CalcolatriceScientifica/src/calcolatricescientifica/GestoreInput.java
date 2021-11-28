@@ -114,6 +114,9 @@ public class GestoreInput {
         return stack;
     }
     
+    /*Controlla se l'input inserito dall'utente è un'operazione,
+    caso in cui tale operazione viene eseguita sullo stack passato come parametro.
+    */
     public StackNumeri controllaSeOperazione(String input, StackNumeri stack) throws Exception {
         NumeroComplesso nc = null;
         switch(input){
