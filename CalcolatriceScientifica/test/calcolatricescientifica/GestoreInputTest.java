@@ -83,6 +83,10 @@ public class GestoreInputTest {
         assertEquals(null,risultato);
         risultato= istanza.controlloSeNumero("+-",stack);
         assertEquals(null,risultato);
+        risultato= istanza.controlloSeNumero(".0",stack);
+        assertEquals(null,risultato);
+        risultato= istanza.controlloSeNumero(".0j",stack);
+        assertEquals(null,risultato);
     }
     
     @Test
