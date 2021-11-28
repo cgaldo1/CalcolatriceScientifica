@@ -34,12 +34,6 @@ public class CalcolatriceScientifica extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        double inf = Double.POSITIVE_INFINITY;
-        double negativeinf = Double.NEGATIVE_INFINITY;
-        NumeroComplesso s = new NumeroComplesso(2,1);
-        NumeroComplesso s1 = new NumeroComplesso(0,0);
-        NumeroComplesso l = s.rapporto(s1);
-        System.out.println(l);
     }
     
 }
