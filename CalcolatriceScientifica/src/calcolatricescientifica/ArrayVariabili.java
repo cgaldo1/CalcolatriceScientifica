@@ -54,4 +54,17 @@ public class ArrayVariabili {
         this.inserisci(s.top(),i);        
     }
     
+    public void inserisciInStack(StackNumeri s, char x) throws Exception{
+        s.push(getNumero(x));
+}
+    
+    public void sommaVariabile(StackNumeri s, char x) throws Exception{
+         NumeroComplesso sum = getNumero(x).somma(s.top());
+         inserisci(sum, indice(x));
+    }
+    
+    public void sottrazioneVariabile(StackNumeri s, char x) throws Exception{
+         NumeroComplesso sub = getNumero(x).sottrazione(s.top());
+         inserisci(sub, indice(x));
+    }
 }
