@@ -51,6 +51,11 @@ public class GestoreInputTest {
         assertEquals(n.parteReale(), risultato.top().parteReale(),0.00001);
         assertEquals(n.parteImmaginaria(), risultato.top().parteImmaginaria(),0.00001);
         
+        risultato= istanza.controlloSeNumero("5j+10",stack);
+        n=new NumeroComplesso(10,5);
+        assertEquals(n.parteReale(), risultato.top().parteReale(),0.00001);
+        assertEquals(n.parteImmaginaria(), risultato.top().parteImmaginaria(),0.00001);
+        
         risultato= istanza.controlloSeNumero("5+7k",stack);
         assertEquals(null,risultato);
         risultato= istanza.controlloSeNumero("f5.0+7j",stack);
@@ -70,8 +75,6 @@ public class GestoreInputTest {
         risultato= istanza.controlloSeNumero("+7+",stack);
         assertEquals(null,risultato);
         risultato= istanza.controlloSeNumero("--j",stack);
-        assertEquals(null,risultato);
-        risultato= istanza.controlloSeNumero("5j+10",stack);
         assertEquals(null,risultato);
         risultato= istanza.controlloSeNumero("j9",stack);
         assertEquals(null,risultato);
