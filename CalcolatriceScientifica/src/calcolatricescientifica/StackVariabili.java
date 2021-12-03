@@ -17,8 +17,21 @@ public class StackVariabili {
         stackVariabili = new Stack<>();
     }
     
+    public void inserisci(Variabili v){
+        stackVariabili.add(v);
+    }
+    
+    public Variabili getArray(){
+        return stackVariabili.peek();
+    }
+    
     public void salvaVariabili(Variabili v){
         this.stackVariabili.push(v);
     }
     
+    public void restore(Variabili v) throws Exception{
+        if(stackVariabili.isEmpty()) throw new Exception();
+        Variabili top= stackVariabili.pop();
+        v.array = top.array;
+    }
 }
