@@ -9,11 +9,11 @@ package calcolatricescientifica;
  *
  * @author jessi
  */
-public class ArrayVariabili {
+public class Variabili {
     NumeroComplesso[] array;
     int dim;
 
-    public ArrayVariabili() {
+    public Variabili() {
         array = new NumeroComplesso[26];
         dim = 0;
     }
