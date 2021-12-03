@@ -1,6 +1,7 @@
 
 package calcolatricescientifica;
 
+import static java.lang.Double.NaN;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
@@ -69,7 +70,7 @@ public class NumeroComplesso extends Object {
 
     /*La funzione si occupa di calcolare l'argomento di un numero complesso*/
     public double argomento() {
-        return Math.atan2(y, x);
+         return Math.atan2(y, x);  
     }
 
     /*La funzione si occupa di calcolare il logaritmo di un numero complesso.

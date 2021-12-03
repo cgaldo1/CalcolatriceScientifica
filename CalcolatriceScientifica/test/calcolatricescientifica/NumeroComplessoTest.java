@@ -1,4 +1,3 @@
-
 package calcolatricescientifica;
 
 import static java.lang.Double.NaN;
@@ -272,7 +271,7 @@ public class NumeroComplessoTest {
         NumeroComplesso n7 = new NumeroComplesso(negativeinf, inf);         //Rapporto con parte reale infinita negativa e parte immaginaria infinita
         NumeroComplesso n8 = new NumeroComplesso(inf, negativeinf);         //Rapporto con parte reale infinita e parte immaginaria infinita negativa
         NumeroComplesso n9 = new NumeroComplesso(0, 0);                     //Rapporto con parte reale nulla e parte immaginaria nulla
-        
+
         assertEquals(new NumeroComplesso(0.22972972972972974, -0.12162162162162163).parteReale(), n0.rapporto(n).parteReale(), 10e-1);
 
         assertEquals(new NumeroComplesso(0.22972972972972974, -0.12162162162162163).parteImmaginaria(), n0.rapporto(n).parteImmaginaria(), 10e-1);
@@ -300,7 +299,7 @@ public class NumeroComplessoTest {
         assertEquals(new NumeroComplesso(NaN, NaN).parteReale(), n0.rapporto(n8).parteReale(), 10e-1);
 
         assertEquals(new NumeroComplesso(NaN, NaN).parteImmaginaria(), n0.rapporto(n8).parteImmaginaria(), 10e-1);
-         
+
         assertEquals(new NumeroComplesso(NaN, NaN).parteReale(), n0.rapporto(n9).parteReale(), 10e-1);
 
         assertEquals(new NumeroComplesso(NaN, NaN).parteImmaginaria(), n0.rapporto(n9).parteImmaginaria(), 10e-1);
@@ -312,6 +311,54 @@ public class NumeroComplessoTest {
      */
     @Test
     public void testEsponenziale() {
+        double inf = Double.POSITIVE_INFINITY;
+        double negativeinf = Double.NEGATIVE_INFINITY;
+        NumeroComplesso n = new NumeroComplesso(2.0, 1.0);                  //a>0,b>0
+        NumeroComplesso n0 = new NumeroComplesso(-3, -3);                   //a<0,b<0  
+        NumeroComplesso n1 = new NumeroComplesso(-3, 3);                    //a<0,b>0
+        NumeroComplesso n2 = new NumeroComplesso(3, -3);                    //a>0,b<0
+        NumeroComplesso n3 = new NumeroComplesso(inf, -3);                  //a=inf,b<0
+        NumeroComplesso n4 = new NumeroComplesso(2, inf);                   //a>0,b=inf                                                                    //Somma con parte reale infinita e parte immaginaria positiva
+        NumeroComplesso n5 = new NumeroComplesso(inf, 2);                   //a=inf,b>0
+        NumeroComplesso n6 = new NumeroComplesso(negativeinf, inf);         //a=-inf,b=inf
+        NumeroComplesso n7 = new NumeroComplesso(inf, negativeinf);         //a=inf,b=-inf
+        NumeroComplesso n8 = new NumeroComplesso(0, 0);                     //a=0,b=0
+        NumeroComplesso n9 = new NumeroComplesso(-3,inf);                   //a<0,b=inf
+        
+        assertEquals(new NumeroComplesso(3.992324048441272, 6.217676312367968).parteReale(), n.esponenziale().parteReale(), 10e-15);
+        assertEquals(new NumeroComplesso(3.992324048441272, 6.217676312367968).parteImmaginaria(), n.esponenziale().parteImmaginaria(), 10e-15);
+        
+        assertEquals(new NumeroComplesso(-0.04928882411191869, -0.00702595148935012).parteReale(), n0.esponenziale().parteReale(), 10e-15);
+        assertEquals(new NumeroComplesso(-0.04928882411191869, -0.00702595148935012).parteImmaginaria(), n0.esponenziale().parteImmaginaria(), 10e-15);
+        
+        assertEquals(new NumeroComplesso(-0.04928882411191869, 0.00702595148935012).parteReale(), n1.esponenziale().parteReale(), 10e-15);
+        assertEquals(new NumeroComplesso(-0.04928882411191869, 0.00702595148935012).parteImmaginaria(), n1.esponenziale().parteImmaginaria(), 10e-15);
+        
+        assertEquals(new NumeroComplesso(-19.884530844146987, -2.834471132487004).parteReale(), n2.esponenziale().parteReale(), 10e-15);
+        assertEquals(new NumeroComplesso(-19.884530844146987, -2.834471132487004).parteImmaginaria(), n2.esponenziale().parteImmaginaria(), 10e-15);
+        
+        assertEquals(new NumeroComplesso(-Infinity, -Infinity).parteReale(), n3.esponenziale().parteReale(), 10e-15);
+        assertEquals(new NumeroComplesso(-Infinity, -Infinity).parteImmaginaria(), n3.esponenziale().parteImmaginaria(), 10e-15);
+        
+        assertEquals(new NumeroComplesso(NaN, NaN).parteReale(), n4.esponenziale().parteReale(), 10e-15);
+        assertEquals(new NumeroComplesso(NaN, NaN).parteImmaginaria(), n4.esponenziale().parteImmaginaria(), 10e-15);
+        
+        assertEquals(new NumeroComplesso(-Infinity, Infinity).parteReale(), n5.esponenziale().parteReale(), 10e-15);
+        assertEquals(new NumeroComplesso(-Infinity, Infinity).parteImmaginaria(), n5.esponenziale().parteImmaginaria(), 10e-15);
+        
+        assertEquals(new NumeroComplesso(NaN, NaN).parteReale(), n6.esponenziale().parteReale(), 10e-15);
+        assertEquals(new NumeroComplesso(NaN, NaN).parteImmaginaria(), n6.esponenziale().parteImmaginaria(), 10e-15);
+        
+        assertEquals(new NumeroComplesso(NaN, NaN).parteReale(), n7.esponenziale().parteReale(), 10e-15);
+        assertEquals(new NumeroComplesso(NaN, NaN).parteImmaginaria(), n7.esponenziale().parteImmaginaria(), 10e-15);
+        
+        assertEquals(new NumeroComplesso(1.0, 0.0).parteReale(), n8.esponenziale().parteReale(), 10e-15);
+        assertEquals(new NumeroComplesso(1.0, 0.0).parteImmaginaria(), n8.esponenziale().parteImmaginaria(), 10e-15);
+        
+        assertEquals(new NumeroComplesso(NaN, NaN).parteReale(), n9.esponenziale().parteReale(), 10e-15);
+        assertEquals(new NumeroComplesso(NaN, NaN).parteImmaginaria(), n9.esponenziale().parteImmaginaria(), 10e-15);
+        
+        
     }
 
     /**
@@ -319,6 +366,35 @@ public class NumeroComplessoTest {
      */
     @Test
     public void testArgomento() {
+        double inf = Double.POSITIVE_INFINITY;
+        double negativeinf = Double.NEGATIVE_INFINITY;
+        NumeroComplesso n = new NumeroComplesso(0, 4);                  // a=0,b>0
+        NumeroComplesso n0 = new NumeroComplesso(0, -4);                // a=0,b<0
+        NumeroComplesso n1 = new NumeroComplesso(0, 0);                 //a=0,b=0
+        NumeroComplesso n2 = new NumeroComplesso(3, 5);                 //a>0,b>0
+        NumeroComplesso n3 = new NumeroComplesso(3, -5);                //a>0,b<0
+        NumeroComplesso n4 = new NumeroComplesso(-3, 0);                // a<0,b>0
+        NumeroComplesso n5 = new NumeroComplesso(-3, 5);                // a<0,b>0
+        NumeroComplesso n6 = new NumeroComplesso(-5, -5);               // a<0,b<0
+        NumeroComplesso n7 = new NumeroComplesso(-4,inf);                // a<0,b=inf
+        NumeroComplesso n8 = new NumeroComplesso(4,negativeinf);        // a>0,b=-inf
+        NumeroComplesso n9 = new NumeroComplesso(inf,4);                // a=inf,b>0
+        NumeroComplesso n10 = new NumeroComplesso(negativeinf,4);       // a=-inf,b=qualsiasi
+        
+        assertEquals(1.5707963267948966,n.argomento(),10e-15);
+        assertEquals(-1.5707963267948966,n0.argomento(),10e-15);
+        assertEquals(0.0,n1.argomento(),10e-15);
+        assertEquals(1.0303768265243125,n2.argomento(),10e-15);
+        assertEquals(-1.0303768265243125,n3.argomento(),10e-15);
+        assertEquals(3.141592653589793,n4.argomento(),10e-15);
+        assertEquals(2.1112158270654806,n5.argomento(),10e-15);
+        assertEquals(-2.356194490192345,n6.argomento(),10e-15);
+        assertEquals(1.5707963267948966,n7.argomento(),10e-15);
+        assertEquals(-1.5707963267948966,n8.argomento(),10e-15);
+        assertEquals(0.0,n9.argomento(),10e-15);
+        assertEquals(3.141592653589793,n10.argomento(),10e-15);
+        
+        
     }
 
     /**
@@ -335,24 +411,24 @@ public class NumeroComplessoTest {
     public void testRadice() {
         double inf = Double.POSITIVE_INFINITY;
         double negativeinf = Double.NEGATIVE_INFINITY;
-        NumeroComplesso n0 = new NumeroComplesso(-4,0);
-        NumeroComplesso n = new NumeroComplesso(0,0);
-        NumeroComplesso n1 = new NumeroComplesso(inf,0);
-        NumeroComplesso n2 = new NumeroComplesso(negativeinf,0);
-        NumeroComplesso n3 = new NumeroComplesso(3.0/2.0,3.0/2.0);
-        
-        assertTrue(new NumeroComplesso(1.2246467991473532E-16,2).parteReale() == n0.radice().parteReale() && new NumeroComplesso(1.2246467991473532E-16,2).parteImmaginaria() == n0.radice().parteImmaginaria());
-        
-        assertTrue(new NumeroComplesso(0,0).parteReale() == n.radice().parteReale() && new NumeroComplesso(0,0).parteImmaginaria() == n.radice().parteImmaginaria());
-        
+        NumeroComplesso n0 = new NumeroComplesso(-4, 0);
+        NumeroComplesso n = new NumeroComplesso(0, 0);
+        NumeroComplesso n1 = new NumeroComplesso(inf, 0);
+        NumeroComplesso n2 = new NumeroComplesso(negativeinf, 0);
+        NumeroComplesso n3 = new NumeroComplesso(3.0 / 2.0, 3.0 / 2.0);
+
+        assertTrue(new NumeroComplesso(1.2246467991473532E-16, 2).parteReale() == n0.radice().parteReale() && new NumeroComplesso(1.2246467991473532E-16, 2).parteImmaginaria() == n0.radice().parteImmaginaria());
+
+        assertTrue(new NumeroComplesso(0, 0).parteReale() == n.radice().parteReale() && new NumeroComplesso(0, 0).parteImmaginaria() == n.radice().parteImmaginaria());
+
         assertEquals(new NumeroComplesso(inf, NaN).parteReale(), n1.radice().parteReale(), 10e-1);
 
         assertEquals(new NumeroComplesso(inf, NaN).parteImmaginaria(), n1.radice().parteImmaginaria(), 10e-1);
-        
+
         assertEquals(new NumeroComplesso(inf, inf).parteReale(), n2.radice().parteReale(), 10e-1);
 
         assertEquals(new NumeroComplesso(inf, inf).parteImmaginaria(), n2.radice().parteImmaginaria(), 10e-1);
-               
+
         assertEquals(new NumeroComplesso(1.4564753151219703, 0).parteReale(), n3.radice().parteReale(), 10e-1);
 
         assertEquals(new NumeroComplesso(1.4564753151219703, 0).parteImmaginaria(), n3.radice().parteImmaginaria(), 10e-1);
@@ -403,7 +479,7 @@ public class NumeroComplessoTest {
         NumeroComplesso n0 = new NumeroComplesso(2.0, 1.0);
         NumeroComplesso n = new NumeroComplesso(-2.0, 1.0);
         NumeroComplesso n1 = new NumeroComplesso(2.0, -1.0);
-        NumeroComplesso n2 = new NumeroComplesso(-2,-1);
+        NumeroComplesso n2 = new NumeroComplesso(-2, -1);
         NumeroComplesso n3 = new NumeroComplesso(inf, negativeinf);
 
         assertTrue(new NumeroComplesso(-2.0, -1.0).parteReale() == n0.inversioneSegno().parteReale() && new NumeroComplesso(-2.0, -1.0).parteImmaginaria() == n0.inversioneSegno().parteImmaginaria());
@@ -411,9 +487,9 @@ public class NumeroComplessoTest {
         assertTrue(new NumeroComplesso(2.0, -1.0).parteReale() == n.inversioneSegno().parteReale() && new NumeroComplesso(2.0, -1.0).parteImmaginaria() == n.inversioneSegno().parteImmaginaria());
 
         assertTrue(new NumeroComplesso(-2.0, 1.0).parteReale() == n1.inversioneSegno().parteReale() && new NumeroComplesso(-2.0, 1.0).parteImmaginaria() == n1.inversioneSegno().parteImmaginaria());
-        
+
         assertTrue(new NumeroComplesso(2.0, 1.0).parteReale() == n2.inversioneSegno().parteReale() && new NumeroComplesso(2.0, 1.0).parteImmaginaria() == n2.inversioneSegno().parteImmaginaria());
-        
+
         assertEquals(new NumeroComplesso(negativeinf, inf).parteReale(), n3.inversioneSegno().parteReale(), 10e-1);
 
         assertEquals(new NumeroComplesso(negativeinf, inf).parteImmaginaria(), n3.inversioneSegno().parteImmaginaria(), 10e-1);
@@ -426,15 +502,15 @@ public class NumeroComplessoTest {
     public void testToString() {
         double inf = Double.POSITIVE_INFINITY;
         double negativeinf = Double.NEGATIVE_INFINITY;
-        NumeroComplesso n0 = new NumeroComplesso(1,2);
-        NumeroComplesso n = new NumeroComplesso(-1,2);
-        NumeroComplesso n1 = new NumeroComplesso(inf,2);
-        NumeroComplesso n2 = new NumeroComplesso(negativeinf,2);
-        
-        assertEquals("1.0 + 2.0j",n0.toString());
-        assertEquals("-1.0 + 2.0j",n.toString());
-        assertEquals("Infinity + 2.0j",n1.toString());
-        assertEquals("-Infinity + 2.0j",n2.toString());
+        NumeroComplesso n0 = new NumeroComplesso(1, 2);
+        NumeroComplesso n = new NumeroComplesso(-1, 2);
+        NumeroComplesso n1 = new NumeroComplesso(inf, 2);
+        NumeroComplesso n2 = new NumeroComplesso(negativeinf, 2);
+
+        assertEquals("1.0 + 2.0j", n0.toString());
+        assertEquals("-1.0 + 2.0j", n.toString());
+        assertEquals("Infinity + 2.0j", n1.toString());
+        assertEquals("-Infinity + 2.0j", n2.toString());
     }
 
 }

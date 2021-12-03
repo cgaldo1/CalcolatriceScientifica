@@ -55,7 +55,7 @@ public class Variabili {
     }
     
     public void inserisciInStack(StackNumeri s, char x) throws Exception{
-        s.push(getNumero(x));
+        s.push(this.getNumero(x));
 }
     
     public void sommaVariabile(StackNumeri s, char x) throws Exception{
