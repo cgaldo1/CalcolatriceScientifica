@@ -4,6 +4,7 @@
  */
 package calcolatricescientifica;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -12,12 +13,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  *
@@ -35,6 +40,8 @@ public class ControllerCalcolatrice implements Initializable {
     private StackNumeri stack;
     @FXML
     private Button bottoneEsegui;
+    @FXML
+    private Button bottoneNuovaOperazione;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -73,6 +80,23 @@ public class ControllerCalcolatrice implements Initializable {
             oStack.setAll(stack.convertiInLista());
         }
         casellaDiTesto.clear();
+    }
+
+    @FXML
+    private void inserisciNuovaOperazione(ActionEvent event) {
+        try{
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLOperazioniUtente.fxml"));
+                Parent root = (Parent) loader.load();
+
+                ControllerOperazioniUtente c = loader.getController();
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Nuova Operazione");
+                stage.show();
+            } catch(IOException ex){
+                System.err.println("Errore caricamento controller");
+            }
     }
 
 }
