@@ -37,7 +37,7 @@ public class ControllerCalcolatrice implements Initializable {
 
     private ObservableList<NumeroComplesso> oStack;
 
-    private StackNumeri stack;
+    public StackNumeri stack;
     @FXML
     private Button bottoneEsegui;
     @FXML
@@ -56,9 +56,7 @@ public class ControllerCalcolatrice implements Initializable {
     private void esegui(ActionEvent event) {
         String input = casellaDiTesto.getText();
         GestoreInput gestore = new GestoreInput();
-
-        //stack.push(new NumeroComplesso(3,3));
-        //stack.push(new NumeroComplesso(1,1));
+        
         StackNumeri nuovoStack = gestore.controlloSeNumero(input, stack);
         if (nuovoStack == null) {
             try {
@@ -84,19 +82,7 @@ public class ControllerCalcolatrice implements Initializable {
 
     @FXML
     private void inserisciNuovaOperazione(ActionEvent event) {
-        try{
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLOperazioniUtente.fxml"));
-                Parent root = (Parent) loader.load();
 
-                ControllerOperazioniUtente c = loader.getController();
-
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Nuova Operazione");
-                stage.show();
-            } catch(IOException ex){
-                System.err.println("Errore caricamento controller");
-            }
     }
 
 }
