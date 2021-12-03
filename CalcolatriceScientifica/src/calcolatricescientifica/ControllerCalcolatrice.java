@@ -42,6 +42,10 @@ public class ControllerCalcolatrice implements Initializable {
     private Button bottoneNuovaOperazione;
 
     private Map<String, Command> operazioni;
+    @FXML
+    private TextField tfdNomeOperazione;
+    @FXML
+    private TextField tfdAzioniOperazione;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -98,37 +102,7 @@ public class ControllerCalcolatrice implements Initializable {
         oStack.setAll(stack.convertiInLista());
 
         casellaDiTesto.clear();
-        /*
-//GestoreInput gestore = new GestoreInput();
 
-
-
-//stack.push(new NumeroComplesso(3,3));
-//stack.push(new NumeroComplesso(1,1));
-StackNumeri nuovoStack = gestore.controlloSeNumero(input, stack);
-if (nuovoStack == null) {
-try {
-nuovoStack = gestore.controllaSeOperazione(input, stack);
-if (nuovoStack == null) {
-Alert alert = new Alert(Alert.AlertType.ERROR, "Input non valido");
-
-
-
-alert.showAndWait();
-} else {
-stack = nuovoStack;
-oStack.setAll(stack.convertiInLista());
-}
-} catch (Exception ex) {
-Alert alert = new Alert(Alert.AlertType.ERROR, "Non è possibile eseguire l'operazione");
-alert.showAndWait();
-}
-} else {
-stack = nuovoStack;
-oStack.setAll(stack.convertiInLista());
-}
-casellaDiTesto.clear();
-         */
     }
 
     public boolean inserisciNumero(String input) {
@@ -214,5 +188,9 @@ casellaDiTesto.clear();
         } else {
             return null;
         }
+    }
+
+    @FXML
+    private void inserisciNuovaOperazione(ActionEvent event) {
     }
 }
