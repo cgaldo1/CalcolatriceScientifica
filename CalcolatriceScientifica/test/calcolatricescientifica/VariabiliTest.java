@@ -82,7 +82,7 @@ public class VariabiliTest {
      */
     @Test
     public void testStampa() {
-    }
+        }
 
     /**
      * Test of getNumero method, of class Variabili.
@@ -111,6 +111,52 @@ public class VariabiliTest {
         v.inserisciInVariabile(s, 'a');
         
         assertEquals(s.top(), v.array[v.indice('a')]);
+    }
+
+    /**
+     * Test of inserisciInStack method, of class Variabili.
+     */
+    @Test
+    public void testInserisciInStack() throws Exception {
+        StackNumeri s = new StackNumeri();
+        NumeroComplesso n = new NumeroComplesso(5,76);         
+        Variabili v = new Variabili();
+        v.inserisci(n, v.indice('a'));
+        v.inserisciInStack(s, 'a');
+        assertEquals(s.top(), v.getNumero('a'));
+    }
+
+    /**
+     * Test of sommaVariabile method, of class Variabili.
+     */
+    @Test
+    public void testSommaVariabile() throws Exception {
+        StackNumeri s = new StackNumeri();
+        NumeroComplesso n = new NumeroComplesso(5,76);        
+        Variabili v = new Variabili();
+        v.inserisci(n, v.indice('a'));
+        s.push(new NumeroComplesso(2,2));
+        s.push(new NumeroComplesso(4,4)); 
+        v.sommaVariabile(s, 'a');
+
+        assertTrue(new NumeroComplesso(9,80).parteReale() == v.getNumero('a').parteReale() && new NumeroComplesso(9,80).parteImmaginaria() == v.getNumero('a').parteImmaginaria());
+
+    }
+
+    /**
+     * Test of sottrazioneVariabile method, of class Variabili.
+     */
+    @Test
+    public void testSottrazioneVariabile() throws Exception {
+        StackNumeri s = new StackNumeri();
+        NumeroComplesso n = new NumeroComplesso(5,76);        
+        Variabili v = new Variabili();
+        v.inserisci(n, v.indice('a'));
+        s.push(new NumeroComplesso(2,2));
+        s.push(new NumeroComplesso(4,4)); 
+        v.sottrazioneVariabile(s, 'a');
+
+        assertTrue(new NumeroComplesso(1,72).parteReale() == v.getNumero('a').parteReale() && new NumeroComplesso(1,72).parteImmaginaria() == v.getNumero('a').parteImmaginaria());
     }
     
 }
