@@ -91,27 +91,31 @@ public class GestoreInput {
         NumeroComplesso nc = null;
         switch(input){
             case "+":
-                nc=stack.penultimo().somma(stack.top());
+                nc=stack.penultimo().somma(stack.drop());
+                stack.drop();
                 stack.push(nc);
                 break;
             case "-":
-                nc=stack.penultimo().sottrazione(stack.top());
+                nc=stack.penultimo().sottrazione(stack.drop());
+                stack.drop();
                 stack.push(nc);
                 break;
             case "*":
-                nc=stack.penultimo().prodotto(stack.top());
+                nc=stack.penultimo().prodotto(stack.drop());
+                stack.drop();
                 stack.push(nc);
                 break;
             case "/":
-                nc=stack.penultimo().rapporto(stack.top());
+                nc=stack.penultimo().rapporto(stack.drop());
+                stack.drop();
                 stack.push(nc);
                 break;
             case "sqrt":
-                nc = stack.top().radice();
+                nc = stack.drop().radice();
                 stack.push(nc);
                 break;
             case "+-":
-                nc=stack.top().inversioneSegno();
+                nc=stack.drop().inversioneSegno();
                 stack.push(nc);
                 break;
             case "clear":

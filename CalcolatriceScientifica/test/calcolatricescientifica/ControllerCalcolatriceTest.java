@@ -69,111 +69,103 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         assertEquals(stackAppoggio.toString(), stack.toString());
 
         //test somma
-        stack.push(new NumeroComplesso(4, 6));
+        NumeroComplesso n = new NumeroComplesso(4,6);
         textField.setText("+");
         clickOn("#bottoneEsegui");
-        stackAppoggio.push(listview.getItems().get(0));
-        assertEquals(stackAppoggio.toString(), stack.toString());
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(),0.1);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(),0.1);
 
         //test differenza
-        stack.push(new NumeroComplesso(-3, -5));
+        n=new NumeroComplesso(3, 4);
+        textField.setText("1+2j");
+        clickOn("#bottoneEsegui");
         textField.setText("-");
         clickOn("#bottoneEsegui");
-        stackAppoggio.push(listview.getItems().get(0));
-        assertEquals(stackAppoggio.toString(), stack.toString());
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(),0.1);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(),0.1);
 
+        
         //test prodotto
-        stack.push(new NumeroComplesso(18, -38));
+        n=new NumeroComplesso(-2, 14);
+        textField.setText("2+2j");
+        clickOn("#bottoneEsegui");
         textField.setText("*");
         clickOn("#bottoneEsegui");
-        stackAppoggio.push(listview.getItems().get(0));
-        assertEquals(stackAppoggio.toString(), stack.toString());
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(),0.1);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(),0.1);
 
         //test rapporto
-        stack.push(new NumeroComplesso(0.07692307692307691, -0.11538461538461536));
+        n = new NumeroComplesso(3,4);
+        textField.setText("2+2j");
+        clickOn("#bottoneEsegui");
         textField.setText("/");
         clickOn("#bottoneEsegui");
-        stackAppoggio.push(listview.getItems().get(0));
-        assertEquals(stackAppoggio.toString(), stack.toString());
-
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(),0.1);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(),0.1);
+        
         //test radice
-        stack.push(new NumeroComplesso(0.3283276762469044, -0.17571563978944835));
+        n = new NumeroComplesso(2, 1);
         textField.setText("sqrt");
         clickOn("#bottoneEsegui");
-        stackAppoggio.push(listview.getItems().get(0));
-        assertEquals(stackAppoggio.toString(), stack.toString());
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(),0.1);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(),0.1);
 
         //test inversione segno
-        stack.push(new NumeroComplesso(-0.3283276762469044, +0.17571563978944835));
+        n=new NumeroComplesso(-2, -1);
         textField.setText("+-");
         clickOn("#bottoneEsegui");
-        stackAppoggio.push(listview.getItems().get(0));
-        assertEquals(stackAppoggio.toString(), stack.toString());
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(),0.1);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(),0.1);
         
         //test drop
-        stack.drop();
         textField.setText("drop");
         clickOn("#bottoneEsegui");
-        stackAppoggio.clear();
-        for(int i=6; i>=0;i--){
-            stackAppoggio.push(listview.getItems().get(i));
-        }
-        assertEquals(stackAppoggio.toString(), stack.toString());
+        assertEquals(0, listview.getItems().size());
         
         //test swap
-        try {
-            stack.swap();
-        } catch (Exception ex) {
-            Logger.getLogger(ControllerCalcolatriceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        textField.setText("2+3j");
+        clickOn("#bottoneEsegui");
+        textField.setText("1+1j");
+        clickOn("#bottoneEsegui");
+        n=new NumeroComplesso(2,3);
+        NumeroComplesso n2 = new NumeroComplesso(1,1);
         textField.setText("swap");
         clickOn("#bottoneEsegui");
-        stackAppoggio.clear();
-        for(int i=6; i>=0;i--){
-            stackAppoggio.push(listview.getItems().get(i));
-        }
-        assertEquals(stackAppoggio.toString(), stack.toString());
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(),0.1);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(),0.1);
+        assertEquals(n2.parteReale(), listview.getItems().get(1).parteReale(),0.1);
+        assertEquals(n2.parteImmaginaria(), listview.getItems().get(1).parteImmaginaria(),0.1);
         
         //test dup
-        try {
-            stack.dup();
-        } catch (Exception ex) {
-            Logger.getLogger(ControllerCalcolatriceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
         textField.setText("dup");
         clickOn("#bottoneEsegui");
-        stackAppoggio.clear();
-        for(int i=7; i>=0;i--){
-            stackAppoggio.push(listview.getItems().get(i));
-        }
-        assertEquals(stackAppoggio.toString(), stack.toString());
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(),0.1);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(),0.1);
+        assertEquals(n.parteReale(), listview.getItems().get(1).parteReale(),0.1);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(1).parteImmaginaria(),0.1);
+        assertEquals(n2.parteReale(), listview.getItems().get(2).parteReale(),0.1);
+        assertEquals(n2.parteImmaginaria(), listview.getItems().get(2).parteImmaginaria(),0.1);
         
         //test over
-        try {
-            stack.over();
-        } catch (Exception ex) {
-            Logger.getLogger(ControllerCalcolatriceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         textField.setText("over");
         clickOn("#bottoneEsegui");
-        stackAppoggio.clear();
-        for(int i=8; i>=0;i--){
-            stackAppoggio.push(listview.getItems().get(i));
-        }
-        assertEquals(stackAppoggio.toString(), stack.toString());
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(),0.1);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(),0.1);
+        assertEquals(n.parteReale(), listview.getItems().get(1).parteReale(),0.1);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(1).parteImmaginaria(),0.1);
+        assertEquals(n.parteReale(), listview.getItems().get(2).parteReale(),0.1);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(2).parteImmaginaria(),0.1);
         
 
         //test clear
-        try {
-            stack.clear();
-        } catch (Exception ex) {
-            Logger.getLogger(ControllerCalcolatriceTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
         textField.setText("clear");
         clickOn("#bottoneEsegui");
-        assertEquals(listview.getItems().toString(), stack.toString());
+        assertEquals(0, listview.getItems().size());
         
         //test input non valido
+        stack.clear();
         stack.push(new NumeroComplesso(1,1));
         textField.setText("1+1j");
         clickOn("#bottoneEsegui");

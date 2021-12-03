@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -11,9 +12,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="526.0" prefWidth="381.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calcolatricescientifica.ControllerCalcolatrice">
+<AnchorPane id="AnchorPane" prefHeight="538.0" prefWidth="381.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calcolatricescientifica.ControllerCalcolatrice">
    <children>
-      <VBox layoutX="149.0" layoutY="127.0" prefHeight="498.0" prefWidth="381.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <VBox layoutX="149.0" layoutY="127.0" prefHeight="522.0" prefWidth="361.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="368.0" spacing="30.0">
                <children>
@@ -22,9 +23,44 @@
                </children>
             </HBox>
             <ListView fx:id="stackCalcolatrice" prefHeight="383.0" prefWidth="362.0" />
-            <Button fx:id="bottoneNuovaOperazione" mnemonicParsing="false" onAction="#inserisciNuovaOperazione" text="Inserisci nuova operazione">
+            <HBox prefHeight="80.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="150.0" text="Nome operazione:">
+                     <HBox.margin>
+                        <Insets top="12.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfdNomeOperazione" prefWidth="200.0">
+                     <HBox.margin>
+                        <Insets left="50.0" top="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
                <VBox.margin>
-                  <Insets left="80.0" right="80.0" top="15.0" />
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="80.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="tfdAzioniOperazione" prefHeight="31.0" prefWidth="361.0" promptText="Inserisci azioni da eseguire">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Button fx:id="bottoneNuovaOperazione" mnemonicParsing="false" onAction="#inserisciNuovaOperazione" prefHeight="0.0" prefWidth="196.0" text="Inserisci nuova operazione">
+               <VBox.margin>
+                  <Insets left="85.0" right="80.0" />
                </VBox.margin>
             </Button>
          </children>
