@@ -372,7 +372,7 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
     }
     
     @Test
-    public void inserisciNuovaOperazione(){
+    public void testInserisciNuovaOperazione(){
         ListView<NumeroComplesso> listview = (ListView<NumeroComplesso>) mainNode.lookup("#stackCalcolatrice");
         TextField tfdInput = (TextField) mainNode.lookup("#casellaDiTesto");
         TextField tfdNomeOperazione = (TextField) mainNode.lookup("#tfdNomeOperazione");

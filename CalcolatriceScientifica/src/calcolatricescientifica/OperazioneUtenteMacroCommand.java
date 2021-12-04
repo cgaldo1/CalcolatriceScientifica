@@ -13,7 +13,11 @@ import java.util.List;
  */
 public class OperazioneUtenteMacroCommand implements MacroCommand{
 
-    private List<Command> listaCommand = new ArrayList<>();
+    private List<Command> listaCommand;
+    
+    public OperazioneUtenteMacroCommand(){
+        listaCommand = new ArrayList<>(); 
+    }
     
     @Override
     public void aggiungi(Command command) {
