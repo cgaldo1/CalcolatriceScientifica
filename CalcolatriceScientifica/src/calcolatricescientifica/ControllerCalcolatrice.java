@@ -63,8 +63,8 @@ public class ControllerCalcolatrice implements Initializable {
         operazioni.put("clear", new CommandClear(stack));
         operazioni.put("swap", new CommandSwap(stack));
         operazioni.put("over", new CommandOver(stack));
-        operazioni.put("arg", new CommandSwap(stack));
-        operazioni.put("exp", new CommandOver(stack));
+        operazioni.put("arg", new CommandArg(stack));
+        operazioni.put("exp", new CommandExp(stack));
 
         oStack = FXCollections.observableArrayList();
 
@@ -101,8 +101,8 @@ public class ControllerCalcolatrice implements Initializable {
         operazioni.put("clear", new CommandClear(stack));
         operazioni.put("swap", new CommandSwap(stack));
         operazioni.put("over", new CommandOver(stack));
-        operazioni.put("arg", new CommandSwap(stack));
-        operazioni.put("exp", new CommandOver(stack));
+        operazioni.put("arg", new CommandArg(stack));
+        operazioni.put("exp", new CommandExp(stack));
         oStack.setAll(stack.convertiInLista());
 
         casellaDiTesto.clear();
