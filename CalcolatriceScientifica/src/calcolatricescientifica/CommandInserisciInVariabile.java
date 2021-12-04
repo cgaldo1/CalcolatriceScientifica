@@ -15,7 +15,7 @@ public class CommandInserisciInVariabile implements Command{
     private char x;
     private StackNumeri stack;
 
-    public CommandInserisciInVariabile(Variabili v, StackNumeri stack, char x) {
+    public CommandInserisciInVariabile(Variabili v, char x, StackNumeri stack) {
         this.v = v;
         this.stack = stack;
         this.x = x;

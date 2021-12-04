@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,9 +48,14 @@ public class ControllerCalcolatrice implements Initializable {
     @FXML
     private TextField tfdAzioniOperazione;
 
+    private Variabili variabili;
+
+    private char var;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         stack = new StackNumeri();
+        variabili = new Variabili();
 
         operazioni = new HashMap<>();
         operazioni.put("+", new CommandSomma(stack));
@@ -63,6 +69,11 @@ public class ControllerCalcolatrice implements Initializable {
         operazioni.put("clear", new CommandClear(stack));
         operazioni.put("swap", new CommandSwap(stack));
         operazioni.put("over", new CommandOver(stack));
+        /*
+        operazioni.put(">[a-z]", new CommandInserisciInVariabile(variabili, var, stack));
+        operazioni.put("<[a-z]", new CommandInserisciInStack(variabili, var, stack));
+        operazioni.put("\\+[a-z]", new CommandSommaVariabili(variabili, var, stack));
+        operazioni.put("\\-[a-z]", new CommandSottrazioneVariabili(variabili, var, stack));*/
 
         oStack = FXCollections.observableArrayList();
 
@@ -87,18 +98,17 @@ public class ControllerCalcolatrice implements Initializable {
             oStack.setAll(stack.convertiInLista());
         }
 
-        operazioni.clear();
-        operazioni.put("+", new CommandSomma(stack));
-        operazioni.put("-", new CommandSottrazione(stack));
-        operazioni.put("*", new CommandProdotto(stack));
-        operazioni.put("/", new CommandRapporto(stack));
-        operazioni.put("sqrt", new CommandRadice(stack));
-        operazioni.put("+-", new CommandInversioneSegno(stack));
-        operazioni.put("drop", new CommandDrop(stack));
-        operazioni.put("dup", new CommandDup(stack));
-        operazioni.put("clear", new CommandClear(stack));
-        operazioni.put("swap", new CommandSwap(stack));
-        operazioni.put("over", new CommandOver(stack));
+        operazioni.replace("+", new CommandSomma(stack));
+        operazioni.replace("-", new CommandSottrazione(stack));
+        operazioni.replace("*", new CommandProdotto(stack));
+        operazioni.replace("/", new CommandRapporto(stack));
+        operazioni.replace("sqrt", new CommandRadice(stack));
+        operazioni.replace("+-", new CommandInversioneSegno(stack));
+        operazioni.replace("drop", new CommandDrop(stack));
+        operazioni.replace("dup", new CommandDup(stack));
+        operazioni.replace("clear", new CommandClear(stack));
+        operazioni.replace("swap", new CommandSwap(stack));
+        operazioni.replace("over", new CommandOver(stack));
         oStack.setAll(stack.convertiInLista());
 
         casellaDiTesto.clear();
@@ -112,18 +122,18 @@ public class ControllerCalcolatrice implements Initializable {
         int indice = 0;
         int j = 0;
         String inputFormattato = input.replaceAll("\\s+", "");
-//formati della stringa nel caso in cui sia composta prima dalla parte reale e poi dalla parte immaginaria
+        //formati della stringa nel caso in cui sia composta prima dalla parte reale e poi dalla parte immaginaria
         String formato1 = "[+-]?[0-9]+[/.]?[0-9]*[+-][0-9]+[/.]?[0-9]*[ji]"; //formato corretto
         String formatonot11 = "[+-]?[0-9]+[/.][+-][0-9]+[/.]?[0-9]*[ji]"; //formato errato
         String formatonot12 = "[+-]?[0-9]+[/.]?[0-9]*[+-][0-9]+[/.][ji]"; //formato errato
-//formati della stringa nel caso in cui sia composta prima dalla parte immaginaria e poi dalla parte reale
+        //formati della stringa nel caso in cui sia composta prima dalla parte immaginaria e poi dalla parte reale
         String formato2 = "[+-]?[0-9]+[/.]?[0-9]*[ji][+-][0-9]+[/.]?[0-9]*"; //formato corretto
         String formatonot21 = "[+-]?[0-9]+[/.][ji][+-][0-9]+[/.]?[0-9]*"; //formato errato
         String formatonot22 = "[+-]?[0-9]+[/.]?[0-9]*[ji][+-][0-9]+[/.]"; //formato errato
-//formati della stringa nel caso in cui sia composta solo dalla parte reale
+        //formati della stringa nel caso in cui sia composta solo dalla parte reale
         String formato3 = "[+-]?[0-9]+[/.]?[0-9]*"; //formato corretto
         String formatonot31 = "[+-]?[0-9]+[/.]"; //formato errato
-//formati della stringa nel caso in cui sia composta solo dalla parte immaginaria
+        //formati della stringa nel caso in cui sia composta solo dalla parte immaginaria
         String formato4 = "[+-]?[0-9]+[/.]?[0-9]*[ji]"; //formato corretto
         String formatonot41 = "[+-]?[0-9]+[/.][ji]"; //formato errato
 
@@ -185,12 +195,52 @@ public class ControllerCalcolatrice implements Initializable {
     private Command nuovoCommand(String input) {
         if (operazioni.containsKey(input)) {
             return (Command) operazioni.get(input);
-        } else {
-            return null;
         }
+        if(input.length()==2&&input.charAt(0)=='>'&&input.charAt(1)>='a'&&input.charAt(1)<='z'){
+            return new CommandInserisciInVariabile(variabili, input.charAt(1), stack);
+        }
+        if(input.length()==2&&input.charAt(0)=='<'&&input.charAt(1)>='a'&&input.charAt(1)<='z'){
+            return new CommandInserisciInStack(variabili, input.charAt(1), stack);
+        }
+        if(input.length()==2&&input.charAt(0)=='+'&&input.charAt(1)>='a'&&input.charAt(1)<='z'){
+            return new CommandSommaVariabili(variabili, input.charAt(1), stack);
+        }
+        if(input.length()==2&&input.charAt(0)=='-'&&input.charAt(1)>='a'&&input.charAt(1)<='z'){
+            return new CommandSottrazioneVariabili(variabili, input.charAt(1), stack);
+        }
+        return null;
+        
+    
+/*
+        for (Map.Entry<String, Command> e : operazioni.entrySet()) {
+            if (input.matches(e.getKey())) {
+                var = input.charAt(1);
+                operazioni.replace(">[a-z]", new CommandInserisciInVariabile(variabili, var, stack));
+                operazioni.replace("<[a-z]", new CommandInserisciInStack(variabili, var, stack));
+                operazioni.replace("+[a-z]", new CommandSommaVariabili(variabili, var, stack));
+                operazioni.replace("-[a-z]", new CommandSottrazioneVariabili(variabili, var, stack));
+                return (Command) e.getValue();
+            }
+        }*/
     }
 
     @FXML
     private void inserisciNuovaOperazione(ActionEvent event) {
+        String azioniOperazione = tfdAzioniOperazione.getText();
+        String[] azioni = azioniOperazione.split(" ");
+        OperazioneUtenteMacroCommand operazioneUtente = new OperazioneUtenteMacroCommand();
+
+        for (String string : azioni) {
+            Command command = nuovoCommand(string);
+            if (command != null) {
+                operazioneUtente.aggiungi(command);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Input non valido");
+                alert.showAndWait();
+                break;
+            }
+        }
+
+        operazioni.put(tfdNomeOperazione.getText(), operazioneUtente);
     }
 }
