@@ -69,11 +69,8 @@ public class ControllerCalcolatrice implements Initializable {
         operazioni.put("clear", new CommandClear(stack));
         operazioni.put("swap", new CommandSwap(stack));
         operazioni.put("over", new CommandOver(stack));
-        /*
-        operazioni.put(">[a-z]", new CommandInserisciInVariabile(variabili, var, stack));
-        operazioni.put("<[a-z]", new CommandInserisciInStack(variabili, var, stack));
-        operazioni.put("\\+[a-z]", new CommandSommaVariabili(variabili, var, stack));
-        operazioni.put("\\-[a-z]", new CommandSottrazioneVariabili(variabili, var, stack));*/
+        operazioni.put("arg", new CommandArg(stack));
+        operazioni.put("exp", new CommandExp(stack));
 
         oStack = FXCollections.observableArrayList();
 
