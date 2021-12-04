@@ -19,11 +19,11 @@ public class CommandOver implements Command{
     }
 
     @Override
-    public void esegui() {
-        try {
-            stack.over();
-        } catch (Exception ex) {
-            Logger.getLogger(CommandOver.class.getName()).log(Level.SEVERE, null, ex);
+    public void esegui() throws Exception{
+        if(stack.lenght()<=1){
+            throw new Exception();
         }
+        stack.over();
+        
     }
 }

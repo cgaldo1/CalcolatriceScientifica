@@ -22,8 +22,11 @@ public class CommandInserisciInVariabile implements Command{
     }
     
     @Override
-    public void esegui() {
-       v.inserisciInVariabile(stack, x);
+    public void esegui() throws Exception{
+        if(stack.isEmpty()){
+            throw new Exception();
+        }
+        v.inserisciInVariabile(stack, x);
     }
     
 }

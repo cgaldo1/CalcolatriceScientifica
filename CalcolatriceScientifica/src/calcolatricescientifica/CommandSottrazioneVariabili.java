@@ -25,12 +25,8 @@ public class CommandSottrazioneVariabili implements Command{
     }
     
     @Override
-    public void esegui() {
-        try {
+    public void esegui() throws Exception{
             v.sottrazioneVariabile(stack, x);
-        } catch (Exception ex) {
-            Logger.getLogger(CommandSottrazioneVariabili.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     
 }

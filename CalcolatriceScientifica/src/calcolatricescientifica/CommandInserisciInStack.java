@@ -25,12 +25,8 @@ public class CommandInserisciInStack implements Command{
     }
     
     @Override
-    public void esegui() {
-        try {
-            v.inserisciInStack(stack, x);
-        } catch (Exception ex) {
-            Logger.getLogger(CommandInserisciInStack.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void esegui() throws Exception{
+        v.inserisciInStack(stack, x);
     }
     
 }

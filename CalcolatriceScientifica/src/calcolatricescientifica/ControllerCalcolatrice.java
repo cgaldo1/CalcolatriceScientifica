@@ -86,7 +86,12 @@ public class ControllerCalcolatrice implements Initializable {
             Invoker invoker = new Invoker();
             Command command = nuovoCommand(input);
             if (command != null) {
-                invoker.esegui(command);
+                try {
+                    invoker.esegui(command);
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "L'operazione non può essere eseguita");
+                    alert.showAndWait();
+                }
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Input non valido");
                 alert.showAndWait();
@@ -193,32 +198,19 @@ public class ControllerCalcolatrice implements Initializable {
         if (operazioni.containsKey(input)) {
             return (Command) operazioni.get(input);
         }
-        if(input.length()==2&&input.charAt(0)=='>'&&input.charAt(1)>='a'&&input.charAt(1)<='z'){
+        if (input.length() == 2 && input.charAt(0) == '>' && input.charAt(1) >= 'a' && input.charAt(1) <= 'z') {
             return new CommandInserisciInVariabile(variabili, input.charAt(1), stack);
         }
-        if(input.length()==2&&input.charAt(0)=='<'&&input.charAt(1)>='a'&&input.charAt(1)<='z'){
+        if (input.length() == 2 && input.charAt(0) == '<' && input.charAt(1) >= 'a' && input.charAt(1) <= 'z') {
             return new CommandInserisciInStack(variabili, input.charAt(1), stack);
         }
-        if(input.length()==2&&input.charAt(0)=='+'&&input.charAt(1)>='a'&&input.charAt(1)<='z'){
+        if (input.length() == 2 && input.charAt(0) == '+' && input.charAt(1) >= 'a' && input.charAt(1) <= 'z') {
             return new CommandSommaVariabili(variabili, input.charAt(1), stack);
         }
-        if(input.length()==2&&input.charAt(0)=='-'&&input.charAt(1)>='a'&&input.charAt(1)<='z'){
+        if (input.length() == 2 && input.charAt(0) == '-' && input.charAt(1) >= 'a' && input.charAt(1) <= 'z') {
             return new CommandSottrazioneVariabili(variabili, input.charAt(1), stack);
         }
         return null;
-        
-    
-/*
-        for (Map.Entry<String, Command> e : operazioni.entrySet()) {
-            if (input.matches(e.getKey())) {
-                var = input.charAt(1);
-                operazioni.replace(">[a-z]", new CommandInserisciInVariabile(variabili, var, stack));
-                operazioni.replace("<[a-z]", new CommandInserisciInStack(variabili, var, stack));
-                operazioni.replace("+[a-z]", new CommandSommaVariabili(variabili, var, stack));
-                operazioni.replace("-[a-z]", new CommandSottrazioneVariabili(variabili, var, stack));
-                return (Command) e.getValue();
-            }
-        }*/
     }
 
     @FXML

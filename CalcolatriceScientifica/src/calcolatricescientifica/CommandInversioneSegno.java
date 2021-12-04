@@ -20,7 +20,10 @@ public class CommandInversioneSegno implements Command {
     }
 
     @Override
-    public void esegui() {
+    public void esegui() throws Exception{
+        if(stack.lenght()==0){
+            throw new Exception();
+        }
         NumeroComplesso nc = null;
         nc = stack.drop().inversioneSegno();
         stack.push(nc);

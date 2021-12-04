@@ -9,6 +9,6 @@ package calcolatricescientifica;
  * @author simfe
  */
 public interface Command {
-    public void esegui();
+    public void esegui()throws Exception;
     
 }

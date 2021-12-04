@@ -33,7 +33,7 @@ public class StackNumeri {
     }
     
     public int lenght(){
-        return stack.size()-1;
+        return stack.size();
     }
 
     @Override

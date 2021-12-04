@@ -16,7 +16,10 @@ public class CommandDup implements Command{
     }
 
     @Override
-    public void esegui() {
+    public void esegui() throws Exception{
+        if(stack.lenght()==0){
+            throw new Exception();
+        }
         stack.dup();
     }
 }

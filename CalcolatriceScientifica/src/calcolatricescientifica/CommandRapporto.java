@@ -20,13 +20,12 @@ public class CommandRapporto implements Command {
     }
 
     @Override
-    public void esegui() {
-        NumeroComplesso nc = null;
-        try {
-            nc = stack.penultimo().rapporto(stack.drop());
-        } catch (Exception ex) {
-            Logger.getLogger(CommandSomma.class.getName()).log(Level.SEVERE, null, ex);
+    public void esegui() throws Exception {
+        if(stack.lenght()<=1){
+            throw new Exception();
         }
+        NumeroComplesso nc = null;
+        nc = stack.penultimo().rapporto(stack.drop());
         stack.drop();
         stack.push(nc);
     }

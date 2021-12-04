@@ -19,11 +19,11 @@ public class CommandSwap implements Command{
     }
 
     @Override
-    public void esegui() {
-        try {
-            stack.swap();
-        } catch (Exception ex) {
-            Logger.getLogger(CommandSwap.class.getName()).log(Level.SEVERE, null, ex);
+    public void esegui() throws Exception{
+        if(stack.lenght()<=1){
+            throw new Exception();
         }
+        stack.swap();
+        
     }
 }

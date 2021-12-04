@@ -25,12 +25,8 @@ public class CommandSommaVariabili implements Command{
     }
     
     @Override
-    public void esegui() {
-        try {
-            v.sommaVariabile(stack, x);
-        } catch (Exception ex) {
-            Logger.getLogger(CommandSommaVariabili.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void esegui() throws Exception{
+        v.sommaVariabile(stack, x);
     }
     
 }
