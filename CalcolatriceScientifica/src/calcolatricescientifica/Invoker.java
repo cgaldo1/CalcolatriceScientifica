@@ -10,7 +10,7 @@ package calcolatricescientifica;
  */
 public class Invoker {
     
-    public void esegui(Command command){
+    public void esegui(Command command) throws Exception{
         command.esegui();
     }
 }

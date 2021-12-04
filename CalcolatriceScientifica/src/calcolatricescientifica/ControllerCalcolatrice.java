@@ -111,6 +111,8 @@ public class ControllerCalcolatrice implements Initializable {
         operazioni.replace("clear", new CommandClear(stack));
         operazioni.replace("swap", new CommandSwap(stack));
         operazioni.replace("over", new CommandOver(stack));
+        operazioni.replace("arg", new CommandArg(stack));
+        operazioni.replace("exp", new CommandExp(stack));
         oStack.setAll(stack.convertiInLista());
 
         casellaDiTesto.clear();

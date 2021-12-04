@@ -26,7 +26,7 @@ public class OperazioneUtenteMacroCommand implements MacroCommand{
     }
 
     @Override
-    public void esegui() {
+    public void esegui() throws Exception{
         for(Command command : listaCommand){
             command.esegui();
         }

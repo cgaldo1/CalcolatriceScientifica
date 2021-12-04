@@ -165,7 +165,29 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         clickOn("#bottoneEsegui");
         assertEquals(0, listview.getItems().size());
 
+        //test arg
+        textField.setText("2+3j");
+        clickOn("#bottoneEsegui");
+        textField.setText("arg");
+        clickOn("#bottoneEsegui");
+        n = new NumeroComplesso(0.98279, 0);
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.00001);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.00001);
+        
+        //test exp
+        textField.setText("clear");
+        clickOn("#bottoneEsegui");
+        textField.setText("2+3j");
+        clickOn("#bottoneEsegui");
+        textField.setText("exp");
+        clickOn("#bottoneEsegui");
+        n = new NumeroComplesso(-7.31511, 1.04274);
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.00001);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.00001);
+        
         //test >x, <x
+        textField.setText("clear");
+        clickOn("#bottoneEsegui");
         n = new NumeroComplesso(2, 4);
         textField.setText("2+4j");
         clickOn("#bottoneEsegui");
@@ -293,6 +315,17 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
+        
+        textField.setText("arg");
+        clickOn("#bottoneEsegui");
+        verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("exp");
+        clickOn("#bottoneEsegui");
+        verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
+        clickOn("OK");
+        
         
         textField.setText("1+4j");
         clickOn("#bottoneEsegui");

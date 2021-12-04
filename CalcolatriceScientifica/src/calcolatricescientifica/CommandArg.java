@@ -20,7 +20,10 @@ public class CommandArg implements Command {
     }
 
     @Override
-    public void esegui() {
+    public void esegui() throws Exception{
+        if(stack.isEmpty()){
+            throw new Exception();
+        }
         NumeroComplesso nc = stack.drop();
         double argomento = nc.argomento();
         stack.push(new NumeroComplesso(argomento,0));

@@ -17,7 +17,10 @@ public class CommandExp implements Command{
     }
 
     @Override
-    public void esegui() {
+    public void esegui() throws Exception{
+        if(stack.isEmpty()){
+            throw new Exception();
+        }
         NumeroComplesso nc = stack.drop();
         stack.push(nc.esponenziale());
     }

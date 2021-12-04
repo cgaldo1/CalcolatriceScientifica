@@ -5,6 +5,8 @@
  */
 package calcolatricescientifica;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -28,7 +30,6 @@ public class CommandProdottoTest {
         s.push(n);
         s.push(n0);
         CommandProdotto c = new CommandProdotto(s);
-        c.esegui();
         assertEquals(new NumeroComplesso(-8.0,6.0).parteReale(),s.top().parteReale(),10e-15);
         assertEquals(new NumeroComplesso(-8.0,6.0).parteImmaginaria(),s.top().parteImmaginaria(),10e-15);
     }
