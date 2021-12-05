@@ -59,12 +59,12 @@ public class Variabili {
 }
     
     public void sommaVariabile(StackNumeri s, char x) throws Exception{
-         NumeroComplesso sum = getNumero(x).somma(s.top());
-         inserisci(sum, indice(x));
+         NumeroComplesso sum = this.getNumero(x).somma(s.top());
+         this.inserisci(sum, indice(x));
     }
     
     public void sottrazioneVariabile(StackNumeri s, char x) throws Exception{
-         NumeroComplesso sub = getNumero(x).sottrazione(s.top());
-         inserisci(sub, indice(x));
+         NumeroComplesso sub = this.getNumero(x).sottrazione(s.top());
+         this.inserisci(sub, indice(x));
     }
 }
