@@ -13,25 +13,25 @@ import static org.junit.Assert.*;
  *
  * @author picac
  */
-public class CommandExpTest {
+public class CommandInversioneSegnoTest {
     
-    public CommandExpTest() {
+    public CommandInversioneSegnoTest() {
     }
 
     /**
-     * Test of esegui method, of class CommandExp.
+     * Test of esegui method, of class CommandInversioneSegno.
      */
-    @Test (expected=Exception.class)
+    @Test(expected=Exception.class)
     public void testEsegui() throws Exception {
         StackNumeri s = new StackNumeri();
         NumeroComplesso n = new NumeroComplesso(1,3);
         s.push(n);
-        CommandExp c = new CommandExp(s);
+        CommandInversioneSegno c = new CommandInversioneSegno(s);
         c.esegui();
-        assertEquals(new NumeroComplesso(-2.6910786138197937,0.383603953541131).parteReale(),s.top().parteReale(),10e-15);
-        assertEquals(new NumeroComplesso(-2.6910786138197937,0.383603953541131).parteImmaginaria(),s.top().parteImmaginaria(),10e-15);  
+        assertEquals(new NumeroComplesso(-1.0,-3.0).parteReale(),s.top().parteReale(),10e-15);
+        assertEquals(new NumeroComplesso(-1.0,-3.0).parteImmaginaria(),s.top().parteImmaginaria(),10e-15);  
         s.drop();
-        CommandExp k = new CommandExp(s);
+        CommandInversioneSegno k = new CommandInversioneSegno(s);
         k.esegui();
     }
     

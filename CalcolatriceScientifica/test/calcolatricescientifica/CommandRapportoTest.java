@@ -5,6 +5,7 @@
  */
 package calcolatricescientifica;
 
+import java.util.EmptyStackException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -20,8 +21,8 @@ public class CommandRapportoTest {
     /**
      * Test of esegui method, of class CommandRapporto.
      */
-    @Test
-    public void testEsegui() {
+    @Test(expected=Exception.class)
+    public void testEsegui() throws Exception {
         StackNumeri s = new StackNumeri();
         NumeroComplesso n = new NumeroComplesso(2,2);
         NumeroComplesso n0 = new NumeroComplesso(5,3);
@@ -31,6 +32,10 @@ public class CommandRapportoTest {
         c.esegui();
         assertEquals(new NumeroComplesso(0.47058823529411764,0.11764705882352941).parteReale(),s.top().parteReale(),10e-15);
         assertEquals(new NumeroComplesso(0.47058823529411764,0.11764705882352941).parteImmaginaria(),s.top().parteImmaginaria(),10e-15);
+        s.drop();
+        s.drop();
+        CommandRapporto k = new CommandRapporto(s);
+        k.esegui();
     }
     
 }
