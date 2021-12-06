@@ -100,7 +100,8 @@ public class ControllerCalcolatrice implements Initializable {
         } else {
             try {
                 invoker.esegui(new CommandInserimentoNumero(stack, n));
-            } catch (Exception ex) {}
+            } catch (Exception ex) {
+            }
             oStack.setAll(stack.convertiInLista());
         }
 
@@ -147,15 +148,21 @@ public class ControllerCalcolatrice implements Initializable {
         String azioniOperazione = tfdAzioniOperazione.getText();
         String[] azioni = azioniOperazione.split(" ");
         OperazioneUtenteMacroCommand operazioneUtente = new OperazioneUtenteMacroCommand();
-        
+
         for (String string : azioni) {
-            Command command = nuovoCommand(string);
-            if (command != null) {
+            NumeroComplesso n = NumeroComplesso.inserisciNumero(string);
+            if (n != null) {
+                Command command = new CommandInserimentoNumero(stack, n);
                 operazioneUtente.aggiungi(command);
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Input non valido");
-                alert.showAndWait();
-                break;
+                Command command = nuovoCommand(string);
+                if (command != null) {
+                    operazioneUtente.aggiungi(command);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Input non valido");
+                    alert.showAndWait();
+                    break;
+                }
             }
         }
 
@@ -164,6 +171,6 @@ public class ControllerCalcolatrice implements Initializable {
         tfdAzioniOperazione.clear();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Operazione creata");
         alert.showAndWait();
-        
+
     }
 }
