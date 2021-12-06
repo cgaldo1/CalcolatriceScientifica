@@ -29,9 +29,11 @@ public class StackVariabili {
         this.stackVariabili.push(v);
     }
     
-    public void restore(Variabili v) throws Exception{
+    public Variabili ripristinaVariabili() throws Exception{
+        Variabili v = new Variabili();
         if(stackVariabili.isEmpty()) throw new Exception();
         Variabili top= stackVariabili.pop();
         v.array = top.array;
+        return v;
     }
 }
