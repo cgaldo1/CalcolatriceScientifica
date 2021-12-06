@@ -220,7 +220,7 @@ public class ControllerCalcolatrice implements Initializable {
         String azioniOperazione = tfdAzioniOperazione.getText();
         String[] azioni = azioniOperazione.split(" ");
         OperazioneUtenteMacroCommand operazioneUtente = new OperazioneUtenteMacroCommand();
-
+        
         for (String string : azioni) {
             Command command = nuovoCommand(string);
             if (command != null) {
@@ -233,5 +233,10 @@ public class ControllerCalcolatrice implements Initializable {
         }
 
         operazioni.put(tfdNomeOperazione.getText(), operazioneUtente);
+        tfdNomeOperazione.clear();
+        tfdAzioniOperazione.clear();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Operazione creata");
+        alert.showAndWait();
+        
     }
 }
