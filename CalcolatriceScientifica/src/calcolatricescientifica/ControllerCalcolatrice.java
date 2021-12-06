@@ -82,8 +82,9 @@ public class ControllerCalcolatrice implements Initializable {
     private void esegui(ActionEvent event) {
 
         String input = casellaDiTesto.getText();
-        if (inserisciNumero(input) == false) {
-            Invoker invoker = new Invoker();
+        NumeroComplesso n = NumeroComplesso.inserisciNumero(input);
+        Invoker invoker = new Invoker();
+        if (n == null) {
             Command command = nuovoCommand(input);
             if (command != null) {
                 try {
@@ -97,6 +98,9 @@ public class ControllerCalcolatrice implements Initializable {
                 alert.showAndWait();
             }
         } else {
+            try {
+                invoker.esegui(new CommandInserimentoNumero(stack, n));
+            } catch (Exception ex) {}
             oStack.setAll(stack.convertiInLista());
         }
 
