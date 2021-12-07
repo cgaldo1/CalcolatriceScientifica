@@ -66,5 +66,5 @@ public class Variabili {
     public void sottrazioneVariabile(StackNumeri s, char x) throws Exception{
          NumeroComplesso sub = this.getNumero(x).sottrazione(s.top());
          this.inserisci(sub, indice(x));
-    }
+    }    
 }

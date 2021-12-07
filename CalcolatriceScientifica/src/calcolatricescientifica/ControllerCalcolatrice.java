@@ -49,6 +49,8 @@ public class ControllerCalcolatrice implements Initializable {
     private TextField tfdAzioniOperazione;
 
     private Variabili variabili;
+    
+    private StackVariabili stackVariabili;
 
     private char var;
 
@@ -59,6 +61,7 @@ public class ControllerCalcolatrice implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         stack = new StackNumeri();
         variabili = new Variabili();
+        stackVariabili = new StackVariabili();
 
         operazioni = new HashMap<>();
         operazioni.put("+", new CommandSomma(stack));
@@ -80,6 +83,8 @@ public class ControllerCalcolatrice implements Initializable {
         operazioni.put("asin", new CommandAsin(stack));
         operazioni.put("acos", new CommandAcos(stack));
         operazioni.put("cos", new CommandCos(stack));
+        operazioni.put("save", new CommandSalvaVariabili(stackVariabili,variabili));
+        operazioni.put("restore", new CommandRipristinaVariabili(stackVariabili));
 
         oStack = FXCollections.observableArrayList();
 
@@ -143,6 +148,8 @@ public class ControllerCalcolatrice implements Initializable {
         operazioni.replace("asin", new CommandAsin(stack));
         operazioni.replace("acos", new CommandAcos(stack));
         operazioni.replace("cos", new CommandCos(stack));
+        operazioni.replace("save", new CommandSalvaVariabili(stackVariabili,variabili));
+        operazioni.replace("restore", new CommandRipristinaVariabili(stackVariabili));
         oStack.setAll(stack.convertiInLista());
 
         casellaDiTesto.clear();
