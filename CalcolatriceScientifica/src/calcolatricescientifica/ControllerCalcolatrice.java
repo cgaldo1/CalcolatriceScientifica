@@ -92,6 +92,9 @@ public class ControllerCalcolatrice implements Initializable {
 
         String input = casellaDiTesto.getText();
         NumeroComplesso n = NumeroComplesso.inserisciNumero(input);
+        StackNumeri stackTemporaneo = new StackNumeri();
+        stackTemporaneo.addAll(stack);
+
         Invoker invoker = new Invoker();
         if (n == null) {
             Command command = nuovoCommand(input);
@@ -99,10 +102,17 @@ public class ControllerCalcolatrice implements Initializable {
                 try {
                     invoker.esegui(command);
                 } catch (Exception e) {
+                    stack.clear();
+                    stack.addAll(stackTemporaneo);
+
                     Alert alert = new Alert(Alert.AlertType.ERROR, "L'operazione non può essere eseguita");
                     alert.showAndWait();
+
                 }
             } else {
+                stack.clear();
+                stack.addAll(stackTemporaneo);
+
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Input non valido");
                 alert.showAndWait();
             }
@@ -174,9 +184,11 @@ public class ControllerCalcolatrice implements Initializable {
                 if (command != null) {
                     operazioneUtente.aggiungi(command);
                 } else {
+                    tfdNomeOperazione.clear();
+                    tfdAzioniOperazione.clear();
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Input non valido");
                     alert.showAndWait();
-                    break;
+                    return;
                 }
             }
         }

@@ -19,7 +19,7 @@ public class StackNumeri {
     public StackNumeri() {
         stack = new Stack<>();
     }
-    
+      
     public void push(NumeroComplesso n){
         stack.push(n);
     }
@@ -99,6 +99,15 @@ public class StackNumeri {
             stack.push(nc);
         }
         return lista;
+    }
+    
+    public void addAll(StackNumeri stack){
+        List<NumeroComplesso> lista = new ArrayList<>();
+        lista=stack.convertiInLista();
+        int len = lista.size();
+        for(int i=len-1; i>=0;i--){
+            this.stack.push(lista.get(i));
+        }
     }
     
 }
