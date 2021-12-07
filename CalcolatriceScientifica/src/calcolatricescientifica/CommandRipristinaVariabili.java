@@ -23,4 +23,9 @@ public class CommandRipristinaVariabili implements Command{
         v = s.ripristinaVariabili();
     }
     
+    @Override
+    public String toString(){
+        return "restore";
+    }
+    
 }

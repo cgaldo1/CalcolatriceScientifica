@@ -22,4 +22,9 @@ public class CommandDup implements Command{
         }
         stack.dup();
     }
+    
+    @Override
+    public String toString(){
+        return "dup";
+    }
 }

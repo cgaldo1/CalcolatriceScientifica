@@ -29,4 +29,9 @@ public class CommandSommaVariabili implements Command{
         v.sommaVariabile(stack, x);
     }
     
+    @Override
+    public String toString(){
+        return "+"+x;
+    }
+    
 }

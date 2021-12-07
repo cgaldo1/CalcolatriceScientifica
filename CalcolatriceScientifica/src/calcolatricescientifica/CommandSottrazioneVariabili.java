@@ -29,4 +29,8 @@ public class CommandSottrazioneVariabili implements Command{
             v.sottrazioneVariabile(stack, x);
     }
     
+    @Override
+    public String toString(){
+        return "-"+x;
+    }
 }

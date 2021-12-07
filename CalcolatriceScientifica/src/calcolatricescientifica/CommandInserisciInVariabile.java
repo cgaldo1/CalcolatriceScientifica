@@ -29,4 +29,9 @@ public class CommandInserisciInVariabile implements Command{
         v.inserisciInVariabile(stack, x);
     }
     
+    @Override
+    public String toString(){
+        return ">"+x;
+    }
+    
 }

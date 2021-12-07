@@ -23,4 +23,8 @@ public class CommandInserimentoNumero implements Command{
         stack.push(n);
     }
     
+    @Override
+    public String toString(){
+        return n.toString().replaceAll("\\s", "");
+    }
 }

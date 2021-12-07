@@ -19,4 +19,9 @@ public class CommandClear implements Command{
     public void esegui() {
         stack.clear();
     }
+    
+    @Override
+    public String toString(){
+        return "clear";
+    }
 }

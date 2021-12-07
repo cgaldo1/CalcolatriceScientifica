@@ -26,4 +26,9 @@ public class CommandSwap implements Command{
         stack.swap();
         
     }
+    
+    @Override
+    public String toString(){
+        return "swap";
+    }
 }

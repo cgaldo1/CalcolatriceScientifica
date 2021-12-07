@@ -11,4 +11,6 @@ package calcolatricescientifica;
 public interface Command {
     public void esegui()throws Exception;
     
+    public String toString();
+    
 }

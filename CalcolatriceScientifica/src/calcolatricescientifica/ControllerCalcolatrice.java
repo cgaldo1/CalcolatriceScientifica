@@ -1,11 +1,19 @@
 package calcolatricescientifica;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -21,6 +29,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -43,19 +52,27 @@ public class ControllerCalcolatrice implements Initializable {
     private Button bottoneNuovaOperazione;
 
     private Map<String, Command> operazioni;
+
+    private Map<String, Command> operazioniUtente;
     @FXML
     private TextField tfdNomeOperazione;
     @FXML
     private TextField tfdAzioniOperazione;
 
     private Variabili variabili;
-    
+
     private StackVariabili stackVariabili;
 
     private char var;
 
     @FXML
     private Button BottoneEliminaOperazione;
+    @FXML
+    private Button bottoneModificaOperazione;
+    @FXML
+    private Button bottoneSalvaOperazioni;
+    @FXML
+    private Button bottoneCaricaOperazioni;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -83,8 +100,10 @@ public class ControllerCalcolatrice implements Initializable {
         operazioni.put("asin", new CommandAsin(stack));
         operazioni.put("acos", new CommandAcos(stack));
         operazioni.put("cos", new CommandCos(stack));
-        operazioni.put("save", new CommandSalvaVariabili(stackVariabili,variabili));
+        operazioni.put("save", new CommandSalvaVariabili(stackVariabili, variabili));
         operazioni.put("restore", new CommandRipristinaVariabili(stackVariabili));
+
+        operazioniUtente = new HashMap<>();
 
         oStack = FXCollections.observableArrayList();
 
@@ -148,7 +167,7 @@ public class ControllerCalcolatrice implements Initializable {
         operazioni.replace("asin", new CommandAsin(stack));
         operazioni.replace("acos", new CommandAcos(stack));
         operazioni.replace("cos", new CommandCos(stack));
-        operazioni.replace("save", new CommandSalvaVariabili(stackVariabili,variabili));
+        operazioni.replace("save", new CommandSalvaVariabili(stackVariabili, variabili));
         operazioni.replace("restore", new CommandRipristinaVariabili(stackVariabili));
         oStack.setAll(stack.convertiInLista());
 
@@ -159,6 +178,9 @@ public class ControllerCalcolatrice implements Initializable {
     private Command nuovoCommand(String input) {
         if (operazioni.containsKey(input)) {
             return (Command) operazioni.get(input);
+        }
+        if (operazioniUtente.containsKey(input)) {
+            return (Command) operazioniUtente.get(input);
         }
         if (input.length() == 2 && input.charAt(0) == '>' && input.charAt(1) >= 'a' && input.charAt(1) <= 'z') {
             return new CommandInserisciInVariabile(variabili, input.charAt(1), stack);
@@ -177,9 +199,17 @@ public class ControllerCalcolatrice implements Initializable {
 
     @FXML
     private void inserisciNuovaOperazione(ActionEvent event) {
+        String nomeOperazione = tfdNomeOperazione.getText();
         String azioniOperazione = tfdAzioniOperazione.getText();
         String[] azioni = azioniOperazione.split(" ");
         OperazioneUtenteMacroCommand operazioneUtente = new OperazioneUtenteMacroCommand();
+
+        //Controllo che l'operazione non sia stata già creata
+        if (operazioniUtente.containsKey(nomeOperazione)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "L'operazione esiste gia");
+            alert.showAndWait();
+            return;
+        }
 
         for (String string : azioni) {
             NumeroComplesso n = NumeroComplesso.inserisciNumero(string);
@@ -200,7 +230,7 @@ public class ControllerCalcolatrice implements Initializable {
             }
         }
 
-        operazioni.put(tfdNomeOperazione.getText(), operazioneUtente);
+        operazioniUtente.put(nomeOperazione, operazioneUtente);
         tfdNomeOperazione.clear();
         tfdAzioniOperazione.clear();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Operazione creata");
@@ -211,7 +241,7 @@ public class ControllerCalcolatrice implements Initializable {
     @FXML
     private void eliminaOperazione(ActionEvent event) {
         String nomeOperazione = tfdNomeOperazione.getText();
-        Command c = operazioni.remove(nomeOperazione);
+        Command c = operazioniUtente.remove(nomeOperazione);
         if (c != null) {
             tfdNomeOperazione.clear();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Operazione eliminata");
@@ -222,4 +252,116 @@ public class ControllerCalcolatrice implements Initializable {
             alert.showAndWait();
         }
     }
+
+    @FXML
+    private void modificaOperazione(ActionEvent event) {
+        String nomeOperazione = tfdNomeOperazione.getText();
+        String azioniOperazione = tfdAzioniOperazione.getText();
+        String[] azioni = azioniOperazione.split(" ");
+        OperazioneUtenteMacroCommand operazioneUtente = new OperazioneUtenteMacroCommand();
+
+        //Controllo che l'operazione esista
+        if (!operazioni.containsKey(nomeOperazione)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "L'operazione non esiste");
+            alert.showAndWait();
+            return;
+        }
+
+        for (String string : azioni) {
+            NumeroComplesso n = NumeroComplesso.inserisciNumero(string);
+            if (n != null) {
+                Command command = new CommandInserimentoNumero(stack, n);
+                operazioneUtente.aggiungi(command);
+            } else {
+                Command command = nuovoCommand(string);
+                if (command != null) {
+                    operazioneUtente.aggiungi(command);
+                } else {
+                    tfdNomeOperazione.clear();
+                    tfdAzioniOperazione.clear();
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Input non valido");
+                    alert.showAndWait();
+                    return;
+                }
+            }
+        }
+
+        operazioniUtente.replace(nomeOperazione, operazioneUtente);
+        tfdNomeOperazione.clear();
+        tfdAzioniOperazione.clear();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Operazione modificata");
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void salvaOperazioni(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Salva operazioni");
+        File file = fc.showSaveDialog(stackCalcolatrice.getScene().getWindow());
+
+        if (file != null) {
+            try ( PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(file)))) {
+
+                for (Map.Entry<String, Command> operazione : operazioniUtente.entrySet()) {
+                    pw.write(operazione.getKey() + ":" + operazione.getValue().toString() + "\n");
+                }
+
+            } catch (IOException ex) {
+                Logger.getLogger(ControllerCalcolatrice.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Operazioni salvate");
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void caricaOperazioni(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Carica operazioni");
+        File file = fc.showOpenDialog(stackCalcolatrice.getScene().getWindow());
+
+        if (file != null) {
+            try ( Scanner i = new Scanner(new BufferedReader(new FileReader(file)))) {
+
+                i.useDelimiter(":|\\n");
+                i.useLocale(Locale.US);
+                while (i.hasNext()) {
+                    String nomeOperazione = i.next();
+                    operazioniUtente.put(nomeOperazione, null);
+                    OperazioneUtenteMacroCommand operazioneUtente = new OperazioneUtenteMacroCommand();
+                    String[] azioni = i.next().split(" ");
+                    for (String string : azioni) {
+                        NumeroComplesso n = NumeroComplesso.inserisciNumero(string);
+                        if (n != null) {
+                            Command command = new CommandInserimentoNumero(stack, n);
+                            operazioneUtente.aggiungi(command);
+                        } else {
+                            Command command = nuovoCommand(string);
+                            if (command != null) {
+                                operazioneUtente.aggiungi(command);
+                            } else {
+                                tfdNomeOperazione.clear();
+                                tfdAzioniOperazione.clear();
+                                Alert alert = new Alert(Alert.AlertType.ERROR, "Errore nel caricamento delle operazioni");
+                                alert.showAndWait();
+                                return;
+                            }
+                        }
+                    }
+                    
+                    operazioniUtente.replace(nomeOperazione, operazioneUtente);
+
+                }
+
+            } catch (IOException ex) {
+                Logger.getLogger(ControllerCalcolatrice.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Operazioni caricate");
+        alert.showAndWait();
+    }
+    
+    
 }

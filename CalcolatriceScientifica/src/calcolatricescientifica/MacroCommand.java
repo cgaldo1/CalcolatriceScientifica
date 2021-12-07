@@ -4,6 +4,8 @@
  */
 package calcolatricescientifica;
 
+import java.util.List;
+
 /**
  *
  * @author simfe
@@ -13,4 +15,5 @@ public interface MacroCommand extends Command{
     public void aggiungi(Command command);
     
     public void rimuovi(Command command);
+    
 }

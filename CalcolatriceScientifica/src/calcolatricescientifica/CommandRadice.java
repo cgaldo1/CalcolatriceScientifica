@@ -28,4 +28,9 @@ public class CommandRadice implements Command {
         nc = stack.drop().radice();
         stack.push(nc);
     }
+    
+    @Override
+    public String toString(){
+        return "sqrt";
+    }
 }

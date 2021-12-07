@@ -25,4 +25,9 @@ public class CommandDrop implements Command{
         }
         stack.drop();
     }
+    
+    @Override
+    public String toString(){
+        return "drop";
+    }
 }

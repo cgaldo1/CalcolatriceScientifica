@@ -27,4 +27,9 @@ public class CommandAsin implements Command{
 
     }
     
+    @Override
+    public String toString(){
+        return "asin";
+    }
+    
 }

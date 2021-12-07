@@ -25,4 +25,9 @@ public class CommandExp implements Command{
         stack.push(nc.esponenziale());
     }
     
+    @Override
+    public String toString(){
+        return "exp";
+    }
+    
 }

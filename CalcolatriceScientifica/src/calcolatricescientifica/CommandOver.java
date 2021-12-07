@@ -26,4 +26,9 @@ public class CommandOver implements Command{
         stack.over();
         
     }
+    
+    @Override
+    public String toString(){
+        return "over";
+    }
 }

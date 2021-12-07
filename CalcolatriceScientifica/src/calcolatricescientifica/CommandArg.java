@@ -28,4 +28,9 @@ public class CommandArg implements Command {
         double argomento = nc.argomento();
         stack.push(new NumeroComplesso(argomento,0));
     }
+    
+    @Override
+    public String toString(){
+        return "arg";
+    }
 }

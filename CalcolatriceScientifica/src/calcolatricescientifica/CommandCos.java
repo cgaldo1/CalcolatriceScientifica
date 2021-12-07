@@ -26,4 +26,9 @@ public class CommandCos implements Command{
 
     }
     
+    @Override
+    public String toString(){
+        return "cos";
+    }
+    
 }

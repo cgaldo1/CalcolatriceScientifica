@@ -29,4 +29,9 @@ public class CommandInserisciInStack implements Command{
         v.inserisciInStack(stack, x);
     }
     
+    @Override
+    public String toString(){
+        return "<"+x;
+    }
+    
 }

@@ -26,4 +26,9 @@ public class CommandTan implements Command{
 
     }
     
+    @Override
+    public String toString(){
+        return "tan";
+    }
+    
 }

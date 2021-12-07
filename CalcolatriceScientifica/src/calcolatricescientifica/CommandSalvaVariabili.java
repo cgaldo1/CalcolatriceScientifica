@@ -23,4 +23,9 @@ public class CommandSalvaVariabili implements Command{
         s.salvaVariabili(v);
     }
     
+    @Override
+    public String toString(){
+        return "save";
+    }
+    
 }

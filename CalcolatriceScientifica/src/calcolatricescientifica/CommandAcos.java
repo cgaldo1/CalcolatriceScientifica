@@ -26,4 +26,10 @@ public class CommandAcos implements Command{
 
     }
     
+    @Override
+    public String toString(){
+        return "acos";
+    }
+    
+    
 }

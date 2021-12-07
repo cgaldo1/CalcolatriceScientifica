@@ -26,4 +26,10 @@ public class CommandAtan implements Command {
         stack.push(n.atan());
 
     }
+    
+    @Override
+    public String toString(){
+        return "atan";
+    }
+    
 }

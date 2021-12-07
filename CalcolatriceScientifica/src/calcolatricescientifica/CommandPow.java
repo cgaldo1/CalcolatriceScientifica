@@ -33,4 +33,9 @@ public class CommandPow implements Command{
         stack.push(base.potenza(esponente));
     }
     
+    @Override
+    public String toString(){
+        return "pow";   
+    }
+    
 }

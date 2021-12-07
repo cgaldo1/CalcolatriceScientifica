@@ -29,5 +29,10 @@ public class CommandSottrazione implements Command {
         stack.drop();
         stack.push(nc);
     }
+    
+    @Override
+    public String toString(){
+        return "-";
+    }
 
 }

@@ -28,4 +28,9 @@ public class CommandInversioneSegno implements Command {
         nc = stack.drop().inversioneSegno();
         stack.push(nc);
     }
+    
+    @Override
+    public String toString(){
+        return "+-";
+    }
 }

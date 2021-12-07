@@ -36,4 +36,14 @@ public class OperazioneUtenteMacroCommand implements MacroCommand{
         }
     }
     
+    @Override
+    public String toString(){
+        String s="";
+        int len = listaCommand.size();
+        for(int i=0; i<len; i++){
+            s=s+listaCommand.get(i).toString()+" ";
+        }
+        return s;
+    }
+    
 }
