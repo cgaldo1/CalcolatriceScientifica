@@ -75,7 +75,7 @@ public class NumeroComplesso extends Object {
 
     /*La funzione si occupa di calcolare il logaritmo di un numero complesso.
     Il logaritmo è calcolato secondo la formulazione: ln(z) = ln|z| + iarg(z), dove z è il numero complesso;*/
-    public NumeroComplesso logaritmo() {
+    public NumeroComplesso logaritmonaturale() {
         return new NumeroComplesso(Math.log(this.modulo()), this.argomento());
     }
 
@@ -122,10 +122,37 @@ public class NumeroComplesso extends Object {
     public NumeroComplesso tan() {
         return (this.seno()).rapporto(this.coseno());
     }
+    
+    public NumeroComplesso atan() {
+        return ((new NumeroComplesso(1,0).somma(new NumeroComplesso(0,1).prodotto(this))).rapporto((new NumeroComplesso(1,0).sottrazione(new NumeroComplesso(0,1).prodotto(this))))).logaritmonaturale().prodotto((new NumeroComplesso(1,0).rapporto(new NumeroComplesso(0,2))));
+    }
+    
+    public NumeroComplesso asin() throws Exception {
+        NumeroComplesso pow = new NumeroComplesso(2,0);
+        NumeroComplesso membro1 = new NumeroComplesso(0,1).prodotto(this);
+        NumeroComplesso membro2 = new NumeroComplesso((new NumeroComplesso(1,0).sottrazione(this.potenza(pow))).modulo(),0).radice();
+        NumeroComplesso membro3 = (new NumeroComplesso(0,(new NumeroComplesso(1,0).sottrazione(this.potenza(pow))).argomento()).prodotto(new NumeroComplesso(0,1).rapporto(new NumeroComplesso(2,0)))).esponenziale();
+        return membro1.somma(membro2).prodotto(membro3).logaritmonaturale().prodotto(new NumeroComplesso(1,0).rapporto(new NumeroComplesso(0,1)));
+    }
+    
+    public NumeroComplesso acos() throws Exception{
+        NumeroComplesso pow = new NumeroComplesso(2,0);
+        NumeroComplesso membro1 = new NumeroComplesso((this.potenza(pow).sottrazione(new NumeroComplesso(1,0))).modulo(),0).radice();
+        NumeroComplesso membro2 = (new NumeroComplesso(0,(this.potenza(pow)).sottrazione(new NumeroComplesso(1,0)).argomento()).prodotto(new NumeroComplesso(0,1).rapporto(new NumeroComplesso(2,0)))).esponenziale();
+        return this.somma(membro1).prodotto(membro2).logaritmonaturale().prodotto(new NumeroComplesso(1,0).rapporto(new NumeroComplesso(0,1)));
+    }
+    
 
     /*La funzione si occupa di effettuare l'inversione del segno di un numero complesso;*/
     public NumeroComplesso inversioneSegno() {
         return new NumeroComplesso(-x, -y);
+    }
+    
+    public NumeroComplesso potenza(NumeroComplesso n) throws Exception{
+        if(n.parteImmaginaria() != 0){
+             throw new Exception();
+        }
+        return new NumeroComplesso(Math.round(Math.pow(this.modulo(),n.parteReale())*Math.cos(this.argomento()*n.parteReale())),Math.round(Math.pow(this.modulo(),n.parteReale()))*Math.sin(this.argomento()*n.parteReale()));
     }
 
     /*La funzione si occupa di fornire la rappresentazione di un numero complesso sottoforma di stringa. 

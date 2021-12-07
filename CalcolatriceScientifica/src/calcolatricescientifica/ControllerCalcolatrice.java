@@ -56,6 +56,7 @@ public class ControllerCalcolatrice implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         stack = new StackNumeri();
         variabili = new Variabili();
+        
 
         operazioni = new HashMap<>();
         operazioni.put("+", new CommandSomma(stack));
@@ -71,6 +72,12 @@ public class ControllerCalcolatrice implements Initializable {
         operazioni.put("over", new CommandOver(stack));
         operazioni.put("arg", new CommandArg(stack));
         operazioni.put("exp", new CommandExp(stack));
+        operazioni.put("pow", new CommandPow(stack));
+        operazioni.put("atan", new CommandAtan(stack));
+        operazioni.put("tan", new CommandTan(stack));
+        operazioni.put("asin", new CommandAsin(stack));
+        operazioni.put("acos", new CommandAcos(stack));
+        operazioni.put("cos", new CommandCos(stack));
 
         oStack = FXCollections.observableArrayList();
 
@@ -113,6 +120,12 @@ public class ControllerCalcolatrice implements Initializable {
         operazioni.replace("over", new CommandOver(stack));
         operazioni.replace("arg", new CommandArg(stack));
         operazioni.replace("exp", new CommandExp(stack));
+        operazioni.replace("pow", new CommandPow(stack));
+        operazioni.replace("atan", new CommandAtan(stack));
+        operazioni.replace("tan", new CommandTan(stack));
+        operazioni.replace("asin", new CommandAsin(stack));
+        operazioni.replace("acos", new CommandAcos(stack));
+        operazioni.replace("cos", new CommandCos(stack));
         oStack.setAll(stack.convertiInLista());
 
         casellaDiTesto.clear();
