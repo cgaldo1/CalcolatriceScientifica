@@ -110,7 +110,7 @@ public class VariabiliTest {
         Variabili v = new Variabili();
         v.inserisciInVariabile(s, 'a');
         
-        assertEquals(s.top(), v.array[v.indice('a')]);
+        assertEquals(n, v.array[v.indice('a')]);
     }
 
     /**

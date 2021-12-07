@@ -1,9 +1,13 @@
 package calcolatricescientifica;
 
 import static java.lang.Double.NaN;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import static jdk.nashorn.internal.objects.Global.Infinity;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.testfx.api.FxAssert.verifyThat;
+import org.testfx.matcher.base.NodeMatchers;
 
 /**
  *
@@ -661,6 +665,166 @@ public class NumeroComplessoTest {
         assertEquals("-1.0 + 2.0j", n.toString());
         assertEquals("Infinity + 2.0j", n1.toString());
         assertEquals("-Infinity + 2.0j", n2.toString());
+    }
+    
+    @Test
+    public void testInserisciNumero(){
+        System.out.println("inserisciNumero");
+        
+        NumeroComplesso nc= NumeroComplesso.inserisciNumero("8+10j");
+        assertEquals(nc.toString(), new NumeroComplesso(8,10).toString());
+        
+        nc= NumeroComplesso.inserisciNumero("5");
+        assertEquals(nc.toString(), new NumeroComplesso(5,0).toString());
+        
+        nc= NumeroComplesso.inserisciNumero("10j");
+        assertEquals(nc.toString(), new NumeroComplesso(0,10).toString());
+        
+        nc= NumeroComplesso.inserisciNumero("+j");
+        assertEquals(nc.toString(), new NumeroComplesso(0,1).toString());
+        
+        nc= NumeroComplesso.inserisciNumero("-j");
+        assertEquals(nc.toString(), new NumeroComplesso(0,-1).toString());
+        
+        nc= NumeroComplesso.inserisciNumero("5j+10");
+        assertEquals(nc.toString(), new NumeroComplesso(10,5).toString());
+        
+        nc= NumeroComplesso.inserisciNumero("5+10");
+        assertEquals(nc, null);
+        
+        nc= NumeroComplesso.inserisciNumero("j");
+        assertEquals(nc, null);
+        
+        nc= NumeroComplesso.inserisciNumero("f6.0+7j");
+        assertEquals(nc, null);
+        
+        nc= NumeroComplesso.inserisciNumero("5+j7.0");
+        assertEquals(nc, null);
+        
+        nc= NumeroComplesso.inserisciNumero("++3");
+        assertEquals(nc, null);
+        
+        nc= NumeroComplesso.inserisciNumero("--3");
+        assertEquals(nc, null);
+        
+        nc= NumeroComplesso.inserisciNumero("1.0.0+2j");
+        assertEquals(nc, null);
+        
+        nc= NumeroComplesso.inserisciNumero("1.0++7j");
+        assertEquals(nc, null);
+        
+        nc= NumeroComplesso.inserisciNumero("--j");
+        assertEquals(nc, null);
+        
+        nc= NumeroComplesso.inserisciNumero("j9");
+        assertEquals(nc, null);
+        
+        nc= NumeroComplesso.inserisciNumero("3+-");
+        assertEquals(nc, null);
+        
+        nc= NumeroComplesso.inserisciNumero(".0j");
+        assertEquals(nc, null);
+        /*
+        textField.setText("5");
+        stack.push(new NumeroComplesso(5,0));
+        clickOn("#bottoneEsegui");
+        assertEquals(listview.getItems().toString(), stack.toString());
+        stack.clear();
+        textField.setText("clear");
+        clickOn("#bottoneEsegui");
+        
+        textField.setText("10j");
+        stack.push(new NumeroComplesso(0,10));
+        clickOn("#bottoneEsegui");
+        assertEquals(listview.getItems().toString(), stack.toString());
+        stack.clear();
+        textField.setText("clear");
+        clickOn("#bottoneEsegui");
+        
+        textField.setText("+j");
+        stack.push(new NumeroComplesso(0,1));
+        clickOn("#bottoneEsegui");
+        assertEquals(listview.getItems().toString(), stack.toString());
+        stack.clear();
+        textField.setText("clear");
+        clickOn("#bottoneEsegui");
+        
+        textField.setText("-j");
+        stack.push(new NumeroComplesso(0,-1));
+        clickOn("#bottoneEsegui");
+        assertEquals(listview.getItems().toString(), stack.toString());
+        stack.clear();
+        textField.setText("clear");
+        clickOn("#bottoneEsegui");
+        
+        textField.setText("5j+10");
+        stack.push(new NumeroComplesso(10,5));
+        clickOn("#bottoneEsegui");
+        assertEquals(listview.getItems().toString(), stack.toString());
+        stack.clear();
+        textField.setText("clear");
+        clickOn("#bottoneEsegui");
+        
+        textField.setText("5+10");
+        clickOn("#bottoneEsegui");
+        verifyThat("Input non valido", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("j");
+        clickOn("#bottoneEsegui");
+        verifyThat("Input non valido", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("f6.0+7j");
+        clickOn("#bottoneEsegui");
+        verifyThat("Input non valido", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("5+j7.0");
+        clickOn("#bottoneEsegui");
+        verifyThat("Input non valido", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("++3");
+        clickOn("#bottoneEsegui");
+        verifyThat("Input non valido", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("--3");
+        clickOn("#bottoneEsegui");
+        verifyThat("Input non valido", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("1.0.0+2j");
+        clickOn("#bottoneEsegui");
+        verifyThat("Input non valido", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("1.0++7j");
+        clickOn("#bottoneEsegui");
+        verifyThat("Input non valido", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("--j");
+        clickOn("#bottoneEsegui");
+        verifyThat("Input non valido", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("j9");
+        clickOn("#bottoneEsegui");
+        verifyThat("Input non valido", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("3+-");
+        clickOn("#bottoneEsegui");
+        verifyThat("Input non valido", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText(".0j");
+        clickOn("#bottoneEsegui");
+        verifyThat("Input non valido", NodeMatchers.isVisible());
+        clickOn("OK");*/
+        
     }
 
     /**

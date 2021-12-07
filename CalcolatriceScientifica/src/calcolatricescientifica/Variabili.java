@@ -51,7 +51,7 @@ public class Variabili {
     
     public void inserisciInVariabile(StackNumeri s, char x){
         int i = this.indice(x);
-        this.inserisci(s.top(),i);        
+        this.inserisci(s.drop(),i);        
     }
     
     public void inserisciInStack(StackNumeri s, char x) throws Exception{
