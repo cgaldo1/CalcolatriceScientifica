@@ -33,7 +33,7 @@ public class CommandInserisciInStackTest {
         CommandInserisciInStack c = new CommandInserisciInStack(v,x,s);
         c.esegui();
         
-        assertEquals(v.array[v.indice(x)], s.top());
+        assertEquals(v.getArray()[v.indice(x)], s.top());
     }
     
 }

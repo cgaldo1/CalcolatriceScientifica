@@ -41,10 +41,10 @@ public class CommandSalvaVariabiliTest {
         
         ripristino = stack.ripristinaVariabili();
         
-        assertEquals(n, ripristino.array[0]);
-        assertEquals(n1, ripristino.array[1]);
-        assertEquals(n2, ripristino.array[2]);
-        assertEquals(n3, ripristino.array[3]);
+        assertEquals(n, ripristino.getArray()[0]);
+        assertEquals(n1, ripristino.getArray()[1]);
+        assertEquals(n2, ripristino.getArray()[2]);
+        assertEquals(n3, ripristino.getArray()[3]);
     }
     
 }

@@ -18,28 +18,10 @@ public class StackVariabiliTest {
     }
 
     /**
-     * Test of inserisci method, of class StackVariabili.
-     */
-    @Test
-    public void testInserisci() {
-        StackVariabili sv = new StackVariabili();
-        Variabili v = new Variabili();
-        NumeroComplesso n = new NumeroComplesso(3,6);
-        NumeroComplesso n1 = new NumeroComplesso(37,61);
-        v.inserisci(n, 0);
-        v.inserisci(n1, 1);
-        sv.inserisci(v);
-        
-        assertEquals(n, sv.getArray().array[0]);
-        assertEquals(n1, sv.getArray().array[1]);
-    }
-
-    /**
      * Test of salvaVariabili method, of class StackVariabili.
      */
     @Test
     public void testSalvaVariabili() throws Exception{
-        System.out.println("test SalvaVariabili");
         StackVariabili stack = new StackVariabili();
         Variabili v = new Variabili();
         NumeroComplesso n = new NumeroComplesso(1,5);
@@ -58,10 +40,10 @@ public class StackVariabiliTest {
         
         ripristino = stack.ripristinaVariabili();
         
-        assertEquals(n, ripristino.array[0]);
-        assertEquals(n1, ripristino.array[1]);
-        assertEquals(n2, ripristino.array[2]);
-        assertEquals(n3, ripristino.array[3]);
+        assertEquals(n, ripristino.getArray()[0]);
+        assertEquals(n1, ripristino.getArray()[1]);
+        assertEquals(n2, ripristino.getArray()[2]);
+        assertEquals(n3, ripristino.getArray()[3]);
 
     }
 
@@ -82,16 +64,16 @@ public class StackVariabiliTest {
         v.inserisci(n2, 2);
         v.inserisci(n3, 3);
         
-        stack.inserisci(v);
+        stack.salvaVariabili(v);
         
         Variabili ripristino = new Variabili();
         
         ripristino = stack.ripristinaVariabili();
         
-        assertEquals(n, ripristino.array[0]);
-        assertEquals(n1, ripristino.array[1]);
-        assertEquals(n2, ripristino.array[2]);
-        assertEquals(n3, ripristino.array[3]);
+        assertEquals(n, ripristino.getArray()[0]);
+        assertEquals(n1, ripristino.getArray()[1]);
+        assertEquals(n2, ripristino.getArray()[2]);
+        assertEquals(n3, ripristino.getArray()[3]);
         
         StackVariabili s = new StackVariabili();
         Variabili ripristino1 = new Variabili();

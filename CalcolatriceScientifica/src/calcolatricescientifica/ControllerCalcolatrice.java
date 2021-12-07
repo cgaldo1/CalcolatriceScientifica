@@ -84,7 +84,7 @@ public class ControllerCalcolatrice implements Initializable {
         operazioni.put("acos", new CommandAcos(stack));
         operazioni.put("cos", new CommandCos(stack));
         operazioni.put("save", new CommandSalvaVariabili(stackVariabili,variabili));
-        operazioni.put("restore", new CommandRipristinaVariabili(stackVariabili));
+        operazioni.put("restore", new CommandRipristinaVariabili(stackVariabili, variabili));
 
         oStack = FXCollections.observableArrayList();
 
@@ -139,7 +139,7 @@ public class ControllerCalcolatrice implements Initializable {
         operazioni.replace("acos", new CommandAcos(stack));
         operazioni.replace("cos", new CommandCos(stack));
         operazioni.replace("save", new CommandSalvaVariabili(stackVariabili,variabili));
-        operazioni.replace("restore", new CommandRipristinaVariabili(stackVariabili));
+        operazioni.replace("restore", new CommandRipristinaVariabili(stackVariabili, variabili));
         oStack.setAll(stack.convertiInLista());
 
         casellaDiTesto.clear();

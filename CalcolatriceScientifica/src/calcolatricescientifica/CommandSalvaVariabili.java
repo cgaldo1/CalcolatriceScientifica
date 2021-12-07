@@ -21,6 +21,7 @@ public class CommandSalvaVariabili implements Command{
     @Override
     public void esegui(){
         s.salvaVariabili(v);
+        
     }
     
 }

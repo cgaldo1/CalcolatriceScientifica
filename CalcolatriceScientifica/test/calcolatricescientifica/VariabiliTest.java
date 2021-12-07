@@ -59,10 +59,10 @@ public class VariabiliTest {
         Variabili v = new Variabili();
         NumeroComplesso n = new NumeroComplesso(3,5);
         v.inserisci(n, 0);
-        assertEquals(n, v.array[0]);
+        assertEquals(n, v.getArray()[0]);
         NumeroComplesso n1 = new NumeroComplesso(7,-9);
         v.inserisci(n1, 1);
-        assertEquals(n1, v.array[1]);
+        assertEquals(n1, v.getArray()[1]);
     }
 
     /**
@@ -110,7 +110,7 @@ public class VariabiliTest {
         Variabili v = new Variabili();
         v.inserisciInVariabile(s, 'a');
         
-        assertEquals(n, v.array[v.indice('a')]);
+        assertEquals(n, v.getArray()[v.indice('a')]);
     }
 
     /**
