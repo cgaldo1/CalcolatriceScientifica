@@ -52,11 +52,13 @@ public class ControllerCalcolatrice implements Initializable {
 
     private char var;
 
+    @FXML
+    private Button BottoneEliminaOperazione;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         stack = new StackNumeri();
         variabili = new Variabili();
-        
 
         operazioni = new HashMap<>();
         operazioni.put("+", new CommandSomma(stack));
@@ -185,5 +187,20 @@ public class ControllerCalcolatrice implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Operazione creata");
         alert.showAndWait();
 
+    }
+
+    @FXML
+    private void eliminaOperazione(ActionEvent event) {
+        String nomeOperazione = tfdNomeOperazione.getText();
+        Command c = operazioni.remove(nomeOperazione);
+        if (c != null) {
+            tfdNomeOperazione.clear();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Operazione eliminata");
+            alert.showAndWait();
+        } else {
+            tfdNomeOperazione.clear();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Operazione non presente");
+            alert.showAndWait();
+        }
     }
 }

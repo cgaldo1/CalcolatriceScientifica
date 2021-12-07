@@ -58,11 +58,12 @@
                   </TextField>
                </children>
             </HBox>
-            <Button fx:id="bottoneNuovaOperazione" mnemonicParsing="false" onAction="#inserisciNuovaOperazione" prefHeight="0.0" prefWidth="196.0" text="Inserisci nuova operazione">
+            <Button fx:id="bottoneNuovaOperazione" alignment="CENTER" mnemonicParsing="false" onAction="#inserisciNuovaOperazione" prefHeight="0.0" prefWidth="196.0" text="Inserisci nuova operazione">
                <VBox.margin>
                   <Insets left="85.0" right="80.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="BottoneEliminaOperazione" alignment="CENTER" mnemonicParsing="false" onAction="#eliminaOperazione" prefHeight="24.0" prefWidth="162.0" text="Elimina operazione" />
          </children>
       </VBox>
    </children>
