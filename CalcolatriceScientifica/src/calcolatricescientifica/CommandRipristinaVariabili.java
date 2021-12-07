@@ -9,18 +9,20 @@ package calcolatricescientifica;
  *
  * @author jessi
  */
-public class CommandRipristinaVariabili implements Command{
+public class CommandRipristinaVariabili implements Command {
 
     private StackVariabili s;
     private Variabili v;
 
-    public CommandRipristinaVariabili(StackVariabili s) {
+    public CommandRipristinaVariabili(StackVariabili s, Variabili v) {
         this.s = s;
+        this.v = v;
     }
-    
+
     @Override
     public void esegui() throws Exception {
-        v = s.ripristinaVariabili();
+        Variabili x = s.ripristinaVariabili();
+        v.copiaArray(x.getArray(), x.getDim());
     }
     
     @Override

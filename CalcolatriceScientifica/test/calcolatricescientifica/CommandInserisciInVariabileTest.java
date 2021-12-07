@@ -37,7 +37,7 @@ public class CommandInserisciInVariabileTest {
         CommandInserisciInVariabile c = new CommandInserisciInVariabile(v,x,s);
         c.esegui();
         
-        assertEquals(v.array[v.indice(x)], s.top());
+        assertEquals(v.getArray()[v.indice(x)], s.top());
         
         s.clear();
         c.esegui();

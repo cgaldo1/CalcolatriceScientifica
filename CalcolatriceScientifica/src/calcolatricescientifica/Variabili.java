@@ -10,12 +10,44 @@ package calcolatricescientifica;
  * @author jessi
  */
 public class Variabili {
-    NumeroComplesso[] array;
-    int dim;
+    private NumeroComplesso[] array;
+    private int dim;
 
     public Variabili() {
         array = new NumeroComplesso[26];
         dim = 0;
+    }
+    
+    public Variabili(Variabili v){
+       NumeroComplesso[] a = v.getArray();
+       array= new NumeroComplesso[26];
+       for(int i =0; i<v.getDim(); i++){
+           this.array[i]=a[i];
+       }        
+       this.dim = v.getDim();
+    }
+
+    public NumeroComplesso[] getArray() {
+        return array;
+    }
+    
+    public void copiaArray(NumeroComplesso[] n, int dim){
+        for(int i =0; i<dim; i++){
+            this.array[i] = n[i];
+        }
+        this.dim = dim;
+    }
+
+    public void setArray(NumeroComplesso[] array) {
+        this.array = array;
+    }
+
+    public int getDim() {
+        return dim;
+    }
+
+    public void setDim(int dim) {
+        this.dim = dim;
     }
     
     public int indice(char x){
