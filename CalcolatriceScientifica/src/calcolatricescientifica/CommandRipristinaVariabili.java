@@ -14,9 +14,8 @@ public class CommandRipristinaVariabili implements Command{
     private StackVariabili s;
     private Variabili v;
 
-    public CommandRipristinaVariabili(StackVariabili s, Variabili v) {
+    public CommandRipristinaVariabili(StackVariabili s) {
         this.s = s;
-        this.v = v;
     }
     
     @Override
