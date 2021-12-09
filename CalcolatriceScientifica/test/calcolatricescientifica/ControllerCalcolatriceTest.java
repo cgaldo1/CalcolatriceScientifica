@@ -31,8 +31,6 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.mockito.ArgumentMatchers;
-import org.mockito.Mockito;
 import static org.testfx.api.FxAssert.verifyThat;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
