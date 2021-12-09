@@ -55,7 +55,7 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         stage.toFront();
     }
 
-    //Test
+    @Test
     public void testEsegui() {
 
         ListView<NumeroComplesso> listview = (ListView<NumeroComplesso>) mainNode.lookup("#stackCalcolatrice");
@@ -411,7 +411,7 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         clickOn("OK");
     }
 
-    //@Test
+    @Test
     public void testInserisciNuovaOperazione() {
         ListView<NumeroComplesso> listview = (ListView<NumeroComplesso>) mainNode.lookup("#stackCalcolatrice");
         TextField tfdInput = (TextField) mainNode.lookup("#casellaDiTesto");
@@ -477,7 +477,7 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.1);
     }
 
-    //@Test
+    @Test
     public void testModificaOperazione() {
         ListView<NumeroComplesso> listview = (ListView<NumeroComplesso>) mainNode.lookup("#stackCalcolatrice");
         TextField tfdInput = (TextField) mainNode.lookup("#casellaDiTesto");
