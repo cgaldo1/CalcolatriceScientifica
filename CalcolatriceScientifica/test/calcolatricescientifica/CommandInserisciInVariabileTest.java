@@ -27,17 +27,14 @@ public class CommandInserisciInVariabileTest {
         char x = 'a';
         
         NumeroComplesso n = new NumeroComplesso(5,7);
-        NumeroComplesso n1 = new NumeroComplesso(5,7);
-        NumeroComplesso n2 = new NumeroComplesso(5,7);
         
         s.push(n);
-        s.push(n1);
-        s.push(n2);
                
         CommandInserisciInVariabile c = new CommandInserisciInVariabile(v,x,s);
         c.esegui();
         
-        assertEquals(v.getArray()[v.indice(x)], s.top());
+        assertEquals(v.getArray()[v.indice(x)].parteReale(), s.top().parteReale(),10e-16);
+        assertEquals(v.getArray()[v.indice(x)].parteImmaginaria(), s.top().parteImmaginaria(),10e-16);
         
         s.clear();
         c.esegui();
