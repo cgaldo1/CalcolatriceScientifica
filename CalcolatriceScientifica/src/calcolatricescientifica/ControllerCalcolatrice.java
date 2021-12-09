@@ -261,7 +261,7 @@ public class ControllerCalcolatrice implements Initializable {
         OperazioneUtenteMacroCommand operazioneUtente = new OperazioneUtenteMacroCommand();
 
         //Controllo che l'operazione esista
-        if (!operazioni.containsKey(nomeOperazione)) {
+        if (!operazioniUtente.containsKey(nomeOperazione)) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "L'operazione non esiste");
             alert.showAndWait();
             return;

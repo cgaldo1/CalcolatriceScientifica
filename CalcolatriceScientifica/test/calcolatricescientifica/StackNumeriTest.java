@@ -64,9 +64,9 @@ public class StackNumeriTest {
         s.push(n);
         NumeroComplesso n2 = new NumeroComplesso(7,-2);
         s.push(n2);
-        assertEquals(1, s.lenght());
-        s.push(n2);
         assertEquals(2, s.lenght());
+        s.push(n2);
+        assertEquals(3, s.lenght());
     }
 
     /**
@@ -200,6 +200,17 @@ public class StackNumeriTest {
             assertEquals(lista.get(i), stack.drop());
         }
         
+    }
+    
+    @Test
+    public void testAddAll(){
+        StackNumeri stack = new StackNumeri();
+        stack.push(new NumeroComplesso(3,4));
+        stack.push(new NumeroComplesso(1,3));
+        stack.push(new NumeroComplesso(5,6));
+        StackNumeri altroStack = new StackNumeri();
+        altroStack.addAll(stack);
+        assertEquals(altroStack.toString(), stack.toString());
     }
     
 }

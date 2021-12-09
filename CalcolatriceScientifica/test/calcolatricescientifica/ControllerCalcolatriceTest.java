@@ -5,10 +5,16 @@
 package calcolatricescientifica;
 
 import com.sun.javaws.Main;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -20,9 +26,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.mockito.ArgumentMatchers;
+import org.mockito.Mockito;
 import static org.testfx.api.FxAssert.verifyThat;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
@@ -35,7 +45,7 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
 
     Parent mainNode;
     Stage stage;
-    private Variabili variabili = new Variabili();
+    //private Variabili variabili = new Variabili();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -47,12 +57,9 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         stage.toFront();
     }
 
-    
-    
-    @Test
+    //Test
     public void testEsegui() {
 
-        
         ListView<NumeroComplesso> listview = (ListView<NumeroComplesso>) mainNode.lookup("#stackCalcolatrice");
         TextField textField = (TextField) mainNode.lookup("#casellaDiTesto");
         StackNumeri stackAppoggio = new StackNumeri();
@@ -173,7 +180,7 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         n = new NumeroComplesso(0.98279, 0);
         assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.00001);
         assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.00001);
-        
+
         //test exp
         textField.setText("clear");
         clickOn("#bottoneEsegui");
@@ -184,7 +191,7 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         n = new NumeroComplesso(-7.31511, 1.04274);
         assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.00001);
         assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.00001);
-        
+
         //test >x, <x
         textField.setText("clear");
         clickOn("#bottoneEsegui");
@@ -192,8 +199,6 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         textField.setText("2+4j");
         clickOn("#bottoneEsegui");
         textField.setText(">a");
-        clickOn("#bottoneEsegui");
-        textField.setText("drop");
         clickOn("#bottoneEsegui");
         textField.setText("<a");
         clickOn("#bottoneEsegui");
@@ -234,6 +239,32 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.1);
         assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.1);
 
+        //test save e restore
+        textField.setText("restore");
+        clickOn("#bottoneEsegui");
+        verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
+        clickOn("OK");
+
+        textField.setText("save");
+        clickOn("#bottoneEsegui");
+        textField.setText("5+6j");
+        clickOn("#bottoneEsegui");
+        textField.setText(">a");
+        clickOn("#bottoneEsegui");
+        textField.setText("<a");
+        clickOn("#bottoneEsegui");
+        n = new NumeroComplesso(5, 6);
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.1);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.1);
+
+        textField.setText("restore");
+        clickOn("#bottoneEsegui");
+        textField.setText("<a");
+        clickOn("#bottoneEsegui");
+        n = new NumeroComplesso(-2, -1);
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.1);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.1);
+
         //test input non valido
         textField.setText("clear");
         clickOn("#bottoneEsegui");
@@ -265,145 +296,236 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText("sqrt");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText("+-");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText("drop");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText("dup");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText("swap");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText("over");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText(">a");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText("+a");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText("-a");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText("<d");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText("arg");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText("exp");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
-        
+
         textField.setText("1+4j");
         clickOn("#bottoneEsegui");
-        
+
         textField.setText("+");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText("-");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText("*");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText("/");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText("over");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText("swap");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
+        textField.setText("clear");
+        clickOn("#bottoneEsegui");
+        textField.setText(">d");
+        clickOn("#bottoneEsegui");
+        verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
+        clickOn("OK");
+
+        textField.setText("<d");
+        clickOn("#bottoneEsegui");
+        verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
+        clickOn("OK");
+
         textField.setText("+d");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
-        
+
         textField.setText("-d");
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
     }
-    
-    @Test
-    public void testInserisciNuovaOperazione(){
+
+    //@Test
+    public void testInserisciNuovaOperazione() {
         ListView<NumeroComplesso> listview = (ListView<NumeroComplesso>) mainNode.lookup("#stackCalcolatrice");
         TextField tfdInput = (TextField) mainNode.lookup("#casellaDiTesto");
         TextField tfdNomeOperazione = (TextField) mainNode.lookup("#tfdNomeOperazione");
         TextField tfdAzioniOperazione = (TextField) mainNode.lookup("#tfdAzioniOperazione");
-        
-        tfdNomeOperazione.setText("triplaSomma");
-        tfdAzioniOperazione.setText("+ + +");
+
+        //verifico che l'alert di conferma appaia
+        tfdNomeOperazione.setText("doppiaSomma");
+        tfdAzioniOperazione.setText("+ +");
         clickOn("#bottoneNuovaOperazione");
-        
+        verifyThat("Operazione creata", NodeMatchers.isVisible());
+        clickOn("OK");
+
+        //Inserisco i numeri per testare l'operazione
         tfdInput.setText("1+1j");
         clickOn("#bottoneEsegui");
         tfdInput.setText("1+1j");
         clickOn("#bottoneEsegui");
         tfdInput.setText("1+1j");
         clickOn("#bottoneEsegui");
-        tfdInput.setText("1+1j");
+
+        //Testo l'operazione
+        tfdInput.setText("doppiaSomma");
         clickOn("#bottoneEsegui");
-        
-        tfdInput.setText("triplaSomma");
-        clickOn("#bottoneEsegui");
-        NumeroComplesso n = new NumeroComplesso(4,4);
-        
+        NumeroComplesso n = new NumeroComplesso(3, 3);
         assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.1);
         assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.1);
-        
+
+        //Testo il caso in cui venga inserita una sequenza di azioni non valida
         tfdNomeOperazione.setText("Operazione");
         tfdAzioniOperazione.setText("+ tr -");
         clickOn("#bottoneNuovaOperazione");
         verifyThat("Input non valido", NodeMatchers.isVisible());
         clickOn("OK");
+
+        //Testo il caso in cui cerco di creare un'operazione esistente
+        tfdNomeOperazione.setText("doppiaSomma");
+        tfdAzioniOperazione.setText("+ -");
+        clickOn("#bottoneNuovaOperazione");
+        verifyThat("L'operazione esiste gia", NodeMatchers.isVisible());
+        clickOn("OK");
+
+        //Definizione di una operazione usandone una definita dall'utente
+        tfdNomeOperazione.setText("triplaSomma");
+        tfdAzioniOperazione.setText("+ doppiaSomma");
+        clickOn("#bottoneNuovaOperazione");
+        clickOn("OK");
+        tfdInput.setText("clear");
+        clickOn("#bottoneEsegui");
+        tfdInput.setText("1+1j");
+        clickOn("#bottoneEsegui");
+        tfdInput.setText("1+1j");
+        clickOn("#bottoneEsegui");
+        tfdInput.setText("1+1j");
+        clickOn("#bottoneEsegui");
+        tfdInput.setText("1+1j");
+        clickOn("#bottoneEsegui");
+
+        n = new NumeroComplesso(4, 4);
+        tfdInput.setText("triplaSomma");
+        clickOn("#bottoneEsegui");
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.1);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.1);
+    }
+
+    //@Test
+    public void testModificaOperazione() {
+        ListView<NumeroComplesso> listview = (ListView<NumeroComplesso>) mainNode.lookup("#stackCalcolatrice");
+        TextField tfdInput = (TextField) mainNode.lookup("#casellaDiTesto");
+        TextField tfdNomeOperazione = (TextField) mainNode.lookup("#tfdNomeOperazione");
+        TextField tfdAzioniOperazione = (TextField) mainNode.lookup("#tfdAzioniOperazione");
+
+        //test caso base, modifica dell'operazione
+        tfdNomeOperazione.setText("operazione");
+        tfdAzioniOperazione.setText("+ -");
+        clickOn("#bottoneNuovaOperazione");
+        verifyThat("Operazione creata", NodeMatchers.isVisible());
+        clickOn("OK");
+
+        tfdNomeOperazione.setText("operazione");
+        tfdAzioniOperazione.setText("+ - -");
+        clickOn("#bottoneModificaOperazione");
+        verifyThat("Operazione modificata", NodeMatchers.isVisible());
+        clickOn("OK");
+        tfdInput.setText("1+1j");
+        clickOn("#bottoneEsegui");
+        tfdInput.setText("2+1j");
+        clickOn("#bottoneEsegui");
+        tfdInput.setText("1");
+        clickOn("#bottoneEsegui");
+        tfdInput.setText("1j");
+        clickOn("#bottoneEsegui");
+        tfdInput.setText("operazione");
+        clickOn("#bottoneEsegui");
+        NumeroComplesso n = new NumeroComplesso(0, 1);
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.00001);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.00001);
+
+        //test caso in cui l'operazione da modificare non esiste
+        tfdNomeOperazione.setText("op");
+        tfdAzioniOperazione.setText("+ - *");
+        clickOn("#bottoneModificaOperazione");
+        verifyThat("L'operazione non esiste", NodeMatchers.isVisible());
+        clickOn("OK");
+
+        //test nuova sequenza di azioni inserita non valida
+        tfdNomeOperazione.setText("operazione");
+        tfdAzioniOperazione.setText("+ tr *");
+        clickOn("#bottoneModificaOperazione");
+        verifyThat("Input non valido", NodeMatchers.isVisible());
+        clickOn("OK");
     }
     
-    
+
 }
