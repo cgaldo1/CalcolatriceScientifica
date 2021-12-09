@@ -524,6 +524,29 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         verifyThat("Input non valido", NodeMatchers.isVisible());
         clickOn("OK");
     }
-    
+
+    @Test
+    public void eliminaOperazioneTest() {
+        ListView<NumeroComplesso> listview = (ListView<NumeroComplesso>) mainNode.lookup("#stackCalcolatrice");
+        TextField tfdInput = (TextField) mainNode.lookup("#casellaDiTesto");
+        TextField tfdNomeOperazione = (TextField) mainNode.lookup("#tfdNomeOperazione");
+        TextField tfdAzioniOperazione = (TextField) mainNode.lookup("#tfdAzioniOperazione");
+        
+        tfdNomeOperazione.setText("operazione");
+        tfdAzioniOperazione.setText("+ -");
+        clickOn("#bottoneNuovaOperazione");
+        verifyThat("Operazione creata", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        tfdNomeOperazione.setText("operazione");
+        clickOn("#BottoneEliminaOperazione");
+        verifyThat("Operazione eliminata", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        tfdNomeOperazione.setText("operazione2");
+        clickOn("#BottoneEliminaOperazione");
+        verifyThat("Operazione non presente", NodeMatchers.isVisible());
+        clickOn("OK");
+    }
 
 }
