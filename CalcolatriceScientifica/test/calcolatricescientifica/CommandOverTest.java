@@ -32,8 +32,13 @@ public class CommandOverTest {
         int lun = stack.lenght();
         
         c.esegui();
-        assertEquals(n, stack.top());
-        assertEquals(n1, stack.penultimo());
+        
+        assertEquals(n.parteReale(), stack.top().parteReale(), 10e-15);
+        assertEquals(n.parteImmaginaria(), stack.top().parteImmaginaria(), 10e-15);
+        
+        assertEquals(n1.parteReale(), stack.penultimo().parteReale(), 10e-15);
+        assertEquals(n1.parteImmaginaria(), stack.penultimo().parteImmaginaria(), 10e-15);
+        
         assertEquals(lun+1, stack.lenght());
         
         StackNumeri s = new StackNumeri();

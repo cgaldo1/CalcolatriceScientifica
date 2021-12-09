@@ -31,8 +31,12 @@ public class CommandSwapTest {
         stack.push(n1);
         
         c.esegui();
-        assertEquals(n1, stack.penultimo());
-        assertEquals(n, stack.top());
+        
+        assertEquals(n1.parteReale(), stack.penultimo().parteReale(), 10e-15);
+        assertEquals(n1.parteImmaginaria(), stack.penultimo().parteImmaginaria(), 10e-15);
+        
+        assertEquals(n.parteReale(), stack.top().parteReale(), 10e-15);
+        assertEquals(n.parteImmaginaria(), stack.top().parteImmaginaria(), 10e-15);
         
         StackNumeri s = new StackNumeri();
         CommandSwap cs = new CommandSwap(s);

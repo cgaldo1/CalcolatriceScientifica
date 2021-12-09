@@ -31,13 +31,17 @@ public class CommandDupTest {
         stack.push(n1);
         
         c.esegui();
+        assertEquals(stack.top().parteReale(), stack.penultimo().parteReale(), 10e-15);
+        assertEquals(stack.top().parteImmaginaria(), stack.penultimo().parteImmaginaria(), 10e-15);
         
-        assertEquals(stack.top(), stack.penultimo());
-        assertEquals(n1, stack.top());
-        assertEquals(n1, stack.penultimo());
+        assertEquals(n1.parteReale(), stack.top().parteReale(), 10e-15);
+        assertEquals(n1.parteImmaginaria(), stack.top().parteImmaginaria(), 10e-15);
+        
+        assertEquals(n1.parteReale(), stack.penultimo().parteReale(), 10e-15);
+        assertEquals(n1.parteImmaginaria(), stack.penultimo().parteImmaginaria(), 10e-15);
         
         StackNumeri s = new StackNumeri();
-        CommandDup cd = new CommandDup(stack);
+        CommandDup cd = new CommandDup(s);
         
         cd.esegui();
     }

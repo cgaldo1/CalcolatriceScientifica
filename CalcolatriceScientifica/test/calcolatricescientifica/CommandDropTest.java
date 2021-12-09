@@ -31,7 +31,8 @@ public class CommandDropTest {
         stack.push(n1);
         
         c.esegui();
-        assertEquals(n, stack.top());
+        assertEquals(n.parteReale(), stack.top().parteReale(), 10e-15);
+        assertEquals(n.parteImmaginaria(), stack.top().parteImmaginaria(), 10e-15);
         
         StackNumeri s = new StackNumeri();
         CommandDrop cd = new CommandDrop(s);
