@@ -21,11 +21,13 @@ public class StackVariabili {
         return stackVariabili.peek();
     }
     
+    //metodo che salva il contenuto delle variabili all'interno dello stack
     public void salvaVariabili(Variabili v){
         Variabili v1 = new Variabili(v);        
         this.stackVariabili.push(v1);
     }
     
+    //metodo che recupera dallo stack l'ultimo contenuto delle variabili memorizzato e lo ritorna
     public Variabili ripristinaVariabili() throws Exception{
         if(stackVariabili.isEmpty()) throw new Exception();
         Variabili top= stackVariabili.pop();

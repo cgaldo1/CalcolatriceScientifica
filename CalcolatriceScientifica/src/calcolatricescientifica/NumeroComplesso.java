@@ -176,6 +176,7 @@ public class NumeroComplesso extends Object {
 
     }
     
+    //metodo che controlla se l'input passato come parametro è un numero complesso e in questo caso lo ritorna, altrimenti ritorna null
     public static NumeroComplesso inserisciNumero(String input) {
         String[] s = new String[2];
         s[0] = ""; //stringa che conterrà parte reale o immaginaria dell'input
