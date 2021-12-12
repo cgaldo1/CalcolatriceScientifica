@@ -50,6 +50,7 @@ public class Variabili {
         this.dim = dim;
     }
     
+    //metodo che ritorna l'indice dell'array per la lettera x (se x='a' l'indice è 0, se x='b' l'indice è 1...)
     public int indice(char x){
         char y = 'a';
         int i;
@@ -81,6 +82,7 @@ public class Variabili {
         return array[i];
     }
     
+    //metodo che, data una lettera x, calcola l'indice dell'array e ci inserisce l'elemento in cima allo stack
     public void inserisciInVariabile(StackNumeri s, char x){
         int i = this.indice(x);
         this.inserisci(s.drop(),i);        

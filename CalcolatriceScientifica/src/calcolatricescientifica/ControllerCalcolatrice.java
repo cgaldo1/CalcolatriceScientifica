@@ -238,6 +238,7 @@ public class ControllerCalcolatrice implements Initializable {
 
     }
 
+    //metodo che dato il nome di un operazione, se presente la elimina 
     @FXML
     private void eliminaOperazione(ActionEvent event) {
         String nomeOperazione = tfdNomeOperazione.getText();
