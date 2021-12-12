@@ -319,14 +319,14 @@ public class ControllerCalcolatrice implements Initializable {
                 for (Map.Entry<String, Command> operazione : operazioniUtente.entrySet()) {
                     pw.write(operazione.getKey() + ":" + operazione.getValue().toString() + "\n");
                 }
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Operazioni salvate");
+                alert.showAndWait();
 
             } catch (IOException ex) {
                 Logger.getLogger(ControllerCalcolatrice.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Operazioni salvate");
-        alert.showAndWait();
+
     }
 
     //metodo che consente di caricare da un file le operazioni precedentemente salvate
@@ -364,19 +364,18 @@ public class ControllerCalcolatrice implements Initializable {
                             }
                         }
                     }
-                    
+
                     operazioniUtente.replace(nomeOperazione, operazioneUtente);
 
                 }
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Operazioni caricate");
+                alert.showAndWait();
 
             } catch (IOException ex) {
                 Logger.getLogger(ControllerCalcolatrice.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Operazioni caricate");
-        alert.showAndWait();
+
     }
-    
-    
+
 }
