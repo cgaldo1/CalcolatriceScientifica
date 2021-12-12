@@ -125,24 +125,45 @@ public class NumeroComplesso extends Object {
     
     /*La funzione si occupa di calcolare l'arcotangente di un numero complesso;*/
     public NumeroComplesso atan() {
-        return ((new NumeroComplesso(1,0).somma(new NumeroComplesso(0,1).prodotto(this))).rapporto((new NumeroComplesso(1,0).sottrazione(new NumeroComplesso(0,1).prodotto(this))))).logaritmonaturale().prodotto((new NumeroComplesso(1,0).rapporto(new NumeroComplesso(0,2))));
+        NumeroComplesso uno = new NumeroComplesso(1,0);
+        NumeroComplesso duei = new NumeroComplesso(0,2);
+        NumeroComplesso i = new NumeroComplesso(0,1);
+        NumeroComplesso membro1 = i.sottrazione(this);
+        NumeroComplesso membro2 = i.somma(this);
+        NumeroComplesso membro3 = membro1.rapporto(membro2);
+        NumeroComplesso membro4 = membro3.logaritmonaturale();
+        return uno.rapporto(duei).prodotto(membro4);
     }
     
     /*La funzione si occupa di calcolare l'arcoseno di un numero complesso;*/
     public NumeroComplesso asin() throws Exception {
         NumeroComplesso pow = new NumeroComplesso(2,0);
-        NumeroComplesso membro1 = new NumeroComplesso(0,1).prodotto(this);
-        NumeroComplesso membro2 = new NumeroComplesso((new NumeroComplesso(1,0).sottrazione(this.potenza(pow))).modulo(),0).radice();
-        NumeroComplesso membro3 = (new NumeroComplesso(0,(new NumeroComplesso(1,0).sottrazione(this.potenza(pow))).argomento()).prodotto(new NumeroComplesso(0,1).rapporto(new NumeroComplesso(2,0)))).esponenziale();
-        return membro1.somma(membro2).prodotto(membro3).logaritmonaturale().prodotto(new NumeroComplesso(1,0).rapporto(new NumeroComplesso(0,1)));
+        NumeroComplesso i = new NumeroComplesso(0,1);
+        NumeroComplesso membro1 = i.prodotto(this);
+        NumeroComplesso uno = new NumeroComplesso(1,0);
+        NumeroComplesso due = new NumeroComplesso(2,0);
+        NumeroComplesso membroModulo = new NumeroComplesso((uno.sottrazione(this.potenza(pow))).modulo(),0);
+        NumeroComplesso membro2 = membroModulo.radice();
+        NumeroComplesso fase = new NumeroComplesso((uno.sottrazione(this.potenza(pow))).argomento(),0);
+        NumeroComplesso membro3 = (i.rapporto(due).prodotto(fase)).esponenziale();
+        NumeroComplesso membro4 = membro1.somma(membro2.prodotto(membro3)).logaritmonaturale();
+        return (uno.rapporto(i)).prodotto(membro4);
     }
     
     /*La funzione si occupa di calcolare l'arcocoseno di un numero complesso;*/
     public NumeroComplesso acos() throws Exception{
         NumeroComplesso pow = new NumeroComplesso(2,0);
-        NumeroComplesso membro1 = new NumeroComplesso((this.potenza(pow).sottrazione(new NumeroComplesso(1,0))).modulo(),0).radice();
-        NumeroComplesso membro2 = (new NumeroComplesso(0,(this.potenza(pow)).sottrazione(new NumeroComplesso(1,0)).argomento()).prodotto(new NumeroComplesso(0,1).rapporto(new NumeroComplesso(2,0)))).esponenziale();
-        return this.somma(membro1).prodotto(membro2).logaritmonaturale().prodotto(new NumeroComplesso(1,0).rapporto(new NumeroComplesso(0,1)));
+        NumeroComplesso i = new NumeroComplesso(0,1);
+        NumeroComplesso uno = new NumeroComplesso(1,0);
+        NumeroComplesso due = new NumeroComplesso(2,0);
+        NumeroComplesso fase = new NumeroComplesso((uno.sottrazione(this.potenza(pow))).argomento(),0);
+        NumeroComplesso membroModulo = new NumeroComplesso((uno.sottrazione(this.potenza(pow))).modulo(),0);
+        NumeroComplesso membroRadice = membroModulo.radice();
+        NumeroComplesso membro1 = this;
+        NumeroComplesso membro2 = i.prodotto(membroRadice);
+        NumeroComplesso membro3 = (i.rapporto(due).prodotto(fase)).esponenziale();
+        NumeroComplesso membro4 = membro1.somma(membro2.prodotto(membro3)).logaritmonaturale();
+        return uno.rapporto(i).prodotto(membro4);     
     }
     
 
