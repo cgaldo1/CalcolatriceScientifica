@@ -7,7 +7,7 @@ package calcolatricescientifica;
 
 /**
  *
- * @author picac
+ * @author Francesco
  */
 public class CommandExp implements Command{
     private StackNumeri stack;

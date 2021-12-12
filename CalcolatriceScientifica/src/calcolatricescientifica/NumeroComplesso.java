@@ -123,10 +123,12 @@ public class NumeroComplesso extends Object {
         return (this.seno()).rapporto(this.coseno());
     }
     
+    /*La funzione si occupa di calcolare l'arcotangente di un numero complesso;*/
     public NumeroComplesso atan() {
         return ((new NumeroComplesso(1,0).somma(new NumeroComplesso(0,1).prodotto(this))).rapporto((new NumeroComplesso(1,0).sottrazione(new NumeroComplesso(0,1).prodotto(this))))).logaritmonaturale().prodotto((new NumeroComplesso(1,0).rapporto(new NumeroComplesso(0,2))));
     }
     
+    /*La funzione si occupa di calcolare l'arcoseno di un numero complesso;*/
     public NumeroComplesso asin() throws Exception {
         NumeroComplesso pow = new NumeroComplesso(2,0);
         NumeroComplesso membro1 = new NumeroComplesso(0,1).prodotto(this);
@@ -135,6 +137,7 @@ public class NumeroComplesso extends Object {
         return membro1.somma(membro2).prodotto(membro3).logaritmonaturale().prodotto(new NumeroComplesso(1,0).rapporto(new NumeroComplesso(0,1)));
     }
     
+    /*La funzione si occupa di calcolare l'arcocoseno di un numero complesso;*/
     public NumeroComplesso acos() throws Exception{
         NumeroComplesso pow = new NumeroComplesso(2,0);
         NumeroComplesso membro1 = new NumeroComplesso((this.potenza(pow).sottrazione(new NumeroComplesso(1,0))).modulo(),0).radice();
@@ -148,6 +151,7 @@ public class NumeroComplesso extends Object {
         return new NumeroComplesso(-x, -y);
     }
     
+    /*La funzione si occupa di calcolare l'elevamento a potenza di un numero complesso;*/
     public NumeroComplesso potenza(NumeroComplesso n) throws Exception{
         if(n.parteImmaginaria() != 0){
              throw new Exception();

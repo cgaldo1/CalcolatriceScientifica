@@ -7,7 +7,7 @@ package calcolatricescientifica;
 
 /**
  *
- * @author picac
+ * @author Francesco
  */
 public class CommandPow implements Command{
 

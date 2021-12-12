@@ -7,9 +7,10 @@ package calcolatricescientifica;
 
 /**
  *
- * @author picac
+ * @author Francesco
  */
 public class CommandTan implements Command{
+    
     private StackNumeri stack;
 
     public CommandTan(StackNumeri stack) {

@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author picac
+ * @author Francesco
  */
 public class CommandArg implements Command {
     private StackNumeri stack;
