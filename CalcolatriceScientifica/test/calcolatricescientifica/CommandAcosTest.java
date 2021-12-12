@@ -27,8 +27,8 @@ public class CommandAcosTest {
         s.push(n);
         CommandAcos c = new CommandAcos(s);
         c.esegui();
-        assertEquals(new NumeroComplesso(0.6103804074854946,-0.3783741018950697).parteReale(),s.top().parteReale(),10e-15);
-        assertEquals(new NumeroComplesso(0.6103804074854946,-0.3783741018950697).parteImmaginaria(),s.top().parteImmaginaria(),10e-15);  
+        assertEquals(new NumeroComplesso(1.2631926772641853,-1.8641615441578825).parteReale(),s.top().parteReale(),10e-15);
+        assertEquals(new NumeroComplesso(1.2631926772641853,-1.8641615441578825).parteImmaginaria(),s.top().parteImmaginaria(),10e-15);  
         s.drop();
         CommandAcos k = new CommandAcos(s);
         k.esegui();
