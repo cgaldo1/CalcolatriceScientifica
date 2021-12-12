@@ -11,6 +11,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import static jdk.nashorn.internal.objects.Global.Infinity;
 
@@ -25,6 +26,7 @@ public class CalcolatriceScientifica extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLCalcolatrice.fxml"));
         
         Scene scene = new Scene(root);
+        stage.getIcons().add(new Image(CalcolatriceScientifica.class.getResourceAsStream( "calcolatrice.png" )));
         stage.setScene(scene);
         stage.setTitle("Calcolatrice scientifica");
         stage.show();

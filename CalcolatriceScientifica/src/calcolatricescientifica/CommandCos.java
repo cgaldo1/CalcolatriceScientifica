@@ -7,9 +7,10 @@ package calcolatricescientifica;
 
 /**
  *
- * @author picac
+ * @author Francesco
  */
 public class CommandCos implements Command{
+    
     private StackNumeri stack;
 
     public CommandCos(StackNumeri stack) {
@@ -19,7 +20,7 @@ public class CommandCos implements Command{
     @Override
     public void esegui() throws Exception {
         if (stack.isEmpty()) {
-            throw new Exception(); //stack vuoto. Non si può effettuare l'operazione arcotangente.
+            throw new Exception(); //stack vuoto. Non si può effettuare l'operazione coseno.
         }
         NumeroComplesso n = stack.drop();
         stack.push(n.coseno());

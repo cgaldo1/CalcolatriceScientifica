@@ -7,29 +7,29 @@ package calcolatricescientifica;
 
 /**
  *
- * @author Francesco
+ * @author picac
  */
-public class CommandAcos implements Command{
+public class CommandModulo implements Command{
+    
     private StackNumeri stack;
 
-    public CommandAcos(StackNumeri stack) {
+    public CommandModulo(StackNumeri stack) {
         this.stack = stack;
     }
 
     @Override
     public void esegui() throws Exception {
         if (stack.isEmpty()) {
-            throw new Exception(); //stack vuoto. Non si può effettuare l'operazione arcotangente.
+            throw new Exception(); //stack vuoto. Non si può effettuare l'operazione modulo.
         }
         NumeroComplesso n = stack.drop();
-        stack.push(n.acos());
+        stack.push(new NumeroComplesso(n.modulo(),0));
 
     }
     
     @Override
     public String toString(){
-        return "acos";
+        return "mod";
     }
-    
     
 }

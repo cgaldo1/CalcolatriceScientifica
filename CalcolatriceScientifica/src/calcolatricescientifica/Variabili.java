@@ -68,6 +68,7 @@ public class Variabili {
         return this.dim==0;
     }
 
+    //Il metodo stampa mostra a video il contenuto delle variabili.
     public void stampa(){
         System.out.println("Array:");
         for(NumeroComplesso n: array) {
@@ -88,15 +89,18 @@ public class Variabili {
         this.inserisci(s.drop(),i);        
     }
     
+    //Il metodo inserisciInStack preleva il valore contenuto in una generica variabile x, compresa tra a e z, e lo inserisce in cima allo stack
     public void inserisciInStack(StackNumeri s, char x) throws Exception{
         s.push(this.getNumero(x));
 }
     
+    //Il metodo sommaVariabile addiziona l'elemento in cima allo stack con il valore contenuto in una generica variabile x. Inoltre sostituisce il contenuto della generica variabile x con il risultato della somma.
     public void sommaVariabile(StackNumeri s, char x) throws Exception{
          NumeroComplesso sum = this.getNumero(x).somma(s.top());
          this.inserisci(sum, indice(x));
     }
     
+    //Il metodo sottrazioneVariabile sottrae l'elemento in cima allo stack al valore contenuto in una generica variabile x. Inoltre sostituisce il contenuto della generica variabile x con il risultato della sottrazione.
     public void sottrazioneVariabile(StackNumeri s, char x) throws Exception{
          NumeroComplesso sub = this.getNumero(x).sottrazione(s.top());
          this.inserisci(sub, indice(x));
