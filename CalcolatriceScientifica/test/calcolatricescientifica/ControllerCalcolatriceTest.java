@@ -43,7 +43,6 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
 
     Parent mainNode;
     Stage stage;
-    //private Variabili variabili = new Variabili();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -190,6 +189,109 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.00001);
         assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.00001);
 
+        //test logaritmo
+        textField.setText("clear");
+        clickOn("#bottoneEsegui");
+        textField.setText("2+3j");
+        clickOn("#bottoneEsegui");
+        textField.setText("log");
+        clickOn("#bottoneEsegui");
+        n = new NumeroComplesso(1.28247, 0.98279);
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.00001);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.00001);
+        
+        //test modulo
+        textField.setText("clear");
+        clickOn("#bottoneEsegui");
+        textField.setText("2+3j");
+        clickOn("#bottoneEsegui");
+        textField.setText("mod");
+        clickOn("#bottoneEsegui");
+        n = new NumeroComplesso(3.60555, 0);
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.00001);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.00001);
+        
+        
+        //test potenza
+        textField.setText("clear");
+        clickOn("#bottoneEsegui");
+        textField.setText("2+3j");
+        clickOn("#bottoneEsegui");
+        textField.setText("2");
+        clickOn("#bottoneEsegui");
+        textField.setText("pow");
+        clickOn("#bottoneEsegui");
+        n = new NumeroComplesso(-5, 12);
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.00001);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.00001);
+        
+        //test seno
+        textField.setText("clear");
+        clickOn("#bottoneEsegui");
+        textField.setText("2+3j");
+        clickOn("#bottoneEsegui");
+        textField.setText("sin");
+        clickOn("#bottoneEsegui");
+        n = new NumeroComplesso(9.15449, -4.16890);
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.00001);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.00001);
+        
+        
+        //test coseno
+        textField.setText("clear");
+        clickOn("#bottoneEsegui");
+        textField.setText("2+3j");
+        clickOn("#bottoneEsegui");
+        textField.setText("cos");
+        clickOn("#bottoneEsegui");
+        n = new NumeroComplesso(-4.18962, -9.10922);
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.00001);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.00001);
+        
+        //test tangente
+        textField.setText("clear");
+        clickOn("#bottoneEsegui");
+        textField.setText("2+3j");
+        clickOn("#bottoneEsegui");
+        textField.setText("tan");
+        clickOn("#bottoneEsegui");
+        n = new NumeroComplesso(-0.00376, 1.00323);
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.00001);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.00001);
+        
+        //test arcoseno
+        textField.setText("clear");
+        clickOn("#bottoneEsegui");
+        textField.setText("2+3j");
+        clickOn("#bottoneEsegui");
+        textField.setText("asin");
+        clickOn("#bottoneEsegui");
+        n = new NumeroComplesso(0.57065, 1.98338);
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.00001);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.00001);
+        
+        //test arcocoseno
+        textField.setText("clear");
+        clickOn("#bottoneEsegui");
+        textField.setText("2+3j");
+        clickOn("#bottoneEsegui");
+        textField.setText("acos");
+        clickOn("#bottoneEsegui");
+        n = new NumeroComplesso(1.00014, -1.98338);
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.00001);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.00001);
+        
+        //test arcotangente
+        textField.setText("clear");
+        clickOn("#bottoneEsegui");
+        textField.setText("2+3j");
+        clickOn("#bottoneEsegui");
+        textField.setText("atan");
+        clickOn("#bottoneEsegui");
+        n = new NumeroComplesso(1.40992, 0.22907);
+        assertEquals(n.parteReale(), listview.getItems().get(0).parteReale(), 0.00001);
+        assertEquals(n.parteImmaginaria(), listview.getItems().get(0).parteImmaginaria(), 0.00001);
+        
         //test >x, <x
         textField.setText("clear");
         clickOn("#bottoneEsegui");
@@ -271,7 +373,7 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         verifyThat("Input non valido", NodeMatchers.isVisible());
         clickOn("OK");
 
-        //test eccezioni
+        //test eccezioni con stack vuoto
         textField.setText("clear");
         clickOn("#bottoneEsegui");
 
@@ -354,7 +456,54 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
+        
+        textField.setText("mod");
+        clickOn("#bottoneEsegui");
+        verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("log");
+        clickOn("#bottoneEsegui");
+        verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("pow");
+        clickOn("#bottoneEsegui");
+        verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("sin");
+        clickOn("#bottoneEsegui");
+        verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("cos");
+        clickOn("#bottoneEsegui");
+        verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("tan");
+        clickOn("#bottoneEsegui");
+        verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        
+        textField.setText("asin");
+        clickOn("#bottoneEsegui");
+        verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("acos");
+        clickOn("#bottoneEsegui");
+        verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
+        clickOn("OK");
+        
+        textField.setText("atan");
+        clickOn("#bottoneEsegui");
+        verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
+        clickOn("OK");
 
+        //test eccezioni con stack con un solo numero
         textField.setText("1+4j");
         clickOn("#bottoneEsegui");
 
@@ -388,6 +537,11 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
 
+        textField.setText("pow");
+        clickOn("#bottoneEsegui");
+        verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
+        clickOn("OK");
+        
         textField.setText("clear");
         clickOn("#bottoneEsegui");
         textField.setText(">d");
@@ -409,6 +563,17 @@ public class ControllerCalcolatriceTest extends ApplicationTest {
         clickOn("#bottoneEsegui");
         verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
         clickOn("OK");
+        
+        //test eccezione potenza quando l'esponente non è un numero reale
+        textField.setText("1+4j");
+        clickOn("#bottoneEsegui");
+        textField.setText("2+7j");
+        clickOn("#bottoneEsegui");
+        textField.setText("pow");
+        clickOn("#bottoneEsegui");
+        verifyThat("L'operazione non può essere eseguita", NodeMatchers.isVisible());
+        clickOn("OK");
+        
     }
 
     @Test

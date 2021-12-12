@@ -80,6 +80,7 @@ public class ControllerCalcolatrice implements Initializable {
         variabili = new Variabili();
         stackVariabili = new StackVariabili();
 
+        //popolo hash map con le operazioni di base della calcolatrice
         operazioni = new HashMap<>();
         operazioni.put("+", new CommandSomma(stack));
         operazioni.put("-", new CommandSottrazione(stack));
@@ -123,9 +124,9 @@ public class ControllerCalcolatrice implements Initializable {
         stackTemporaneo.addAll(stack);
 
         Invoker invoker = new Invoker();
-        if (n == null) {
+        if (n == null) {  //verifico se l'input è un numero o meno, se n è null allora non è un numero
             Command command = nuovoCommand(input);
-            if (command != null) {
+            if (command != null) {  //verifico che l'input è un'operazione, altrimenti l'input viene considerato invalido
                 try {
                     invoker.esegui(command);
                 } catch (Exception e) {
@@ -151,6 +152,7 @@ public class ControllerCalcolatrice implements Initializable {
             oStack.setAll(stack.convertiInLista());
         }
 
+        //aggiorno i command cosicchè abbiano lo stack aggiornato
         operazioni.replace("+", new CommandSomma(stack));
         operazioni.replace("-", new CommandSottrazione(stack));
         operazioni.replace("*", new CommandProdotto(stack));
@@ -182,12 +184,15 @@ public class ControllerCalcolatrice implements Initializable {
     }
 
     private Command nuovoCommand(String input) {
+        //ritorno command operazione di base
         if (operazioni.containsKey(input)) {
             return (Command) operazioni.get(input);
         }
+        //ritorno command operazione definita dall'utente
         if (operazioniUtente.containsKey(input)) {
             return (Command) operazioniUtente.get(input);
         }
+        //ritorno command operazioni sulle variabili
         if (input.length() == 2 && input.charAt(0) == '>' && input.charAt(1) >= 'a' && input.charAt(1) <= 'z') {
             return new CommandInserisciInVariabile(variabili, input.charAt(1), stack);
         }
@@ -260,6 +265,7 @@ public class ControllerCalcolatrice implements Initializable {
         }
     }
 
+    //metodo che permette di ridefinire la sequenza di azioni di un'operazione esistente
     @FXML
     private void modificaOperazione(ActionEvent event) {
         String nomeOperazione = tfdNomeOperazione.getText();
@@ -300,6 +306,7 @@ public class ControllerCalcolatrice implements Initializable {
         alert.showAndWait();
     }
 
+    //metodo che consente di salvare su un file le operazioni definite dall'utente
     @FXML
     private void salvaOperazioni(ActionEvent event) {
         FileChooser fc = new FileChooser();
@@ -322,6 +329,7 @@ public class ControllerCalcolatrice implements Initializable {
         alert.showAndWait();
     }
 
+    //metodo che consente di caricare da un file le operazioni precedentemente salvate
     @FXML
     private void caricaOperazioni(ActionEvent event) {
         FileChooser fc = new FileChooser();
