@@ -402,13 +402,6 @@ public class NumeroComplessoTest {
     }
 
     /**
-     * Test del metodo logaritmo, della classe NumeroComplesso.
-     */
-    @Test
-    public void testLogaritmo() {
-    }
-
-    /**
      * Test del metodo radice, della classe NumeroComplesso.
      */
     @Test
@@ -443,6 +436,81 @@ public class NumeroComplessoTest {
      */
     @Test
     public void testSeno() {
+        double inf = Double.POSITIVE_INFINITY;
+        double negativeinf = Double.NEGATIVE_INFINITY;
+        NumeroComplesso n = new NumeroComplesso(0, 4);                              // a=0,b>0
+        NumeroComplesso n0 = new NumeroComplesso(0, -4);                            // a=0,b<0
+        NumeroComplesso n1 = new NumeroComplesso(0, 0);                             //a=0,b=0
+        NumeroComplesso n2 = new NumeroComplesso(3, 5);                             //a>0,b>0
+        NumeroComplesso n3 = new NumeroComplesso(3, -5);                            //a>0,b<0
+        NumeroComplesso n4 = new NumeroComplesso(-3, 0);                            // a<0,b=0
+        NumeroComplesso n5 = new NumeroComplesso(-3, 5);                            // a<0,b>0
+        NumeroComplesso n6 = new NumeroComplesso(-5, -5);                           // a<0,b<0
+        NumeroComplesso n7 = new NumeroComplesso(-4,inf);                           // a<0,b=inf
+        NumeroComplesso n8 = new NumeroComplesso(4,inf);                            // a>0,b=inf
+        NumeroComplesso n9 = new NumeroComplesso(0,inf);                            // a=0,b=inf
+        NumeroComplesso n10 = new NumeroComplesso(-4,negativeinf);                  // a<0,b=-inf
+        NumeroComplesso n11 = new NumeroComplesso(4,negativeinf);                   // a>0,b=-inf
+        NumeroComplesso n12 = new NumeroComplesso(0,negativeinf);                   // a=0,b=-inf
+        NumeroComplesso n13 = new NumeroComplesso(inf,-4);                          // a=inf,b<0
+        NumeroComplesso n14 = new NumeroComplesso(inf,4);                           // a=inf,b>0
+        NumeroComplesso n15 = new NumeroComplesso(inf,0);                           // a=inf,b=0
+        NumeroComplesso n16 = new NumeroComplesso(negativeinf,-4);                  // a=-inf,b<0
+        NumeroComplesso n17 = new NumeroComplesso(negativeinf,4);                   // a=-inf,b>0
+        NumeroComplesso n18 = new NumeroComplesso(negativeinf,0);                   // a=-inf,b=0
+        NumeroComplesso n19 = new NumeroComplesso(inf,inf);                         // a=inf,b=inf
+        NumeroComplesso n20 = new NumeroComplesso(negativeinf,negativeinf);         // a=-inf,b=-inf
+        
+        assertTrue(new NumeroComplesso(0,27.28991719712775).parteReale() == n.seno().parteReale() && new NumeroComplesso(0,27.28991719712775).parteImmaginaria() == n.seno().parteImmaginaria());
+        assertTrue(new NumeroComplesso(0,-27.28991719712775).parteReale() == n0.seno().parteReale() && new NumeroComplesso(0,-27.28991719712775).parteImmaginaria() == n0.seno().parteImmaginaria());
+        assertTrue(new NumeroComplesso(0,0).parteReale() == n1.seno().parteReale() && new NumeroComplesso(0,0).parteImmaginaria() == n1.seno().parteImmaginaria());
+        assertTrue(new NumeroComplesso(10.472508533940392,-73.46062169567367).parteReale() == n2.seno().parteReale() && new NumeroComplesso(10.472508533940392,-73.46062169567367).parteImmaginaria() == n2.seno().parteImmaginaria());
+        assertTrue(new NumeroComplesso(10.472508533940392,73.46062169567367).parteReale() == n3.seno().parteReale() && new NumeroComplesso(10.472508533940392,73.46062169567367).parteImmaginaria() == n3.seno().parteImmaginaria());
+        assertTrue(new NumeroComplesso(-0.1411200080598672,0).parteReale() == n4.seno().parteReale() && new NumeroComplesso(-0.1411200080598672,0).parteImmaginaria() == n4.seno().parteImmaginaria());
+        assertTrue(new NumeroComplesso(-10.472508533940392,-73.46062169567367).parteReale() == n5.seno().parteReale() && new NumeroComplesso(-10.472508533940392,-73.46062169567367).parteImmaginaria() == n5.seno().parteImmaginaria());
+        assertTrue(new NumeroComplesso(71.16172106192103,-21.048644880883543).parteReale() == n6.seno().parteReale() && new NumeroComplesso(71.16172106192103,-21.048644880883543).parteImmaginaria() == n6.seno().parteImmaginaria());
+        
+        assertEquals(new NumeroComplesso(inf, negativeinf).parteReale(), n7.seno().parteReale(), 10e-1);
+        assertEquals(new NumeroComplesso(inf, negativeinf).parteImmaginaria(), n7.seno().parteImmaginaria(), 10e-1);
+        
+        assertEquals(new NumeroComplesso(negativeinf, negativeinf).parteReale(), n8.seno().parteReale(), 10e-1);
+        assertEquals(new NumeroComplesso(negativeinf, negativeinf).parteImmaginaria(), n8.seno().parteImmaginaria(), 10e-1);
+        
+        assertEquals(new NumeroComplesso(NaN, inf).parteReale(), n9.seno().parteReale(), 10e-1);
+        assertEquals(new NumeroComplesso(NaN, inf).parteImmaginaria(), n9.seno().parteImmaginaria(), 10e-1);
+        
+        assertEquals(new NumeroComplesso(inf, inf).parteReale(), n10.seno().parteReale(), 10e-1);
+        assertEquals(new NumeroComplesso(inf, inf).parteImmaginaria(), n10.seno().parteImmaginaria(), 10e-1);
+        
+        assertEquals(new NumeroComplesso(negativeinf, inf).parteReale(), n11.seno().parteReale(), 10e-1);
+        assertEquals(new NumeroComplesso(negativeinf, inf).parteImmaginaria(), n11.seno().parteImmaginaria(), 10e-1);
+        
+        assertEquals(new NumeroComplesso(NaN, negativeinf).parteReale(), n12.seno().parteReale(), 10e-1);
+        assertEquals(new NumeroComplesso(NaN, negativeinf).parteImmaginaria(), n12.seno().parteImmaginaria(), 10e-1);
+        
+        assertEquals(new NumeroComplesso(NaN, NaN).parteReale(), n13.seno().parteReale(), 10e-1);
+        assertEquals(new NumeroComplesso(NaN, NaN).parteImmaginaria(), n13.seno().parteImmaginaria(), 10e-1);
+        
+        assertEquals(new NumeroComplesso(NaN, NaN).parteReale(), n14.seno().parteReale(), 10e-1);
+        assertEquals(new NumeroComplesso(NaN, NaN).parteImmaginaria(), n14.seno().parteImmaginaria(), 10e-1);
+        
+        assertEquals(new NumeroComplesso(NaN, NaN).parteReale(), n15.seno().parteReale(), 10e-1);
+        assertEquals(new NumeroComplesso(NaN, NaN).parteImmaginaria(), n15.seno().parteImmaginaria(), 10e-1);
+        
+        assertEquals(new NumeroComplesso(NaN, NaN).parteReale(), n16.seno().parteReale(), 10e-1);
+        assertEquals(new NumeroComplesso(NaN, NaN).parteImmaginaria(), n16.seno().parteImmaginaria(), 10e-1);
+        
+        assertEquals(new NumeroComplesso(NaN, NaN).parteReale(), n17.seno().parteReale(), 10e-1);
+        assertEquals(new NumeroComplesso(NaN, NaN).parteImmaginaria(), n17.seno().parteImmaginaria(), 10e-1);
+        
+        assertEquals(new NumeroComplesso(NaN, NaN).parteReale(), n18.seno().parteReale(), 10e-1);
+        assertEquals(new NumeroComplesso(NaN, NaN).parteImmaginaria(), n18.seno().parteImmaginaria(), 10e-1);
+        
+        assertEquals(new NumeroComplesso(NaN, NaN).parteReale(), n19.seno().parteReale(), 10e-1);
+        assertEquals(new NumeroComplesso(NaN, NaN).parteImmaginaria(), n19.seno().parteImmaginaria(), 10e-1);
+        
+        assertEquals(new NumeroComplesso(NaN, NaN).parteReale(), n20.seno().parteReale(), 10e-1);
+        assertEquals(new NumeroComplesso(NaN, NaN).parteImmaginaria(), n20.seno().parteImmaginaria(), 10e-1);
     }
 
     /**
@@ -728,10 +796,93 @@ public class NumeroComplessoTest {
     }
 
     /**
-     * Test of logaritmonaturale method, of class NumeroComplesso.
+     * Test del metodo logaritmonaturale della classe NumeroComplesso.
      */
     @Test
     public void testLogaritmonaturale() {
+        double inf = Double.POSITIVE_INFINITY;
+        double negativeinf = Double.NEGATIVE_INFINITY;
+        NumeroComplesso n = new NumeroComplesso(0, 4);                              // a=0,b>0
+        NumeroComplesso n0 = new NumeroComplesso(0, -4);                            // a=0,b<0
+        NumeroComplesso n1 = new NumeroComplesso(0, 0);                             //a=0,b=0
+        NumeroComplesso n2 = new NumeroComplesso(3, 5);                             //a>0,b>0
+        NumeroComplesso n3 = new NumeroComplesso(3, -5);                            //a>0,b<0
+        NumeroComplesso n4 = new NumeroComplesso(-3, 0);                            // a<0,b=0
+        NumeroComplesso n5 = new NumeroComplesso(-3, 5);                            // a<0,b>0
+        NumeroComplesso n6 = new NumeroComplesso(-5, -5);                           // a<0,b<0
+        NumeroComplesso n7 = new NumeroComplesso(-4,inf);                           // a<0,b=inf
+        NumeroComplesso n8 = new NumeroComplesso(4,inf);                            // a>0,b=inf
+        NumeroComplesso n9 = new NumeroComplesso(0,inf);                            // a=0,b=inf
+        NumeroComplesso n10 = new NumeroComplesso(-4,negativeinf);                  // a<0,b=-inf
+        NumeroComplesso n11 = new NumeroComplesso(4,negativeinf);                   // a>0,b=-inf
+        NumeroComplesso n12 = new NumeroComplesso(0,negativeinf);                   // a=0,b=-inf
+        NumeroComplesso n13 = new NumeroComplesso(inf,-4);                          // a=inf,b<0
+        NumeroComplesso n14 = new NumeroComplesso(inf,4);                           // a=inf,b>0
+        NumeroComplesso n15 = new NumeroComplesso(inf,0);                           // a=inf,b=0
+        NumeroComplesso n16 = new NumeroComplesso(negativeinf,-4);                  // a=-inf,b<0
+        NumeroComplesso n17 = new NumeroComplesso(negativeinf,4);                   // a=-inf,b>0
+        NumeroComplesso n18 = new NumeroComplesso(negativeinf,0);                   // a=-inf,b=0
+        NumeroComplesso n19 = new NumeroComplesso(inf,inf);                         // a=inf,b=inf
+        NumeroComplesso n20 = new NumeroComplesso(negativeinf,negativeinf);         // a=-inf,b=-inf
+        
+        assertTrue(new NumeroComplesso(1.3862943611198906, 1.5707963267948966).parteReale() == n.logaritmonaturale().parteReale() && new NumeroComplesso(1.3862943611198906, 1.5707963267948966).parteImmaginaria() == n.logaritmonaturale().parteImmaginaria());
+
+        assertTrue(new NumeroComplesso(1.3862943611198906, -1.5707963267948966).parteReale() == n0.logaritmonaturale().parteReale() && new NumeroComplesso(1.3862943611198906, -1.5707963267948966).parteImmaginaria() == n0.logaritmonaturale().parteImmaginaria());
+        
+        assertEquals(new NumeroComplesso(negativeinf, 0).parteReale(), n1.logaritmonaturale().parteReale(), 10e-16);
+        assertEquals(new NumeroComplesso(negativeinf, 0).parteImmaginaria(), n1.logaritmonaturale().parteImmaginaria(), 10e-16);
+        
+        assertTrue(new NumeroComplesso(1.7631802623080808, 1.0303768265243125).parteReale() == n2.logaritmonaturale().parteReale() && new NumeroComplesso(1.7631802623080808, 1.0303768265243125).parteImmaginaria() == n2.logaritmonaturale().parteImmaginaria());
+        
+        assertTrue(new NumeroComplesso(1.7631802623080808, -1.0303768265243125).parteReale() == n3.logaritmonaturale().parteReale() && new NumeroComplesso(1.7631802623080808, -1.0303768265243125).parteImmaginaria() == n3.logaritmonaturale().parteImmaginaria());
+        
+        assertTrue(new NumeroComplesso(1.0986122886681098, 3.141592653589793).parteReale() == n4.logaritmonaturale().parteReale() && new NumeroComplesso(1.0986122886681098, 3.141592653589793).parteImmaginaria() == n4.logaritmonaturale().parteImmaginaria());
+        
+        assertTrue(new NumeroComplesso(1.7631802623080808, 2.1112158270654806).parteReale() == n5.logaritmonaturale().parteReale() && new NumeroComplesso(1.7631802623080808, 2.1112158270654806).parteImmaginaria() == n5.logaritmonaturale().parteImmaginaria());
+        
+        assertTrue(new NumeroComplesso(1.956011502714073, -2.356194490192345).parteReale() == n6.logaritmonaturale().parteReale() && new NumeroComplesso(1.956011502714073, -2.356194490192345).parteImmaginaria() == n6.logaritmonaturale().parteImmaginaria());
+        
+        assertEquals(new NumeroComplesso(inf, 1.5707963267948966).parteReale(), n7.logaritmonaturale().parteReale(), 10e-16);
+        assertEquals(new NumeroComplesso(inf, 1.5707963267948966).parteImmaginaria(), n7.logaritmonaturale().parteImmaginaria(), 10e-16);
+        
+        assertEquals(new NumeroComplesso(inf, 1.5707963267948966).parteReale(), n8.logaritmonaturale().parteReale(), 10e-16);
+        assertEquals(new NumeroComplesso(inf, 1.5707963267948966).parteImmaginaria(), n8.logaritmonaturale().parteImmaginaria(), 10e-16);
+        
+        assertEquals(new NumeroComplesso(inf, 1.5707963267948966).parteReale(), n9.logaritmonaturale().parteReale(), 10e-16);
+        assertEquals(new NumeroComplesso(inf, 1.5707963267948966).parteImmaginaria(), n9.logaritmonaturale().parteImmaginaria(), 10e-16);
+        
+        assertEquals(new NumeroComplesso(inf, -1.5707963267948966).parteReale(), n10.logaritmonaturale().parteReale(), 10e-16);
+        assertEquals(new NumeroComplesso(inf, -1.5707963267948966).parteImmaginaria(), n10.logaritmonaturale().parteImmaginaria(), 10e-16);
+        
+        assertEquals(new NumeroComplesso(inf, -1.5707963267948966).parteReale(), n11.logaritmonaturale().parteReale(), 10e-16);
+        assertEquals(new NumeroComplesso(inf, -1.5707963267948966).parteImmaginaria(), n11.logaritmonaturale().parteImmaginaria(), 10e-16);
+        
+        assertEquals(new NumeroComplesso(inf, -1.5707963267948966).parteReale(), n12.logaritmonaturale().parteReale(), 10e-16);
+        assertEquals(new NumeroComplesso(inf, -1.5707963267948966).parteImmaginaria(), n12.logaritmonaturale().parteImmaginaria(), 10e-16);
+        
+        assertEquals(new NumeroComplesso(inf, 0).parteReale(), n13.logaritmonaturale().parteReale(), 10e-16);
+        assertEquals(new NumeroComplesso(inf, 0).parteImmaginaria(), n13.logaritmonaturale().parteImmaginaria(), 10e-16);
+        
+        assertEquals(new NumeroComplesso(inf, 0).parteReale(), n14.logaritmonaturale().parteReale(), 10e-16);
+        assertEquals(new NumeroComplesso(inf, 0).parteImmaginaria(), n14.logaritmonaturale().parteImmaginaria(), 10e-16);
+        
+        assertEquals(new NumeroComplesso(inf, 0).parteReale(), n15.logaritmonaturale().parteReale(), 10e-16);
+        assertEquals(new NumeroComplesso(inf, 0).parteImmaginaria(), n15.logaritmonaturale().parteImmaginaria(), 10e-16);
+        
+        assertEquals(new NumeroComplesso(inf, -3.141592653589793).parteReale(), n16.logaritmonaturale().parteReale(), 10e-16);
+        assertEquals(new NumeroComplesso(inf, -3.141592653589793).parteImmaginaria(), n16.logaritmonaturale().parteImmaginaria(), 10e-16);
+        
+        assertEquals(new NumeroComplesso(inf, 3.141592653589793).parteReale(), n17.logaritmonaturale().parteReale(), 10e-16);
+        assertEquals(new NumeroComplesso(inf, 3.141592653589793).parteImmaginaria(), n17.logaritmonaturale().parteImmaginaria(), 10e-16);
+        
+        assertEquals(new NumeroComplesso(inf, 3.141592653589793).parteReale(), n18.logaritmonaturale().parteReale(), 10e-16);
+        assertEquals(new NumeroComplesso(inf, 3.141592653589793).parteImmaginaria(), n18.logaritmonaturale().parteImmaginaria(), 10e-16);
+        
+        assertEquals(new NumeroComplesso(inf, 0.7853981633974483).parteReale(), n19.logaritmonaturale().parteReale(), 10e-16);
+        assertEquals(new NumeroComplesso(inf, 0.7853981633974483).parteImmaginaria(), n19.logaritmonaturale().parteImmaginaria(), 10e-16);
+        
+        assertEquals(new NumeroComplesso(inf, -2.356194490192345).parteReale(), n20.logaritmonaturale().parteReale(), 10e-16);
+        assertEquals(new NumeroComplesso(inf, -2.356194490192345).parteImmaginaria(), n20.logaritmonaturale().parteImmaginaria(), 10e-16);
     }
 
     /**
@@ -817,10 +968,14 @@ public class NumeroComplessoTest {
     }
 
     /**
-     * Test of potenza method, of class NumeroComplesso.
+     * Test del metodo potenza della classe NumeroComplesso.
      */
     @Test
     public void testPotenza() throws Exception {
+        NumeroComplesso n = new NumeroComplesso(2, 0); 
+        NumeroComplesso n1 = new NumeroComplesso(4,7);
+        
+        assertTrue(new NumeroComplesso(-33, 55.99999999999999).parteReale() == n1.potenza(n).parteReale() && new NumeroComplesso(-33, 55.99999999999999).parteImmaginaria() == n1.potenza(n).parteImmaginaria());
     }
 
     /**
