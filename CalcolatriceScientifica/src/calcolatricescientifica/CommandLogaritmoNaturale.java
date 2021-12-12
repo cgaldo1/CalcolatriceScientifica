@@ -7,29 +7,29 @@ package calcolatricescientifica;
 
 /**
  *
- * @author Francesco
+ * @author picac
  */
-public class CommandCos implements Command{
+public class CommandLogaritmoNaturale implements Command {
     
     private StackNumeri stack;
 
-    public CommandCos(StackNumeri stack) {
+    public CommandLogaritmoNaturale(StackNumeri stack) {
         this.stack = stack;
     }
 
     @Override
     public void esegui() throws Exception {
         if (stack.isEmpty()) {
-            throw new Exception(); //stack vuoto. Non si può effettuare l'operazione coseno.
+            throw new Exception(); //stack vuoto. Non si può effettuare l'operazione logaritmo naturale.
         }
         NumeroComplesso n = stack.drop();
-        stack.push(n.coseno());
+        stack.push(n.logaritmonaturale());
 
     }
     
     @Override
     public String toString(){
-        return "cos";
+        return "log";
     }
     
 }

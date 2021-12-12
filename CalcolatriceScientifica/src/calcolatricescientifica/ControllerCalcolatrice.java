@@ -99,6 +99,9 @@ public class ControllerCalcolatrice implements Initializable {
         operazioni.put("tan", new CommandTan(stack));
         operazioni.put("asin", new CommandAsin(stack));
         operazioni.put("acos", new CommandAcos(stack));
+        //operazioni.put("sin", new CommandSin(stack));
+        operazioni.put("mod", new CommandModulo(stack));
+        operazioni.put("log", new CommandLogaritmoNaturale(stack));
         operazioni.put("cos", new CommandCos(stack));
         operazioni.put("save", new CommandSalvaVariabili(stackVariabili, variabili));
         operazioni.put("restore", new CommandRipristinaVariabili(stackVariabili, variabili));
@@ -167,6 +170,9 @@ public class ControllerCalcolatrice implements Initializable {
         operazioni.replace("asin", new CommandAsin(stack));
         operazioni.replace("acos", new CommandAcos(stack));
         operazioni.replace("cos", new CommandCos(stack));
+        //operazioni.replace("sin", new CommandSin(stack));
+        operazioni.replace("mod", new CommandModulo(stack));
+        operazioni.replace("log", new CommandLogaritmoNaturale(stack));
         operazioni.replace("save", new CommandSalvaVariabili(stackVariabili, variabili));
         operazioni.replace("restore", new CommandRipristinaVariabili(stackVariabili, variabili));
         oStack.setAll(stack.convertiInLista());
